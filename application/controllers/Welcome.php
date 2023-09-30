@@ -12,8 +12,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('ADMIN/pages/template/basepage', $v);
 	}
 
-	public function index()
+	public function besoin()
 	{
 		$this->viewer('/besoin',array());
+	}	
+	public function critere()
+	{
+		$this->viewer('/critere',array());
+	}		
+	public function cv_list()
+	{
+		$this->viewer('/cv_list',array());
 	}		
 }
