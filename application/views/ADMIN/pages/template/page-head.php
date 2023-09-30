@@ -11,7 +11,7 @@
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <script src="./assets/js/init-alpine.js" ></script>
+    <script src=<?=base_url("assets_ADMIN/js/init-alpine.js");?> ></script>
   </head>
   <head>
     <meta charset="UTF-8" />
@@ -26,6 +26,6 @@
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <script src="./assets/js/init-alpine.js"></script>
+    <script src=<?=base_url("assets_ADMINjs/init-alpine.js");?>></script>
   </head>
   
