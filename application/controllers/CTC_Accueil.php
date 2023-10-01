@@ -12,7 +12,7 @@ class CTC_Accueil extends CI_Controller {
 		$this->load->view('CLIENT/pages/template/basepage', $v);
 	}
 
-	public function annonce()
+	public function index()
 	{
 		$this->viewer('/annonce',array());
 	}	
