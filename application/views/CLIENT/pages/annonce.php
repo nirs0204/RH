@@ -1,3 +1,4 @@
+<?php if(!isset($annonce)) $annonce=array();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,52 +11,25 @@
           <div class="row">
             <div class="col-md-12 grid-margin transparent">
               <h2>Annonces</h2>
+              
               <div class="row">
+              <?php  for($i=0; $i<count($annonce); $i++) { ?>
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">Offre d'emploi</p>
-                      <p class="fs-30 mb-2">Technicien reseau</p>
-                      <p>Fin Annonce :</p>
-                         <form action="<?= bu('CTC_Annonce/login')?>"  method="POST" >
-                          <p><button type="button" class="btn btn-light">Details</button></p>
-                         </form>
+                    <form action="<?= bu('CTC_Annonce/detail')?>"  method="POST" >
+                      <p class="mb-4">Offre d'emploi , Service : <?php echo $annonce[$i]->nomservice; ?></p>
+                      <p class="fs-30 mb-2"><?php echo $annonce[$i]->nomtache; ?></p>
+                      <p>Fin Annonce :<?php echo $annonce[$i]->datefin; ?></p>
+                      <p><a type="button" class="btn btn-light" href="index,ht,ml">Details</a></p>
+                      </form>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-dark-blue">
-                    <div class="card-body">
-                      <p class="mb-4">Total Bookings</p>
-                      <p class="fs-30 mb-2">61344</p>
-                      <p>22.00% (30 days)</p>
-                      <p><button type="button" class="btn btn-light">Light</button></p>
-                    </div>
-                  </div>
-                </div>
+                <?php } ?>
+                
               </div>
-              <div class="row">
-                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                  <div class="card card-light-blue">
-                    <div class="card-body">
-                      <p class="mb-4">Number of Meetings</p>
-                      <p class="fs-30 mb-2">34040</p>
-                      <p>2.00% (30 days)</p>
-                      <p><button type="button" class="btn btn-light">Light</button></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 stretch-card transparent">
-                  <div class="card card-light-danger">
-                    <div class="card-body">
-                      <p class="mb-4">Number of Clients</p>
-                      <p class="fs-30 mb-2">47033</p>
-                      <p>0.22% (30 days)</p>
-                      <p><button type="button" class="btn btn-light">Light</button></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
