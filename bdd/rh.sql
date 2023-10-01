@@ -110,16 +110,14 @@ INSERT INTO besoin (idtache, heure, jour) VALUES (3, 40, 8);
                   --Mlg      (10)     etranger(5)
 --}
 
--- Critere 1
+-- Insertion dans la table "critere"
 INSERT INTO critere
  (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
 VALUES (1, 1, 20, 2, 10, 15, 10, 15, 0, 0, '2023-10-30', '2023-11-15');
 
--- Critere 2
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
 VALUES (2, 2, 25, 4, 10, 10, 10, 5, 0, 10, '2023-10-05', '2023-10-20');
 
--- Critere 3
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
 VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
 
@@ -136,3 +134,8 @@ VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
 
+select *  from client;
+select *  from service;
+select *  from besoin;
+select *  from tache;
+select *  from critere;
