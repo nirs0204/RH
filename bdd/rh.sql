@@ -135,6 +135,14 @@ VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
 --}
 
 
+--Select ANNONCE
+SELECT t.nomTache, s.nom AS nomService, c.dateFin , (b.heure/b.jour) as personnel
+FROM critere c
+JOIN besoin b ON c.idbesoin = b.idbesoin
+JOIN tache t ON b.idtache = t.idtache
+JOIN service s ON t.idservice = s.idservice;  
+
+
 select *  from client;
 select *  from service;
 select *  from besoin;

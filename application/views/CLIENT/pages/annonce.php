@@ -1,4 +1,4 @@
-<?php if(!isset($annonce)) $annonce=array();?>
+<?php if(!isset($annonce)) $annonce=array(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
