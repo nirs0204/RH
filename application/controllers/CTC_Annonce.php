@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CTC_Annonce extends CI_Controller {
 
+	public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('MDC_Annonce');
+        $this->load->helper('main_helper');
+    }
+
 	private function viewer($page, $data)
 	{
 		$v = array(
@@ -14,7 +21,8 @@ class CTC_Annonce extends CI_Controller {
 
 	public function index()
 	{
-		$this->viewer('/annonce',array());
+		$data['annonce']=$this->MDC_Annonce->allNews();
+		$this->viewer('/annonce',$data);
 	}	
 	
 }

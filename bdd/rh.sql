@@ -134,6 +134,7 @@ VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
 
+
 select *  from client;
 select *  from service;
 select *  from besoin;
