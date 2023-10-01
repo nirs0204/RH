@@ -14,10 +14,12 @@
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">Today’s Bookings</p>
-                      <p class="fs-30 mb-2">4006</p>
-                      <p>10.00% (30 days)</p>
-                      <p><button type="button" class="btn btn-light">Light</button></p>
+                      <p class="mb-4">Offre d'emploi</p>
+                      <p class="fs-30 mb-2">Technicien reseau</p>
+                      <p>Fin Annonce :</p>
+                         <form action="<?= bu('CTC_Annonce/login')?>"  method="POST" >
+                          <p><button type="button" class="btn btn-light">Details</button></p>
+                         </form>
                     </div>
                   </div>
                 </div>
