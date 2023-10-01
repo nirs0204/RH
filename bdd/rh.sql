@@ -10,8 +10,15 @@ create table client (
 
 create table cv (
     idclient int references client(idclient),
-    diplome decimal(3,2),
-    langue decimal(3,2),
+    diplome1 decimal(3,2),
+    diplome2 decimal(3,2),
+    diplome3 decimal(3,2),
+    diplome4 decimal(3,2),
+    diplome5 decimal(3,2),
+    diplome6 decimal(3,2),
+    langue1 decimal(3,2),
+    langue2 decimal(3,2),
+    langue3 decimal(3,2),
     sexe decimal(3,2),
     Smatri decimal(3,2),
     nom varchar(150),
@@ -48,7 +55,9 @@ create table critere (
     nationalite int,
     sexe int,
     Smatri int,
-    langue int,
+    langue1 int,
+    langue2 int,
+    langue3 int,
     dateFin date,
     debutEnt date
 );
