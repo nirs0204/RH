@@ -6,6 +6,6 @@
 
     $this->load->view('ADMIN/pages/template/menu-head');
 
-    $this->load->view('admin/pages/'.$page,$data);
+    $this->load->view('ADMIN/pages/'.$page,$data);
 
 ?>
