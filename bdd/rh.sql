@@ -71,6 +71,13 @@ create table questionnaire (
 );
 
 --------------INSERTION------------------------
+
+-- Insertion dans la table "client"
+INSERT INTO client (email, mdp) VALUES ('soa@example.com', '123');
+INSERT INTO client (email, mdp) VALUES ('lova@example.com', '456');
+INSERT INTO client (email, mdp) VALUES ('rado@example.com', '789');
+
+
 -- Insertion dans la table "service"
 INSERT INTO service (nom) VALUES ('Informatique');
 INSERT INTO service (nom) VALUES ('Securite');
