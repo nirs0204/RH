@@ -3,9 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MDC_Client extends CI_Model {
 //    enregistrer un client (create)
     function saveClient($email, $mdp){
-        $sql = "insert into client ($email,$mdp) values ( %s, %s) ";
+        $sql = "insert into client (email,mdp) values ( %s, %s) ";
         $sql = sprintf($sql,$this->db->escape($email),$this->db->escape($mdp));
         $this->db->query($sql);
+
+        $insert_id = $this->db->insert_id();
+        return $this->oneClient ($insert_id);
     }
 
 //    liste de tous les clients (read)
@@ -36,6 +39,12 @@ class MDC_Client extends CI_Model {
         }
         return $table;
     }
-
+    
+//  login
+    public function verify($email, $password) {
+        $query = $this->db->get_where('client', array('email' => $email, 'mdp' => $password));
+        $client = $query->row(0, 'MDC_Client');
+        return $client;
+    }
 }
 ?>

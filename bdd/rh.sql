@@ -69,3 +69,73 @@ create table questionnaire (
     reponse int,
     coef int
 );
+
+--------------INSERTION------------------------
+
+-- Insertion dans la table "client"
+INSERT INTO client (email, mdp) VALUES ('soa@example.com', '123');
+INSERT INTO client (email, mdp) VALUES ('lova@example.com', '456');
+INSERT INTO client (email, mdp) VALUES ('rado@example.com', '789');
+
+
+-- Insertion dans la table "service"
+INSERT INTO service (nom) VALUES ('Informatique');
+INSERT INTO service (nom) VALUES ('Securite');
+INSERT INTO service (nom) VALUES ('Finance');
+
+
+-- Insertion dans la table "tache"
+INSERT INTO tache (idservice, nomTache) VALUES (1, 'technicien reseau');
+INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
+INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
+
+-- Insertion dans la table "besoin"
+INSERT INTO besoin (idtache, heure, jour) VALUES (1, 120, 24);
+INSERT INTO besoin (idtache, heure, jour) VALUES (2, 60, 12);
+INSERT INTO besoin (idtache, heure, jour) VALUES (3, 40, 8);
+
+
+
+-- Critere {
+    --1)diplome
+                  --doctorat (30)      master (25)     licence(20)
+                  --bacc     (15)      bepc   (10)     cepe   (5)
+    --2)langue
+                  --Mlg      (15)      frc    (10)     ang    (5)
+    --3)sexe      
+                  --H        (15)      F      (10)     LGBT   (5)
+    --4)SMatri    
+                  --marie    (15)      Celibat(10)     Divorce(5)
+    --5)SMatri    
+                  --Mlg      (10)     etranger(5)
+--}
+
+-- Insertion dans la table "critere"
+INSERT INTO critere
+ (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
+VALUES (1, 1, 20, 2, 10, 15, 10, 15, 0, 0, '2023-10-30', '2023-11-15');
+
+INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
+VALUES (2, 2, 25, 4, 10, 10, 10, 5, 0, 10, '2023-10-05', '2023-10-20');
+
+INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
+VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
+
+
+-- CV (/20) {
+    --1)diplome
+                  --doctorat (11)      master (8)     licence(6)
+                  --bacc     (4)      bepc   (2)     cepe   (1)
+    --2)langue
+                  --Mlg      (3)      frc    (2)     ang    (5)
+    --3)sexe      
+                  --H        (2)      F      (2)     LGBT   (1)
+    --4)SMatri    
+                  --marie    (2)      Celibat(2)     Divorce(2)
+--}
+
+select *  from client;
+select *  from service;
+select *  from besoin;
+select *  from tache;
+select *  from critere;
