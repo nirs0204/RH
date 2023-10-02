@@ -128,7 +128,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios1" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="l1" id="membershipRadios2" value="" checked>
                                 Malagasy
                               </label>
                             </div>
@@ -136,7 +136,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios1" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="l2" id="membershipRadios1" value="">
                                 Anglais
                               </label>
                             </div>
@@ -144,7 +144,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios1" id="membershipRadios2" value="">
+                                <input type="radio" class="form-check-input" name="l3" id="membershipRadios2" value="">
                                 Francais
                               </label>
                             </div>

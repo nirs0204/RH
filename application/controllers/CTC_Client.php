@@ -27,6 +27,8 @@ class CTC_Client extends CI_Controller {
         {
             $data['success'] = $this->input->get('success');
         }
+        $besoin = $this->input->get('besoin');
+        $this->session->set_userdata('besoin', $besoin);
         $this->load->view('CLIENT/pages/login', $data);
     }
 
