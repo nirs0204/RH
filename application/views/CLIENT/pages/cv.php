@@ -72,7 +72,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios2" value="option2">
                                 Doctorat
                               </label>
                             </div>
@@ -80,7 +80,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios1" value="" checked>
                                 Master
                               </label>
                             </div>
@@ -88,7 +88,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios3" value="">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios3" value="">
                                 Licence
                               </label>
                             </div>
@@ -97,15 +97,15 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios4" value="option4">
-                                Bacc
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios4" value="option4">
+                                BACC
                               </label>
                             </div>
                           </div>
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios5" value="option5">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios5" value="option5">
                                 BEPC
                               </label>
                             </div>
@@ -113,7 +113,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios6" value="option6">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios6" value="option6">
                                 CEPE
                               </label>
                             </div>
@@ -128,7 +128,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="l1" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="langue1" id="membershipRadios2" value="" checked>
                                 Malagasy
                               </label>
                             </div>
@@ -136,7 +136,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="l2" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="langue2" id="membershipRadios1" value="">
                                 Anglais
                               </label>
                             </div>
@@ -144,7 +144,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="l3" id="membershipRadios2" value="">
+                                <input type="radio" class="form-check-input" name="langue3" id="membershipRadios2" value="">
                                 Francais
                               </label>
                             </div>
