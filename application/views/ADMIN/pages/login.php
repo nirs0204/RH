@@ -42,7 +42,7 @@
               >
                 Login
               </h1>
-                <form action=<?= site_url("CTA_Admin/login1rre");?> method="post">
+                <form action=<?= site_url("CTA_Admin/login");?> method="post">
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Pseudo</span>
                 <input

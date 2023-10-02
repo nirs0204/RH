@@ -17,29 +17,19 @@ class CTA_Admin extends CI_Controller
     }
 
     public function login() {
-        // Définir les règles de validation
-        $this->form_validation->set_rules('pseudo', 'Pseudo', 'required');
-        $this->form_validation->set_rules('mdp', 'Mot de passe', 'required');
+        $pseudo = $this->input->post('pseudo');
+        $mdp = $this->input->post('mdp');
+        $admin = $this->MDA_Admin->verify($pseudo, $mdp);
 
-        if ($this->form_validation->run() == FALSE) {
-            // La validation a échoué, afficher le formulaire avec les erreurs
-            $this->load->view('ADMIN/pages/login');
-        } else {
-            // La validation a réussi, traiter les données du formulaire
-            $pseudo = $this->input->post('pseudo');
-            $mdp = $this->input->post('mdp');
-
-            $user = $this->MDA_Admin->verify($pseudo, $mdp);
-
-            if ($user && password_verify($mdp, $user->mdp)) {
-                // Connexion réussie
-                // Vous pouvez gérer la session utilisateur ici
-                redirect('CTA_Accueil/cv_list'); // Rediriger vers la page de tableau de bord
-            } else {
-                // Échec de la connexion
-                $this->load->view('ADMIN/pages/login');
-            }
+        if ($admin){
+            $this->session->set_userdata('admin', $admin->idadmin);
+            redirect(base_url('CTA_Accueil/cv_list'));
+            return;
         }
+        else{
+            $data['error'] = 'Pseudo ou mot de passe invalide';
+        }
+        redirect(base_url('CTA_Admin/login_view'));
     }
 }
 ?>
