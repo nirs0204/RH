@@ -11,16 +11,24 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">CV</h4>
-                  <form class="form-sample">
+                  <form  action="<?= bu('CTC_Cv/insert') ?>" method="POST"  class="form-sample">
                     <p class="card-description">
-                      Personal info
+                      Info personnel
                     </p>
                     <div class="row">
                       <div class="col-md-12">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Nom </label>
+                            <div class="col-sm-9">
+                              <input name="nom" type="text" class="form-control" />
+                            </div>
+                          </div>
+                       </div>
+                      <div class="col-md-12">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Email</label>
+                          <label class="col-sm-3 col-form-label">Prénom</label>
                           <div class="col-sm-9">
-                            <input type="email" class="form-control" />
+                            <input name="prenom" type="email" class="form-control" />
                           </div>
                         </div>
                       </div>
@@ -28,7 +36,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Telephone</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
+                            <input name="tel" type="text" class="form-control" />
                           </div>
                         </div>
                       </div>
@@ -36,15 +44,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Adresse</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Nom</label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" />
+                            <input name="add" type="text" class="form-control" />
                           </div>
                         </div>
                       </div>
@@ -52,7 +52,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Date de naissance</label>
                           <div class="col-sm-9">
-                            <input class="form-control" placeholder="dd/mm/yyyy"/>
+                            <input type="date" name="dtn" class="form-control" placeholder="dd/mm/yyyy"/>
                           </div>
                         </div>
                       </div>
@@ -60,7 +60,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Experience</label>
                           <div class="col-sm-9">
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea name="exp" class="form-control" id="exampleTextarea1" rows="4"></textarea>
                           </div>
                         </div>
                       </div>
@@ -159,7 +159,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios2" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios2" value="" checked>
                                 Homme
                               </label>
                             </div>
@@ -167,7 +167,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios2" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios1" value="">
                                 Femme
                               </label>
                             </div>
@@ -175,7 +175,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios2" id="membershipRadios2" value="">
+                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios2" value="">
                                 LGBT
                               </label>
                             </div>
@@ -190,7 +190,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios3" id="membershipRadios2" value="">
+                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios2" value="">
                                 Marie(e)
                               </label>
                             </div>
@@ -198,7 +198,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios3" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios1" value="">
                                 Divorce(e)
                               </label>
                             </div>
@@ -206,7 +206,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios3" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios2" value="" checked>
                                 Celibataire
                               </label>
                             </div>

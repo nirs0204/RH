@@ -47,7 +47,7 @@ class CTC_Client extends CI_Controller {
 
         if ($client){
             $this->session->set_userdata('client', $client->idclient);
-            redirect(bu('CTC_Accueil/cv'));
+            redirect(bu('CTC_Cv'));
             return;
         }
         else{
