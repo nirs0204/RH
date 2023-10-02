@@ -50,14 +50,14 @@ create table besoin (
 create table critere (
     idservice int references service(idservice),
     idbesoin int references besoin(idbesoin),
-    diplome int,
-    experience int,
-    nationalite int,
-    sexe int,
-    Smatri int,
-    langue1 int,
-    langue2 int,
-    langue3 int,
+    diplome varchar(150),
+    experience varchar(150),
+    nationalite varchar(150),
+    sexe varchar(150),
+    Smatri varchar(150),
+    langue1 varchar(150),
+    langue2 varchar(150),
+    langue3 varchar(150),
     dateFin date,
     debutEnt date
 );
@@ -117,20 +117,19 @@ INSERT INTO besoin (idtache, heure, jour) VALUES (3, 40, 8);
                   --H        (15)      F      (10)     LGBT   (5)
     --4)SMatri    
                   --marie    (15)      Celibat(10)     Divorce(5)
-    --5)SMatri    
+    --5)Nationalite    
                   --Mlg      (10)     etranger(5)
 --}
 
 -- Insertion dans la table "critere"
-INSERT INTO critere
- (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
-VALUES (1, 1, 20, 2, 10, 15, 10, 15, 0, 0, '2023-10-30', '2023-11-15');
+INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
+VALUES (1, 1, 'licence', '2 ans', 'Malagasy', 'homme', 'marie', 'Malagasy', '', '', '2023-10-30', '2023-11-15');
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
-VALUES (2, 2, 25, 4, 10, 10, 10, 5, 0, 10, '2023-10-05', '2023-10-20');
+VALUES (2, 2, 'master', '4 ans', 'Malagasy', 'Femme', 'marie', '', 'anglais', 'français', '2023-10-05', '2023-10-20');
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
-VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
+VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', 'anglais', '', '2023-10-15', '2023-10-25');
 
 
 -- CV (/20) {
@@ -147,11 +146,19 @@ VALUES (3, 3, 30, 6, 5, 5, 5, 10, 5, 0, '2023-10-15', '2023-10-25');
 
 
 --Select ANNONCE
-SELECT t.nomTache, s.nom AS nomService, c.dateFin , (b.heure/b.jour) as personnel
+SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin
 FROM critere c
 JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
-JOIN service s ON t.idservice = s.idservice;  
+JOIN service s ON t.idservice = s.idservice;
+
+SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel FROM critere c
+JOIN besoin b ON c.idbesoin = b.idbesoin
+JOIN tache t ON b.idtache = t.idtache
+JOIN service s ON t.idservice = s.idservice
+where b.idbesoin=1;
+
+
 
 
 select *  from client;
