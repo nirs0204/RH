@@ -70,12 +70,23 @@ create table questionnaire (
     coef int
 );
 
+create table admin(
+    idadmin serial primary key,
+    pseudo varchar(150),
+    mdp varchar(80)
+);
+
 --------------INSERTION------------------------
 
 -- Insertion dans la table "client"
 INSERT INTO client (email, mdp) VALUES ('soa@example.com', '123');
 INSERT INTO client (email, mdp) VALUES ('lova@example.com', '456');
 INSERT INTO client (email, mdp) VALUES ('rado@example.com', '789');
+
+-- Insertion dans la table "admin"
+INSERT INTO admin (pseudo, mdp) VALUES ('Informatique', '123');
+INSERT INTO admin (pseudo, mdp) VALUES ('Securite', '456');
+INSERT INTO admin (pseudo, mdp) VALUES ('Finance', '789');
 
 
 -- Insertion dans la table "service"

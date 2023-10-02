@@ -39,13 +39,12 @@ class MDC_Client extends CI_Model {
         }
         return $table;
     }
-
+    
 //  login
     public function verify($email, $password) {
         $query = $this->db->get_where('client', array('email' => $email, 'mdp' => $password));
         $client = $query->row(0, 'MDC_Client');
         return $client;
     }
-
 }
 ?>
