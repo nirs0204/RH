@@ -17,19 +17,15 @@
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                    <form action="<?= bu('CTC_Annonce/detail')?>"  method="POST" >
                       <p class="mb-4">Offre d'emploi , Service : <?php echo $annonce[$i]->nomservice; ?></p>
                       <p class="fs-30 mb-2"><?php echo $annonce[$i]->nomtache; ?></p>
                       <p>Fin Annonce :<?php echo $annonce[$i]->datefin; ?></p>
-                      <p><a type="button" class="btn btn-light" href="index,ht,ml">Details</a></p>
-                      </form>
+                      <p><a type="button" class="btn btn-light" href="<?= bu('CTC_Annonce/detail')?>?besoin=<?php echo $annonce[$i]->idbesoin; ?>">Details</a></p>
                     </div>
                   </div>
                 </div>
                 <?php } ?>
-                
               </div>
-              
             </div>
           </div>
         </div>

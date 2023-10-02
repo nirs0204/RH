@@ -25,4 +25,11 @@ class CTC_Annonce extends CI_Controller {
 		$this->viewer('/annonce',$data);
 	}	
 	
+	public function detail()
+	{
+		$id = $this->input->get('besoin');
+		$data['detail'] =  $this->MDC_Annonce->oneNews($id);
+		$this->viewer('/detail',$data);
+	}	
+	
 }
