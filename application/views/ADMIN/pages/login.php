@@ -8,12 +8,12 @@
                 href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
                 rel="stylesheet"
         />
-        <link rel="stylesheet" href=<?= base_url("assets_ADMIN/css/tailwind.output.css");?> />
+        <link rel="stylesheet" href=<?php echo base_url("assets_ADMIN/css/tailwind.output.css");?> />
         <script
                 src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
                 defer
         ></script>
-        <script src=<?= base_url("assets_ADMIN/js/init-alpine.js");?>></script>
+        <script src=<?php echo base_url("assets_ADMIN/js/init-alpine.js");?>></script>
     </head>
   <body>
     <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
@@ -25,13 +25,13 @@
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src=<?= base_url("assets_ADMIN/img/login-office.jpeg");?>
+              src=<?php echo base_url("assets_ADMIN/img/login-office.jpeg");?>
               alt="Office"
             />
             <img
               aria-hidden="true"
               class="hidden object-cover w-full h-full dark:block"
-              src=<?= base_url("assets_ADMIN/img/login-office-dark.jpeg");?>
+              src=<?php echo base_url("assets_ADMIN/img/login-office-dark.jpeg");?>
               alt="Office"
             />
           </div>
@@ -42,7 +42,7 @@
               >
                 Login
               </h1>
-                <form action=<?= site_url("CTA_Admin/login");?> method="post">
+                <form action=<?php echo site_url("CTA_Admin/login");?> method="post">
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Pseudo</span>
                 <input
@@ -74,7 +74,7 @@
               <p class="mt-1">
                 <a
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href=<?= site_url("CTA_Admin/subscribe_view"); ?>
+                  href=<?php echo site_url("CTA_Admin/subscribe_view"); ?>
                 >
                   Create account
                 </a>
