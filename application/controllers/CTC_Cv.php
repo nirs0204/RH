@@ -18,7 +18,9 @@ class CTC_Cv extends CI_Controller {
 	}
 
     public function index(){
-        $this->viewer('/cv',array());
+        $besoin = $this->session->userdata('besoin');
+        echo $besoin;
+        //$this->viewer('/cv',array());
     }
     public function insert(){
         echo $this->input->post('prenom')."/";
