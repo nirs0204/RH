@@ -72,8 +72,22 @@ create table admin(
 );
 
 create table coefCv(
-    idService int references service(idservice),
-    
+    idtache int references tache(idtache),
+    doctorat int,
+    masterD int,
+    licence int,
+    bacc int,
+    bepc int,
+    cepe int,
+    mlg int,
+    frc int,
+    ang int,
+    homme int,
+    femme int,
+    autre int,
+    mariee int,
+    celibat int,
+    divorcee int
 );
 
 --------------INSERTION------------------------

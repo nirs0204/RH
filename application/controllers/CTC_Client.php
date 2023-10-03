@@ -8,6 +8,8 @@ class CTC_Client extends CI_Controller {
         parent::__construct();
         $this->load->model('MDC_Client');
         $this->load->helper('main_helper');
+        $this->load->library('session');
+
     }
 	private function viewer($page, $data){
 		$v = array(
@@ -27,27 +29,39 @@ class CTC_Client extends CI_Controller {
         {
             $data['success'] = $this->input->get('success');
         }
-        $besoin = $this->input->get('besoin');
-        $this->session->set_userdata('besoin', $besoin);
+        // $besoin = $this->input->get('besoin');
+        // $this->session->set_userdata('besoin', $besoin);
+
+        $val = 'COUCOU';
+        $this->session->set_userdata('val', $val);
+        
         $this->load->view('CLIENT/pages/login', $data);
     }
 
     public function register(){
+        $val1 = $this->session->userdata('val'); // Utilisez $this->session->userdata() pour accéder à la session
+        echo $val1;
+    
         if($this->input->get('error') != null)
         {
             $data['error'] = $this->input->get('error');
         }
         $this->load->view('CLIENT/pages/register');
     }
+    
+
 
 	public function login(){
+        echo $_SESSION['besoin'];
         $email = $this->input->post('email');
         $mdp = $this->input->post('mdp');
         $client = $this->MDC_Client->verify($email, $mdp);
 
         if ($client){
             $this->session->set_userdata('client', $client->idclient);
-            redirect(base_url('CTC_Cv'));
+
+            redirect('CTC_Cv/index');
+
             return;
         }
         else{

@@ -20,7 +20,7 @@
                       <p class="mb-4">Offre d'emploi , Service : <?php echo $annonce[$i]->nomservice; ?></p>
                       <p class="fs-30 mb-2"><?php echo $annonce[$i]->nomtache; ?></p>
                       <p>Fin Annonce :<?php echo $annonce[$i]->datefin; ?></p>
-                      <p><a type="button" class="btn btn-light" href="<?= bu('CTC_Annonce/detail')?>?besoin=<?php echo $annonce[$i]->idbesoin; ?>">Details</a></p>
+                      <p><a type="button" class="btn btn-light" href="<?php echo site_url('CTC_Annonce/detail')?>?besoin=<?php echo $annonce[$i]->idbesoin; ?>">Details</a></p>
                     </div>
                   </div>
                 </div>
