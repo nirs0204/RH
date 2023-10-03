@@ -71,6 +71,11 @@ create table admin(
     mdp varchar(80)
 );
 
+create table coefCv(
+    idService int references service(idservice),
+    
+);
+
 --------------INSERTION------------------------
 
 -- Insertion dans la table "client"
