@@ -47,13 +47,13 @@ class CTC_Client extends CI_Controller {
 
         if ($client){
             $this->session->set_userdata('client', $client->idclient);
-            redirect(bu('CTC_Cv'));
+            redirect(base_url('CTC_Cv'));
             return;
         }
         else{
             $data['error'] = 'Email ou mot de passe invalide';
         }
-        redirect(bu('CTC_Client/index?error=' . urlencode($data['error'])));
+        redirect('CTC_Client/index?error=' . urlencode($data['error']));
     }
 
 	public function addClient() {
@@ -65,10 +65,10 @@ class CTC_Client extends CI_Controller {
 
         if ($result) {
             $data['success'] = 'Nouveau client ajouté avec succès';
-            redirect(bu('CTC_Client/index?success=' . urlencode($data['success'])));
+            redirect('CTC_Client/index?success=' . urlencode($data['success']));
         } else {
             $data['error'] = 'Erreur lors de l\'ajout du nouvel client';
-            redirect(bu('CTC_Client/register?error=' . urlencode($data['error'])));
+            redirect('CTC_Client/register?error=' . urlencode($data['error']));
         }
     }
 }
