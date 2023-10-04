@@ -60,9 +60,15 @@ create table critere (
 create table questionnaire (
     idquestion serial primary key,
     idservice int references service(idservice),
+    idreponse int REFERENCES reponse(idreponse),
     question text,
-    reponse int,
     coef int
+);
+
+CREATE TABLE reponse (
+    idreponse serial PRIMARY KEY,
+    idquestion int REFERENCES questionnaire(idquestion),
+    reponse text
 );
 
 create table admin(
