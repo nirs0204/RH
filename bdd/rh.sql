@@ -10,12 +10,7 @@ create table client (
 
 create table cv (
     idclient int references client(idclient),
-    diplome1 decimal(3,2),
-    diplome2 decimal(3,2),
-    diplome3 decimal(3,2),
-    diplome4 decimal(3,2),
-    diplome5 decimal(3,2),
-    diplome6 decimal(3,2),
+    diplome decimal(3,2),
     langue1 decimal(3,2),
     langue2 decimal(3,2),
     langue3 decimal(3,2),
@@ -74,6 +69,25 @@ create table admin(
     idadmin serial primary key,
     pseudo varchar(150),
     mdp varchar(80)
+);
+
+create table coefCv(
+    idtache int references tache(idtache),
+    doctorat int,
+    masterD int,
+    licence int,
+    bacc int,
+    bepc int,
+    cepe int,
+    mlg int,
+    frc int,
+    ang int,
+    homme int,
+    femme int,
+    autre int,
+    mariee int,
+    celibat int,
+    divorcee int
 );
 
 --------------INSERTION------------------------
