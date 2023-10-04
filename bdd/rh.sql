@@ -10,6 +10,7 @@ create table client (
 
 create table cv (
     idclient int references client(idclient),
+    idbesoin int references besoin(idbesoin),
     diplome decimal(3,2),
     langue1 decimal(3,2),
     langue2 decimal(3,2),
@@ -74,7 +75,7 @@ create table admin(
 create table coefCv(
     idtache int references tache(idtache),
     doctorat int,
-    masterD int,
+    master int,
     licence int,
     bacc int,
     bepc int,
@@ -158,6 +159,15 @@ VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', '
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
 
+-- Insertion dans la table "coefCv"
+INSERT INTO coefCv 
+(idtache, doctorat, master, licence, bacc, bepc, cepe, mlg, frc, ang,
+ homme, femme, autre, mariee, celibat, divorcee)
+VALUES
+    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 2, 2, 5, 1, 2),
+    (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 0, 2, 1, 5, 2),
+    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 2, 1, 5, 3, 2);
+
 
 --Select ANNONCE
 SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin
@@ -166,13 +176,17 @@ JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice;
 
+--Select Details Annonce
 SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel FROM critere c
 JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice
 where b.idbesoin=1;
 
-
+--Select CoefCv/service/poste
+SELECT * FROM coefcv c
+JOIN besoin b ON c.idtache = b.idtache
+where b.idbesoin = 1;
 
 
 select *  from client;
