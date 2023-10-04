@@ -67,7 +67,6 @@ create table questionnaire (
 
 CREATE TABLE reponse (
     idreponse serial PRIMARY KEY,
-    idquestion int REFERENCES questionnaire(idquestion),
     reponse text
 );
 
