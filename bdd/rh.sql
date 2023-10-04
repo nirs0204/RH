@@ -38,8 +38,8 @@ create table tache(
 create table besoin (
     idbesoin serial primary key,
     idtache int references tache(idtache),
-    heure int,
-    jour numeric
+    volumetache int,
+    volumehoraire int
 );
 
 create table critere (
@@ -68,7 +68,8 @@ create table questionnaire (
 create table admin(
     idadmin serial primary key,
     pseudo varchar(150),
-    mdp varchar(80)
+    mdp varchar(80),
+    idservice int references service(idservice)
 );
 
 create table coefCv(
@@ -98,9 +99,9 @@ INSERT INTO client (email, mdp) VALUES ('lova@example.com', '456');
 INSERT INTO client (email, mdp) VALUES ('rado@example.com', '789');
 
 -- Insertion dans la table "admin"
-INSERT INTO admin (pseudo, mdp) VALUES ('Informatique', '123');
-INSERT INTO admin (pseudo, mdp) VALUES ('Securite', '456');
-INSERT INTO admin (pseudo, mdp) VALUES ('Finance', '789');
+INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Paul', '123', 1);
+INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Selena', '456', 2);
+INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Gary', '789', 3);
 
 
 -- Insertion dans la table "service"
@@ -171,6 +172,12 @@ JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice
 where b.idbesoin=1;
+
+
+select t.idtache, t.nomTache
+from service s
+join tache t on s.idservice = t.idservice
+where s.idservice = 1;
 
 
 

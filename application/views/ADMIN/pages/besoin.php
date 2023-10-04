@@ -1,3 +1,4 @@
+<?php if(!isset($posts)) $posts=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
  
@@ -14,7 +15,7 @@
             <div
               class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
             >
-            <form action="" method="post">
+            <form action="<?php echo site_url('CTA_Besoin/save_need') ?>" method="post">
 
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
@@ -22,11 +23,11 @@
                 </span>
                     <select
                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                            name="tache"
                     >
-                        <option>$1,000</option>
-                        <option>$5,000</option>
-                        <option>$10,000</option>
-                        <option>$25,000</option>
+                        <?php foreach ($posts as $poste) { ?>
+                        <option value="<?php echo $poste->idtache; ?>"><?php echo $poste->nomtache; ?></option>
+                        <?php } ?>
                     </select>
                 </label>
               <label class="block mt-4 text-sm">
@@ -36,6 +37,7 @@
                   <input
                           class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                           type="number" placeholder="en heure par mois"
+                          name="volumetache"
                   />
               </label>
 
@@ -44,6 +46,7 @@
                 <input
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                   type="number" placeholder="en heure par semaine par personne"
+                  name="volumehoraire"
                 />
               </label>
               <br>
