@@ -7,6 +7,7 @@ class CTC_Annonce extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('MDC_Annonce');
+		$this->load->model('MDC_Cv');
         $this->load->helper('main_helper');
     }
 
@@ -21,6 +22,7 @@ class CTC_Annonce extends CI_Controller {
 
 	public function index()
 	{
+		
 		$data['annonce']=$this->MDC_Annonce->allNews();
 		$this->viewer('/annonce',$data);
 	}	

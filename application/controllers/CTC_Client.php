@@ -29,8 +29,8 @@ class CTC_Client extends CI_Controller {
         {
             $data['success'] = $this->input->get('success');
         }
-        // $besoin = $this->input->get('besoin');
-        // $this->session->set_userdata('besoin', $besoin);
+        $besoin = $this->input->get('besoin');
+        $this->session->set_userdata('besoin', $besoin);
 
         $val = 'COUCOU';
         $this->session->set_userdata('val', $val);
@@ -58,10 +58,8 @@ class CTC_Client extends CI_Controller {
         $client = $this->MDC_Client->verify($email, $mdp);
 
         if ($client){
-            $this->session->set_userdata('client', $client->idclient);
-
+            $this->session->set_userdata('client', $client);
             redirect('CTC_Cv/index');
-
             return;
         }
         else{
