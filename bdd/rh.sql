@@ -62,8 +62,14 @@ create table questionnaire (
     idquestion serial primary key,
     idservice int references service(idservice),
     question text,
-    reponse int,
     coef int
+);
+
+CREATE TABLE reponse (
+    idreponse serial PRIMARY KEY,
+    idquestion int REFERENCES questionnaire(idquestion),
+    reponse text,
+    reponseVerif boolean
 );
 
 create table admin(
@@ -169,6 +175,93 @@ VALUES
     (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 0, 2, 1, 5, 2),
     (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 2, 1, 5, 3, 2);
 
+--- Questions Reponses Dptmnt Informatique -> Technicien ---
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    1, 
+    'Pouvez-vous expliquer la différence entre un serveur et un poste de travail ?',
+    15
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    1,
+    'Un serveur fournit des ressources et des services, tandis que le poste de travail est utilisé par un utilisateur individuel.',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    1,
+    'Le serveur est un employé tandis que le poste de travail est le lieu de travail du travailleur',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    1,
+    'Le serveur est la personne qui reçoit les commandes dans un hotel/restaurant et le poste de travail le lieu de travail de celui-ci',
+    FALSE
+);
+
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    1,
+    'Quelle est la plage pour les adresses IP privées par défaut ?',
+    15
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    2,
+    '192.168.0.0/16',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    2,
+    '10.0.0.0/8',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    2,
+    '172.16.0.0/12',
+    FALSE
+);
+
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    1,
+    'Quelle est la différence entre un commutateur et un routeur ?',
+    20
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    3,
+    'Un commutateur permet de connecter des périphériques sur un même réseau local, tandis que le routeur permet de connecter des réseaux locaux distincts',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    3,
+    'Un commutateur permet de configurer des adresses IP, tandis que le routeur permet de configurer des noms de domaine.',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    3,
+    'Un commutateur permet de partager une connexion Internet, tandis que le routeur permet de contrôler un accès à Internet.',
+    FALSE
+);
+
+--- Questions Reponses Dptmnt Informatique -> Technicien ---
+
+--- Questions Reponses Dptmnt Securite -> Gardien ---
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    2,
+
+);
+--- Questions Reponses Dptmnt Securite -> Guardien ---
+--- Questions Reponses Dptmnt Finance -> Caissier ---
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    3,
+    
+);
+--- Questions Reponses Dptmnt Finance -> Caissier ---
 
 --Select ANNONCE
 SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin
@@ -200,3 +293,5 @@ select *  from service;
 select *  from besoin;
 select *  from tache;
 select *  from critere;
+select * from questionnaire;
+select * from reponse;
