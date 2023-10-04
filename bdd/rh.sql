@@ -62,8 +62,14 @@ create table questionnaire (
     idquestion serial primary key,
     idservice int references service(idservice),
     question text,
-    reponse int,
     coef int
+);
+
+CREATE TABLE reponse (
+    idreponse serial PRIMARY KEY,
+    idquestion int REFERENCES questionnaire(idquestion),
+    reponse text,
+    reponseVerif boolean
 );
 
 create table admin(
@@ -169,6 +175,233 @@ VALUES
     (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 0, 2, 1, 5, 2),
     (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 2, 1, 5, 3, 2);
 
+--- QUESTIONS ---
+--- Questions qcm Dptmnt Informatique -> Technicien ---
+--- question 1
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    1, 
+    'Pouvez-vous expliquer la différence entre un serveur et un poste de travail ?',
+    15
+);
+--- question 2
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    1,
+    'Quelle est la plage pour les adresses IP privées par défaut ?',
+    15
+);
+--- question 3
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    1,
+    'Quelle est la différence entre un commutateur et un routeur ?',
+    20
+);
+--- Questions qcm Dptmnt Informatique -> Technicien ---
+--- Questions qcm Dptmnt Securite -> Gardien ---
+--- question 4
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    2,
+    'Que doit faire un agent de sécurité si il y a une incedie ?',
+    15
+);
+--- question 5
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    2,
+    'Quel est le rôle doit avoir un agent de sécurité ?',
+    15
+);
+--- question 6
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    2,
+    'Quel est la base en terme équipement pour un agent de sécurité ?',
+    20
+);
+--- Questions qcm Dptmnt Securite -> Gardien ---
+--- Questions qcm Dptmnt Finance -> Caissier ---
+--- question 7
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    3,
+    'Quel est le rôle a un caissier ?',
+    15
+);
+--- question 8
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    3,
+    'Quels sont les types de paiements que peut accepter un caissier ?',
+    15
+);
+--- question 9
+INSERT INTO questionnaire (idservice, question, coef) VALUES (
+    3,
+    'Quelle est la procédure à suivre si il y a erreur de caisse ?',
+    20
+);
+--- Questions qcm Dptmnt Finance -> Caissier ---
+--- QUESTIONS ---
+
+--- REPONSES ---
+--- Reponses qcm Dptmnt Informatique -> Technicien ---
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    1,
+    'Un serveur fournit des ressources et des services, tandis que le poste de travail est utilisé par un utilisateur individuel.',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    1,
+    'Le serveur est un employé tandis que le poste de travail est le lieu de travail du travailleur',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    1,
+    'Le serveur est la personne qui reçoit les commandes dans un hotel/restaurant et le poste de travail le lieu de travail de celui-ci',
+    FALSE
+);
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    2,
+    '192.168.0.0/16',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    2,
+    '10.0.0.0/8',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    2,
+    '172.16.0.0/12',
+    FALSE
+);
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    3,
+    'Un commutateur permet de connecter des périphériques sur un même réseau local, tandis que le routeur permet de connecter des réseaux locaux distincts',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    3,
+    'Un commutateur permet de configurer des adresses IP, tandis que le routeur permet de configurer des noms de domaine.',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    3,
+    'Un commutateur permet de partager une connexion Internet, tandis que le routeur permet de contrôler un accès à Internet.',
+    FALSE
+);
+--- Reponses qcm Dptmnt Informatique -> Technicien ---
+
+--- Reponses qcm Dptmnt Securite -> Gardien ---
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    4,
+    'Appeler les pompiers et évacuer les lieux',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    4,
+    'Arrêter les personnes qui courent',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    4,
+    'Rouvrir les portes pour laisser sortir les fumées',
+    FALSE
+);
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    5,
+    'Protéger les biens et les personnes',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    5,
+    'Vérifier les identité des personnes',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    5,
+    'Intervenir si il y a un incident',
+    FALSE
+);
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    6,
+    'Un gilet jaune, une matraque et un talkie-walkie',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    6,
+    'Une corde, des menottes',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    6,
+    'Un kit de clé, une lampe torche et un casque',
+    FALSE
+);
+--- Reponses qcm Dptmnt Securite -> Gardien ---
+
+--- Reponses qcm Dptmnt Finance -> Caissier ---
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    7,
+    'Recevoir les paiements des clients et effectuer des encaissements et des décaissements',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    7,
+    'Gérer les stocks',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    7,
+    'Accueillir et renseigner les clients',
+    FALSE
+);
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    8,
+    'Espèces, chèques, cartes bancaires, cartes de crédit',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    8,
+    'Espèces, chèques, cartes de crédit, cartes de débit',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    8,
+    'Espèces, chèques, cartes de crédit, cartes prépayées',
+    FALSE
+);
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    9,
+    'Signaler l erreur à son supérieur hiérarchique et corriger l erreur sur le journal de caisse',
+    TRUE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    9,
+    'Faire un état des pertes et des profits',
+    FALSE
+);
+
+INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
+    9,
+    'Signaler l erreur à la police',
+    FALSE
+);
+--- Reponses qcm Dptmnt Finance -> Caissier ---
+--- REPONSES ---
+
 
 --Select ANNONCE
 SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin
@@ -200,3 +433,5 @@ select *  from service;
 select *  from besoin;
 select *  from tache;
 select *  from critere;
+select * from questionnaire;
+select * from reponse;
