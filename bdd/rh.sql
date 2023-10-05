@@ -98,7 +98,7 @@ create table coefCv(
     divorcee int
 );
 
---------------INSERTION------------------------
+---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"
 INSERT INTO client (email, mdp) VALUES ('soa@example.com', '123');
@@ -402,6 +402,8 @@ INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
 --- Reponses qcm Dptmnt Finance -> Caissier ---
 --- REPONSES ---
 
+
+---------------------------SELECT-------------------------
 
 --Select ANNONCE
 SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin

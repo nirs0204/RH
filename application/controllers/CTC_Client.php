@@ -18,8 +18,13 @@ class CTC_Client extends CI_Controller {
 		);
 		$this->load->view('CLIENT/pages/template/basepage', $v);
 	}
-
     public function index(){
+        $data = array();
+        $besoin = $this->input->get('besoin');
+        $this->session->set_userdata('besoin', $besoin);      
+        $this->load->view('CLIENT/pages/login', $data);
+    }
+    public function sign(){
         $data = array();
         if($this->input->get('error') != null  )
         {
@@ -28,13 +33,7 @@ class CTC_Client extends CI_Controller {
         if($this->input->get('success') != null)
         {
             $data['success'] = $this->input->get('success');
-        }
-        $besoin = $this->input->get('besoin');
-        $this->session->set_userdata('besoin', $besoin);
-
-        $val = 'COUCOU';
-        $this->session->set_userdata('val', $val);
-        
+        }        
         $this->load->view('CLIENT/pages/login', $data);
     }
 
@@ -49,8 +48,6 @@ class CTC_Client extends CI_Controller {
         $this->load->view('CLIENT/pages/register');
     }
     
-
-
 	public function login(){
         echo $_SESSION['besoin'];
         $email = $this->input->post('email');
@@ -65,7 +62,7 @@ class CTC_Client extends CI_Controller {
         else{
             $data['error'] = 'Email ou mot de passe invalide';
         }
-        redirect('CTC_Client/index?error=' . urlencode($data['error']));
+        redirect('CTC_Client/sign?error=' . urlencode($data['error']));
     }
 
 	public function addClient() {
@@ -77,10 +74,15 @@ class CTC_Client extends CI_Controller {
 
         if ($result) {
             $data['success'] = 'Nouveau client ajouté avec succès';
-            redirect('CTC_Client/index?success=' . urlencode($data['success']));
+            redirect('CTC_Client/sign?success=' . urlencode($data['success']));
         } else {
             $data['error'] = 'Erreur lors de l\'ajout du nouvel client';
             redirect('CTC_Client/register?error=' . urlencode($data['error']));
         }
+    }
+    public function deconnect()	{
+        $this->session->unset_userdata('client');
+        $this->session->unset_userdata('besoin');
+        redirect('CTC_Annonce');
     }
 }
