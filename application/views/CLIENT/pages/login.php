@@ -79,6 +79,9 @@
                 <div class="text-center mt-4 font-weight-light">
                 Vous n'avez pas de compte ? <a href="<?php echo site_url('CTC_Client/register')?>" class="text-primary">S'inscrire</a>
                 </div>
+                <div class="text-center mt-4 font-weight-light">
+                Se connecter en tant qu' <a href="<?php echo site_url('CTA_Admin/login_view')?>" class="text-primary">Admin</a>
+                </div>
             </div>
           </div>
         </div>

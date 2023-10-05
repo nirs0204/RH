@@ -1,3 +1,5 @@
+<?php if(!isset($questions)) $questions=array();
+ if(!isset($reponse)) $reponse=array();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,65 +15,23 @@
                 <div class="card-body">
                   <h4 class="card-title">Questionnaire d'embauche</h4>
                   <form>
+                  <?php for($i=0 ; $i<count($questions); $i++ ) { ?>
                     <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                        <p class="card-description">Checkbox and radio controls (default appearance is in primary color)</p>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                              reponse 1
-                            </label>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <p class="card-description"><?php echo $questions[$i]['question']; ?></p>
+                            <?php foreach ($reponse[$questions[$i]['question']] as $rps) : ?>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        <?php echo $rps['reponse']; ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
                           </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" checked>
-                              reponse 2
-                            </label>
                           </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                              reponse 3
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" >
-                              reponse 4
-                            </label>
-                          </div>
-                        </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                        <p class="card-description">Checkbox and radio controls (default appearance is in primary color)</p>
-                          <div class="form-check">
-                          <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                             Reponse 5
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" checked>
-                              reponse 6
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                              reponse 6
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                              reponse 7
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                      <?php } ?>
                     </div>
                   </form>
                 </div>

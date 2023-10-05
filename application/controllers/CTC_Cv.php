@@ -34,5 +34,6 @@ class CTC_Cv extends CI_Controller {
         $idclient = $_SESSION['client'][0]['idclient'];
         $besoin = $this->session->userdata('besoin');
         $this->MDC_Cv->saveCV($idclient, $besoin , $diplome, $langue1, $langue2, $langue3, $sexe, $sm, $nom, $add, $prenom, $dtn, $exp);
+        redirect('CTC_Question/index');
     }
 }

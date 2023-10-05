@@ -73,5 +73,26 @@ class MDA_Questionnaire extends CI_Model
 //        $sql = sprintf($sql,$this->db->escape($question),$this->db->escape($reponse),$this->db->escape($coef),$this->db->escape($id));
 //        $this->db->query($sql);
 //    }
+
+    //   question service 1
+    public function getQuestion($id) {
+        $this->db->select('*');
+        $this->db->from('questionnaire q');
+        $this->db->join('service s', 's.idservice = q.idservice');
+        $this->db->join('tache t', 's.idservice = t.idservice');
+        $this->db->join('besoin b', 't.idtache = b.idtache');
+        $this->db->where('b.idbesoin', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    //  reponse par questions
+    public function eachReponses($question) {
+        $this->db->select('*');
+        $this->db->from('reponse');
+        $this->db->where('idquestion', $question);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 ?>
