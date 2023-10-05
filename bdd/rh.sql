@@ -123,9 +123,9 @@ INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
 INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 
 -- Insertion dans la table "besoin"
-INSERT INTO besoin (idtache, volumetache, volumehoraire) VALUES (1, 120, 24);
-INSERT INTO besoin (idtache, volumetache, volumehoraire) VALUES (2, 60, 12);
-INSERT INTO besoin (idtache, volumetache, volumehoraire) VALUES (3, 40, 8);
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (1, 120, 24);
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
 
 
 
@@ -429,6 +429,21 @@ SELECT * FROM coefcv c
 JOIN besoin b ON c.idtache = b.idtache
 where b.idbesoin = 1;
 
+--Select de questionnaire client
+SELECT * FROM questionnaire q
+JOIN service s ON s.idservice = q.idservice
+JOIN tache t ON s.idservice = t.idservice
+JOIN besoin b ON t.idtache = b.idtache
+where idbesoin = 1;
+
+SELECT q.question,r.reponse , r.reponseVerif FROM questionnaire q
+JOIN service s ON s.idservice = q.idservice
+JOIN tache t ON s.idservice = t.idservice
+JOIN besoin b ON t.idtache = b.idtache
+JOIN reponse r ON q.idquestion = r.idquestion
+where idbesoin = 1;
+
+SELECT * fROM reponse where idquestion = 1;
 
 select *  from client;
 select *  from service;
