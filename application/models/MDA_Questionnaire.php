@@ -94,5 +94,10 @@ class MDA_Questionnaire extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    // obtenir les reponses du client
+    public function getReponsesQuestions($reponses) {
+        $reponsesArray = array($reponses);
+    }
 }
 ?>

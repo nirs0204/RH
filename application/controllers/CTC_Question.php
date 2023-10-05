@@ -27,11 +27,34 @@ class CTC_Question extends CI_Controller {
         $data['questions'] = $qr;
         $rps = array();
         for($i=0 ; $i<count($qr); $i++ ) {
+
+            
           $rps = $this->MDA_Questionnaire->eachReponses($qr[$i]['idquestion']);
           $questions_reponses[$qr[$i]['question']] = $rps; 
         }
         $data['reponse'] = $questions_reponses;                  
         $this->viewer('/questionnaire',$data);
+    }
+
+    public function verifyResponse() {
+        $reponses = $this->input->get('reponsesquestion');
+        for($i=0; $i<count($reponses); $i++) {
+            //get the boolean
+            $verification=$reponses[$i]->reponseVerif;
+            if($verification == TRUE) {
+                $idQuestionnaire = $responses[$i]->idquestion;
+                $pointQuestion= $this->db('questionnaire')->where('id',$idQuestionnaire)->value('coef');
+                
+                $client = $this->session->userdata('client');
+                $sql = "insert into noteClient (noteClient, idclient) values (%s, %s)";
+                $sql = sprintf($sql, $this->db->escape($pointQuestion), $this->db->escape($client['idclient']));
+                $this->db->query($sql);
+
+            } else {
+
+            }
+        }
+
     }
   
 }
