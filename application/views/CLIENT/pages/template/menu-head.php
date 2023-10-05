@@ -79,7 +79,7 @@
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="<?php echo site_url('CTC_Client/deconnect'); ?>" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>

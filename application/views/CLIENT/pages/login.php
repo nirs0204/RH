@@ -53,10 +53,10 @@
  
               <form action="<?php echo bu('CTC_Client/login')?>"  method="POST" class="pt-3">
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                  <input type="email" name="email" value="soa@example.com" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="mdp" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Mot de passe">
+                  <input type="password" name="mdp" value="123" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Mot de passe">
                 </div>
                 <div class="mt-3">
                   <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >Se connecter</button>

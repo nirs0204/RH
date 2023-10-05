@@ -8,6 +8,10 @@ class CTC_Cv extends CI_Controller {
         parent::__construct();
         $this->load->model('MDC_Cv');
         $this->load->helper('main_helper');
+        if($this->session->userdata('client') === null) 
+		{
+			redirect(bu('CTC_Client/sign?error=' . urlencode('Vous n`êtes pas connectée en tant que client')));
+		}
     }
 	private function viewer($page, $data){
 		$v = array(
