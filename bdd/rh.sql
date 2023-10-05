@@ -123,9 +123,9 @@ INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
 INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 
 -- Insertion dans la table "besoin"
-INSERT INTO besoin (idtache, heure, jour) VALUES (1, 120, 24);
-INSERT INTO besoin (idtache, heure, jour) VALUES (2, 60, 12);
-INSERT INTO besoin (idtache, heure, jour) VALUES (3, 40, 8);
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (1, 120, 24);
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
 
 
 
