@@ -24,6 +24,12 @@ create table cv (
     experience text
 );
 
+CREATE table noteClient (
+    idNoteClient serial PRIMARY KEY,
+    noteClient int,
+    idclient int references client(idclient)
+);
+
 ----------ADMIN-------------
 create table service(
     idservice serial primary key,
