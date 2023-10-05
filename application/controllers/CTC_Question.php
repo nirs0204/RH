@@ -28,7 +28,7 @@ class CTC_Question extends CI_Controller {
         $rps = array();
         for($i=0 ; $i<count($qr); $i++ ) {
           $rps = $this->MDA_Questionnaire->eachReponses($qr[$i]['idquestion']);
-          $questions_reponses[$qr[$i]['question']] = $rps; // Utilisez la question comme clé
+          $questions_reponses[$qr[$i]['question']] = $rps; 
         }
         $data['reponse'] = $questions_reponses;                  
         $this->viewer('/questionnaire',$data);
