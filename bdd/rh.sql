@@ -26,6 +26,7 @@ create table cv (
 
 CREATE table noteClient (
     idNoteClient serial PRIMARY KEY,
+    idbesoin int references besoin(idbesoin),
     noteClient int,
     idclient int references client(idclient)
 );
@@ -408,6 +409,11 @@ INSERT INTO reponse (idquestion, reponse, reponseVerif) VALUES (
 --- Reponses qcm Dptmnt Finance -> Caissier ---
 --- REPONSES ---
 
+--------------------------UPDATE--------------------------
+UPDATE reponse
+SET  reponseVerif = TRUE
+WHERE idreponse = 2; -- L'ID de la question que vous souhaitez mettre à jour
+
 
 ---------------------------SELECT-------------------------
 
@@ -423,33 +429,37 @@ SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personne
 JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice
-where b.idbesoin=1;
+WHERE b.idbesoin=1;
 
 select t.idtache, t.nomTache
 from service s
 join tache t on s.idservice = t.idservice
-where s.idservice = 1;
+WHERE s.idservice = 1;
 
 --Select CoefCv/service/poste
 SELECT * FROM coefcv c
 JOIN besoin b ON c.idtache = b.idtache
-where b.idbesoin = 1;
+WHERE b.idbesoin = 1;
 
 --Select de questionnaire client
 SELECT * FROM questionnaire q
 JOIN service s ON s.idservice = q.idservice
 JOIN tache t ON s.idservice = t.idservice
 JOIN besoin b ON t.idtache = b.idtache
-where idbesoin = 1;
+WHERE idbesoin = 1;
 
-SELECT q.question,r.reponse , r.reponseVerif FROM questionnaire q
+SELECT idreponse ,q.question,r.reponse , r.reponseVerif FROM questionnaire q
 JOIN service s ON s.idservice = q.idservice
 JOIN tache t ON s.idservice = t.idservice
 JOIN besoin b ON t.idtache = b.idtache
 JOIN reponse r ON q.idquestion = r.idquestion
-where idbesoin = 1;
+WHERE idbesoin = 1;
 
 SELECT * fROM reponse where idquestion = 1;
+
+SELECT * FROM questionnaire q 
+JOIN reponse r ON q.idquestion = r.idquestion
+WHERE r.idreponse = 8;
 
 select *  from client;
 select *  from service;
