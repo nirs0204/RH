@@ -8,7 +8,6 @@ class CTC_Reponse extends CI_Controller {
         parent::__construct();
         $this->load->model('MDC_Reponse');
         $this->load->model('MDA_Questionnaire');
-
         $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
 		{
@@ -26,12 +25,7 @@ class CTC_Reponse extends CI_Controller {
     public function index(){
         $rps = $this->input->get('reponse');         
         $a = 0;
-
-    
-        // Créez un tableau pour stocker les ID des questions déjà traitées
         $processedQuestions = array();
-        
-        // Initialisez la variable $coef en dehors de la boucle
         $coef = 0;
     
         for ($j = 0; $j < count($rps); $j++) {
@@ -52,7 +46,6 @@ class CTC_Reponse extends CI_Controller {
             if ($count > 1) {
                 $questM = $this->MDA_Questionnaire->oneQuiz($questionID); 
                 for ($i=0; $i < count($questM); $i++) { 
-                    echo $questM[$i]->idquestion;
                     $a -= $questM[$i]->coef;
                 }
             }
@@ -61,16 +54,5 @@ class CTC_Reponse extends CI_Controller {
         echo 'Reponse =' . $a;
     }
     
-
-        for ($j=0; $j <count($rps) ; $j++) { 
-            $tab = $this->MDC_Reponse->correctTrue($rps[$j]);
-            for ($i=0; $i <count($tab) ; $i++) { 
-               if($tab[$i]['reponseverif'] == 't'){
-                    $a += $tab[$i]['coef'];
-               }
-            }
-        }
-        echo 'Reponse ='.$a;
-    }
   
 }
