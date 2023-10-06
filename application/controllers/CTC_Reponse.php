@@ -8,6 +8,7 @@ class CTC_Reponse extends CI_Controller {
         parent::__construct();
         $this->load->model('MDC_Reponse');
         $this->load->model('MDA_Questionnaire');
+
         $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
 		{
@@ -25,6 +26,7 @@ class CTC_Reponse extends CI_Controller {
     public function index(){
         $rps = $this->input->get('reponse');         
         $a = 0;
+
     
         // Créez un tableau pour stocker les ID des questions déjà traitées
         $processedQuestions = array();
@@ -59,5 +61,16 @@ class CTC_Reponse extends CI_Controller {
         echo 'Reponse =' . $a;
     }
     
+
+        for ($j=0; $j <count($rps) ; $j++) { 
+            $tab = $this->MDC_Reponse->correctTrue($rps[$j]);
+            for ($i=0; $i <count($tab) ; $i++) { 
+               if($tab[$i]['reponseverif'] == 't'){
+                    $a += $tab[$i]['coef'];
+               }
+            }
+        }
+        echo 'Reponse ='.$a;
+    }
   
 }
