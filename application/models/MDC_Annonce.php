@@ -4,7 +4,7 @@ class MDC_Annonce extends CI_Model
 {
 //    liste de tous les annonces (read)
     public function allNews(){
-        $sql="SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin
+        $sql="SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumehoraire/b.volumetache) as personnel,b.idbesoin
         FROM critere c
         JOIN besoin b ON c.idbesoin = b.idbesoin
         JOIN tache t ON b.idtache = t.idtache
@@ -21,7 +21,7 @@ class MDC_Annonce extends CI_Model
 
     //    un client (read)
     function oneNews($id){
-        $sql="SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin,  CAST((b.heure/b.jour) AS int) as personnel FROM critere c
+        $sql="SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin,  CAST((b.volumehoraire/b.volumetache) AS int) as personnel FROM critere c
         JOIN besoin b ON c.idbesoin = b.idbesoin
         JOIN tache t ON b.idtache = t.idtache
         JOIN service s ON t.idservice = s.idservice
