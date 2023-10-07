@@ -31,7 +31,7 @@ class CTA_Besoin extends CI_Controller
 
         $this->MDA_Besoin->saveNeed($idtache, $volumeTache, $volumeHoraire);
 
-        redirect('CTA_Besoin/need_view');
+        redirect('CTA_Critere/criteria_view');
     }
 }
 ?>

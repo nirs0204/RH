@@ -4,7 +4,7 @@ class MDA_Critere extends CI_Model
 {
     //    enregistrer un critere(create)
     public function saveCriteria($idservice, $idbesoin, $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $dateFin, $debutEnt){
-        $sql = "insert into service (idsercice, idbesoin, diplome, experience, nationalite, sexe, Smari, langue1, langue2, langue3, dateFin, debutEnt) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
+        $sql = "insert into critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
         $sql = sprintf($sql,$this->db->escape($idservice),$this->db->escape($idbesoin),$this->db->escape($diplome),$this->db->escape($experience),$this->db->escape($nationalite),$this->db->escape($sexe),$this->db->escape($smatri),$this->db->escape($langue1),$this->db->escape($langue2),$this->db->escape($langue3),$this->db->escape($dateFin),$this->db->escape($debutEnt));
         $this->db->query($sql);
     }
