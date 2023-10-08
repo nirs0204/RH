@@ -38,6 +38,24 @@ class MDA_Tache extends CI_Model
         return $table;
     }
 
+    //    les taches par service (read)
+    public function getAllTasksByService($id){
+        $this->db->select('t.idtache, t.nomtache');
+        $this->db->from('service s');
+        $this->db->join('tache t', 's.idservice = t.idservice');
+        $this->db->where('s.idservice', $id);
+ ;
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            // Si des résultats sont présents, retournez un tableau d'objets avec les résultats
+            return $query->result();
+        } else {
+            // Ajustez le retour en fonction de vos besoins
+            return array(); // Ou une autre valeur par défaut
+        }
+    }
+
     //    supprimer une tache (delete)
     public function deleteTask($id){
         $sql = "delete from tache where idtache =%s";

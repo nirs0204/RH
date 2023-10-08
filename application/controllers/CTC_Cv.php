@@ -6,8 +6,12 @@ class CTC_Cv extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MDC_Client');
+        $this->load->model('MDC_Cv');
         $this->load->helper('main_helper');
+        if($this->session->userdata('client') === null) 
+		{
+			redirect(bu('CTC_Client/sign?error=' . urlencode('Vous n`êtes pas connectée en tant que client')));
+		}
     }
 	private function viewer($page, $data){
 		$v = array(
@@ -18,22 +22,18 @@ class CTC_Cv extends CI_Controller {
 	}
 
     public function index(){
-        $this->viewer('/cv',array());
+        $besoin = $this->session->userdata('besoin');
+        $data['coef'] = $this->MDC_Cv->allCoefCv($besoin);
+        $this->viewer('/cv',$data);
     }
     public function insert(){
-        echo $this->input->post('prenom')."/";
-        echo $this->input->post('tel')."/";
-        echo $this->input->post('add')."/";
-        echo $this->input->post('nom')."/";
-        echo $this->input->post('dtn')."/";
-        echo $this->input->post('exp')."/";
-        echo $this->input->post('diplome')."/";
-        echo $this->input->post('langue1')."/";
-        echo $this->input->post('langue2')."/";
-        echo $this->input->post('langue3')."/";
-        echo $this->input->post('sexe')."/";
-        echo $this->input->post('sm')."/";
-
-        echo 'Succes';
+        $prenom = $this->input->post('prenom');         $nom = $this->input->post('nom');         $diplome = $this->input->post('diplome');                                 $langue3 = $this->MDC_Cv->fillCoef($this->input->post('langue3'));
+        $tel  = $this->input->post('tel');              $dtn = $this->input->post('dtn');         $langue1 = $this->MDC_Cv->fillCoef($this->input->post('langue1'));
+        $add = $this->input->post('add');               $exp = $this->input->post('exp');         $langue2 = $this->MDC_Cv->fillCoef($this->input->post('langue2'));
+        $sexe = $this->input->post('sexe');             $sm = $this->input->post('sm');
+        $idclient = $_SESSION['client'][0]['idclient'];
+        $besoin = $this->session->userdata('besoin');
+        $this->MDC_Cv->saveCV($idclient, $besoin , $diplome, $langue1, $langue2, $langue3, $sexe, $sm, $nom, $add, $prenom, $dtn, $exp);
+        redirect('CTC_Question/index');
     }
 }

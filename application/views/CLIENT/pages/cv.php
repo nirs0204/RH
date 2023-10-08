@@ -1,3 +1,4 @@
+<?php if(!isset($coef)) $coef=array(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">CV</h4>
-                  <form  action="<?= bu('CTC_Cv/insert') ?>" method="POST"  class="form-sample">
+                  <form  action="<?php echo base_url('CTC_Cv/insert') ?>" method="POST"  class="form-sample">
                     <p class="card-description">
                       Info personnel
                     </p>
@@ -20,7 +21,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nom </label>
                             <div class="col-sm-9">
-                              <input name="nom" type="text" class="form-control" />
+                              <input name="nom" type="text" class="form-control" required />
                             </div>
                           </div>
                        </div>
@@ -28,7 +29,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Prénom</label>
                           <div class="col-sm-9">
-                            <input name="prenom" type="email" class="form-control" />
+                            <input name="prenom" type="text" class="form-control" required />
                           </div>
                         </div>
                       </div>
@@ -36,7 +37,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Telephone</label>
                           <div class="col-sm-9">
-                            <input name="tel" type="text" class="form-control" />
+                            <input name="tel" type="text" class="form-control" required />
                           </div>
                         </div>
                       </div>
@@ -44,7 +45,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Adresse</label>
                           <div class="col-sm-9">
-                            <input name="add" type="text" class="form-control" />
+                            <input name="add" type="text" class="form-control" required />
                           </div>
                         </div>
                       </div>
@@ -72,7 +73,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios2" value="option2">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios2" value="<?php echo $coef[0]['doctorat']; ?>" required>
                                 Doctorat
                               </label>
                             </div>
@@ -80,7 +81,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios1" value="" checked>
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios1" value="<?php echo $coef[0]['master']; ?>" required >
                                 Master
                               </label>
                             </div>
@@ -88,7 +89,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios3" value="">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios3" value="<?php echo $coef[0]['licence']; ?>" required>
                                 Licence
                               </label>
                             </div>
@@ -97,7 +98,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios4" value="option4">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios4" value="<?php echo $coef[0]['bacc']; ?>" required>
                                 BACC
                               </label>
                             </div>
@@ -105,7 +106,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios5" value="option5">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios5" value="<?php echo $coef[0]['bepc']; ?>" required>
                                 BEPC
                               </label>
                             </div>
@@ -113,7 +114,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios6" value="option6">
+                                <input type="radio" class="form-check-input" name="diplome" id="membershipRadios6" value="<?php echo $coef[0]['cepe']; ?>" required>
                                 CEPE
                               </label>
                             </div>
@@ -128,7 +129,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="langue1" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="langue1" id="membershipRadios2" value="<?php echo $coef[0]['mlg']; ?>" >
                                 Malagasy
                               </label>
                             </div>
@@ -136,7 +137,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="langue2" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="langue2" id="membershipRadios1" value="<?php echo $coef[0]['ang']; ?>" >
                                 Anglais
                               </label>
                             </div>
@@ -144,7 +145,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="langue3" id="membershipRadios2" value="">
+                                <input type="radio" class="form-check-input" name="langue3" id="membershipRadios2" value="<?php echo $coef[0]['frc']; ?>" >
                                 Francais
                               </label>
                             </div>
@@ -159,7 +160,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios2" value="<?php echo $coef[0]['homme']; ?>" required >
                                 Homme
                               </label>
                             </div>
@@ -167,7 +168,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios1" value="<?php echo $coef[0]['femme']; ?>" required>
                                 Femme
                               </label>
                             </div>
@@ -175,8 +176,8 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios2" value="">
-                                LGBT
+                                <input type="radio" class="form-check-input" name="sexe" id="membershipRadios2" value="<?php echo $coef[0]['autre']; ?>" required>
+                                Autre
                               </label>
                             </div>
                           </div>
@@ -190,7 +191,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios2" value="">
+                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios2" value="<?php echo $coef[0]['mariee']; ?>" required>
                                 Marie(e)
                               </label>
                             </div>
@@ -198,7 +199,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios1" value="">
+                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios1" value="<?php echo $coef[0]['celibat']; ?>" required>
                                 Divorce(e)
                               </label>
                             </div>
@@ -206,7 +207,7 @@
                           <div class="col-sm-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios2" value="" checked>
+                                <input type="radio" class="form-check-input" name="sm" id="membershipRadios2" value="<?php echo $coef[0]['divorcee']; ?>" required >
                                 Celibataire
                               </label>
                             </div>

@@ -4,7 +4,6 @@ class CTA_Admin extends CI_Controller
 {
     public function __construct() {
         parent::__construct();
-        $this->load->library('form_validation');
         $this->load->model('MDA_Admin');
     }
 
@@ -22,14 +21,17 @@ class CTA_Admin extends CI_Controller
         $admin = $this->MDA_Admin->verify($pseudo, $mdp);
 
         if ($admin){
-            $this->session->set_userdata('admin', $admin->idadmin);
-            redirect(base_url('CTA_Accueil/cv_list'));
+            $idadmin = $this->MDA_Admin->getIdAdmin($pseudo, $mdp);
+            $idservice = $this->MDA_Admin->getIdServiceAdmin($idadmin);
+            $this->session->set_userdata('service', $idservice);
+            redirect('CTA_Besoin/need_view');
+//            redirect('CTA_Accueil/cv_list');
             return;
         }
         else{
             $data['error'] = 'Pseudo ou mot de passe invalide';
         }
-        redirect(base_url('CTA_Admin/login_view'));
+        redirect('CTA_Admin/login_view');
     }
 }
 ?>
