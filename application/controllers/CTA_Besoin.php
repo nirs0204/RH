@@ -8,6 +8,7 @@ class CTA_Besoin extends CI_Controller
         $this->load->model('MDA_Besoin');
         $this->load->model('MDA_Tache');
         $this->load->model('MDA_Service');
+        $this->load->model('MDA_Questionnaire');
     }
     private function viewer($page, $data)
     {
@@ -38,6 +39,11 @@ class CTA_Besoin extends CI_Controller
     public function insertQuestion_view(){
         $data['services'] = $this->MDA_Service->allServices();
         $this->load->view('ADMIN/pages/create-quiz',$data);
+    }
+
+    public function insertReponse_view(){
+        $data['questions'] = $this->MDA_Questionnaire->allQuizs();
+        $this->load->view('ADMIN/pages/create-response',$data);
     }
 }
 ?>

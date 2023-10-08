@@ -1,4 +1,11 @@
-<?php if(!isset($services)) $services=array();?>
+<?php 
+  if(!isset($services)) $services=array();
+  $this->load->view('ADMIN/pages/template/page-head');
+
+  $this->load->view('ADMIN/pages/template/menu-bar');
+
+  $this->load->view('ADMIN/pages/template/menu-head');
+?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
  
