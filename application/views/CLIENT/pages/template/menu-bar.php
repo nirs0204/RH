@@ -249,7 +249,8 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('CTA_Admin/login_view')?>"> Login as Admin </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('CTC_Client/login_view')?>"> Login as Client </a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
               </ul>
             </div>
