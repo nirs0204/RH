@@ -85,4 +85,8 @@ class CTC_Client extends CI_Controller {
         $this->session->unset_userdata('besoin');
         redirect('CTC_Annonce');
     }
+
+    public function login_view(){
+        $this->load->view('CLIENT/pages/login');
+    }
 }
