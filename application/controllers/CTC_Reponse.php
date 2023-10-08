@@ -65,6 +65,23 @@ class CTC_Reponse extends CI_Controller {
         echo '<br>Reponse =' . $a;
     }
     
+    // Creer une reponse
+    public function create()
+    {
+        $data['questions'] = $this->MDA_Questionnaire->allQuizs();
+        return $this->load->view('ADMIN/pages/create-response' ,$data);
+    }
+    
+    // Inserer la reponse dans la base
+    public function store()
+    {
+        $idquestion= $this->input->post('idquestion');
+        $reponse= $this->input->post('reponse');
+        $reponseVerif= $this->input->post('reponseVerif');
+        $this->MDC_Reponse->saveQuiz($idquestion, $reponse, $reponseVerif);
+        redirect('CTC_Reponse/create');
+        
+    }
 
   
 }
