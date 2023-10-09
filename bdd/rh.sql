@@ -432,7 +432,7 @@ JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice
 JOIN cv cv ON b.idbesoin = cv.idbesoin
 JOIN noteClient n ON n.idbesoin = b.idbesoin
-WHERE n.idclient = 1 ;
+WHERE n.idclient = 1 and b.idbesoin = 1 ;
 
 --CV completed
 SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumetache/b.volumehoraire) as personnel,b.idbesoin

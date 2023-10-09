@@ -56,7 +56,7 @@ class CTC_Client extends CI_Controller {
 
         if ($client){
             $this->session->set_userdata('client', $client);
-            redirect('CTC_Cv/index');
+            redirect('CTC_Etape');
             return;
         }
         else{

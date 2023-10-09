@@ -53,33 +53,16 @@ class MDC_Annonce extends CI_Model
         }
         return $table;
     }
-    //  deja postuler
-    public function toApply($id) {
-        $this->db->select('t.nomTache, s.nom AS nomService, TO_CHAR(c.dateFin, ''DD-MM-YY'') AS datefin, (b.volumehoraire/b.volumetache) as personnel, b.idbesoin');
-        $this->db->from('critere c');
-        $this->db->join('besoin b', 'c.idbesoin = b.idbesoin');
-        $this->db->join('tache t', 'b.idtache = t.idtache');
-        $this->db->join('service s', 't.idservice = s.idservice');
-        $this->db->join('cv cv', 'b.idbesoin = cv.idbesoin');
-        $this->db->where('cv.idclient', $id);
-        
-        $query = $this->db->get();
-        return $query->result_array();
+    public function  updateS($val, $situation, $page, $situation1, $page2){
+        if (empty($val)) {
+            $s = $situation;
+            $p=$page;
+         }else{
+             $s = $situation1;
+             $p = $page2;
+         }
+         return array('s' => $s, 'p' => $p);
     }
-    public function toComplete($id) {
-        $this->db->select('t.nomTache, s.nom AS nomService, TO_CHAR(c.dateFin, ''DD-MM-YY'') AS datefin, (b.volumetache/b.volumehoraire) as personnel, b.idbesoin');
-        $this->db->from('critere c');
-        $this->db->join('besoin b', 'c.idbesoin = b.idbesoin');
-        $this->db->join('tache t', 'b.idtache = t.idtache');
-        $this->db->join('service s', 't.idservice = s.idservice');
-        $this->db->join('cv cv', 'b.idbesoin = cv.idbesoin');
-        $this->db->join('noteClient n', 'n.idbesoin = b.idbesoin');
-        $this->db->where('n.idclient', $id);
-        
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-    
     
 }
 ?>
