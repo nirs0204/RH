@@ -7,6 +7,7 @@ class CTC_Question extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('MDA_Questionnaire');
+        $this->load->model('MDA_Service');
         $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
 		{
@@ -32,6 +33,25 @@ class CTC_Question extends CI_Controller {
         }
         $data['reponse'] = $questions_reponses;                  
         $this->viewer('/questionnaire',$data);
+    }
+
+    // Creer une question
+    public function create()
+    {
+        $data['services'] = $this->MDA_Service->allServices();
+        $this->load->view('ADMIN/pages/create-quiz', $data);
+    }
+
+    // Inserer la question dans la base
+    public function store()
+    {
+        $idservice= $this->input->post('idservice');
+        $question= $this->input->post('question');
+        $coef= $this->input->post('coef');
+
+        $this->MDA_Questionnaire->saveQuiz($idservice, $question, $coef);
+        redirect('CTC_Question/index');
+
     }
   
 }
