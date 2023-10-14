@@ -7,6 +7,7 @@ class CTC_Reponse extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('MDC_Reponse');
+        $this->load->model('MDC_Noteclient');
         $this->load->model('MDA_Questionnaire');
         $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
@@ -22,7 +23,8 @@ class CTC_Reponse extends CI_Controller {
 		$this->load->view('CLIENT/pages/template/basepage', $v);
 	}
     public function index(){
-        $rps = $this->input->get('reponse');         
+        $rps = $this->input->get('reponse');   
+        $besoin = $this->session->userdata('besoin');      
         $a = 0;
         $processedQuestions = array();
         $coef = 0;    
@@ -61,8 +63,11 @@ class CTC_Reponse extends CI_Controller {
                 }
             }
         }
+        $idclient = $_SESSION['client'][0]['idclient'];
     
         echo '<br>Reponse =' . $a;
+        $this->MDC_Noteclient->saveNote( $besoin, $a, $idclient);
+        redirect('CTC_Etape/index');
     }
     
     // Creer une reponse
