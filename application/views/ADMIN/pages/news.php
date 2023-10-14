@@ -1,6 +1,4 @@
 <?php if(!isset($news)) $posts=array(); ?>
-<?php if(!isset($selection)) $posts=array();
- ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -82,7 +80,6 @@
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                    <?php  foreach ($selection as $row) { ?>  <?php } ?>
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -102,9 +99,7 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold"> <?php echo $row->nom; ?>  <?php echo $row->prenom; ?></p>
-                            <p class="text-xs text-gray-600 dark:text-gray-400">
-                            <?php echo $row->age; ?> Ans
+
                             </p>
                           </div>
                         </div>
@@ -124,13 +119,13 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                      <?php echo $row->debutent; ?>
+
                       </td>
                       <td >
                         <a href="">Details</a>
                       </td>
                     </tr>
-                   
+
                   </tbody>
                 </table>
               </div>
