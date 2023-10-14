@@ -1,6 +1,4 @@
 <?php if(!isset($news)) $posts=array(); ?>
-<?php if(!isset($selection)) $selection=array();
- ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -133,7 +131,7 @@
                     </tr>
                     <?php } ?>
                     <?php } ?>  
-                    
+                      
                   </tbody>
                 </table>
               </div>
