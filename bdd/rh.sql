@@ -127,6 +127,7 @@ INSERT INTO service (nom) VALUES ('Finance');
 -- Insertion dans la table "tache"
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'technicien reseau');
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'developpeur');
+INSERT INTO tache (idservice, nomTache) VALUES (1, 'data Analyst');
 INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
 INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 
@@ -495,6 +496,8 @@ FROM  cv c
 JOIN  noteClient n ON  c.idclient = n.idclient
 ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
 
+
+select * from besoin order by idbesoin desc limit 1;
 
 
 Select *  from client;

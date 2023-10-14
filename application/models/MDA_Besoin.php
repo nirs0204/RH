@@ -66,5 +66,15 @@ class MDA_Besoin extends CI_Model
         $sql = sprintf($sql,$this->db->escape($heure),$this->db->escape($jour),$this->db->escape($id));
         $this->db->query($sql);
     }
+  
+//last besoin
+    public function LastBesoin() {
+        $this->db->select('*');
+        $this->db->from('besoin');
+        $this->db->order_by('idbesoin', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }    
 }
 ?>
