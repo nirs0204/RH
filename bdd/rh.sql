@@ -126,6 +126,7 @@ INSERT INTO service (nom) VALUES ('Finance');
 
 -- Insertion dans la table "tache"
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'technicien reseau');
+INSERT INTO tache (idservice, nomTache) VALUES (1, 'developpeur');
 INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
 INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 
@@ -133,7 +134,7 @@ INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (1, 120, 24);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
-
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
 
 
 -- Critere {
@@ -159,6 +160,10 @@ VALUES (2, 2, 'master', '4 ans', 'Malagasy', 'Femme', 'marie', '', 'anglais', 'f
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
 VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', 'anglais', '', '2023-10-15', '2023-10-25');
+
+
+INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
+VALUES (1, 6, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
 
 
 -- CV (/20) {
@@ -484,6 +489,12 @@ WHERE r.idreponse = 8;
 select +diplome+langue1+langue2+langue3+sexe+Smatri as noteCv
 FROM cv 
 WHERE idclient = 1 and idbesoin =1 ;
+
+SELECT * , (c.diplome + c.langue1 + c.langue2 + c.langue3 + c.sexe + c.Smatri) as total_cv_note,n.idNoteClient, n.noteClient
+FROM  cv c
+JOIN  noteClient n ON  c.idclient = n.idclient
+ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
+
 
 
 Select *  from client;

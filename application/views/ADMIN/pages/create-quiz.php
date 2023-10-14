@@ -26,9 +26,11 @@
                 <label class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Service</span>
                     <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="idservice">
-                        <?php foreach ($services as $service) { ?>
+                        
+                    <?php foreach ($services as $service) { ?>
                             <option value="<?php echo $service->idservice; ?>"><?php echo $service->nom; ?></option>
                         <?php } ?>
+                        
                     </select>
                 </label>
                 <label class="block mt-4 text-sm">

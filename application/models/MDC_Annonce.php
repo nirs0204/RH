@@ -4,11 +4,12 @@ class MDC_Annonce extends CI_Model
 {
 //    liste de tous les annonces (read)
     public function allNews(){
-        $sql="SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumetache/b.volumehoraire) as personnel,b.idbesoin
+        $sql="SELECT t.nomtache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumetache/b.volumehoraire) as personnel,b.idbesoin
         FROM critere c
         JOIN besoin b ON c.idbesoin = b.idbesoin
         JOIN tache t ON b.idtache = t.idtache
-        JOIN service s ON t.idservice = s.idservice";
+        JOIN service s ON t.idservice = s.idservice
+        where c.datefin>CURRENT_DATE";
         $req=$this->db->query($sql);
         $table=array();
         $i=0;
@@ -66,5 +67,17 @@ class MDC_Annonce extends CI_Model
          return array('s' => $s, 'p' => $p ,'v'=>$value);
     }
     
+    //par service 
+    public function New_service($service) {
+        $this->db->select('t.nomtache, s.nom AS nomService, TO_CHAR(dateFin, \'DD-MM-YY\') AS datefin, (b.volumetache/b.volumehoraire) as personnel, b.idbesoin');
+        $this->db->from('critere c');
+        $this->db->join('besoin b', 'c.idbesoin = b.idbesoin');
+        $this->db->join('tache t', 'b.idtache = t.idtache');
+        $this->db->join('service s', 't.idservice = s.idservice');
+        $this->db->where('c.datefin >', 'CURRENT_DATE', false);
+        $this->db->where('s.idservice',$service);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

@@ -8,7 +8,7 @@
           <div class="container px-6 mx-auto grid">
             <!-- General elements -->
             <h4
-              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+              class="mb-6 text-lg font-semibold text-gray-600 dark:text-gray-300"
             >
               Critere
             </h4>

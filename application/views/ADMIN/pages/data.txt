@@ -1,15 +1,64 @@
+<?php if(!isset($news)) $posts=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
-
+ 
   <body>
-      <!-- ITY NO CORPS DU SITE --> 
-        <main class="h-full pb-16 overflow-y-auto">
+
+      
+        <main class="h-full overflow-y-auto">
           <div class="container px-6 mx-auto grid">
+            <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              CV sélectionnés:
+            </h2>
+            <!-- CTA -->
+            
+            <!-- Cards -->
+            <?php foreach ($news as $row) { ?>
+            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+              <!-- Card -->
+              <a href="<?php echo site_url('CTA_Cv_list/cvlist/')?>?besoin=<?php echo $row->idbesoin; ?> &&pers=<?php echo $row->personnel; ?> ">
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd" 
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                  Recherche: <?php echo $row->personnel; ?> employés
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                  <?php echo $row->nomtache; ?>
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              
+            </div>
+            </a>
+            <?php } ?>
+
+            <!-- New Table -->
+            <div class="container px-1 mx-auto grid">
             <!-- General elements -->
             <h4
               class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
             >
-              Table with avatars
+              Table d'entretien
             </h4>
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
@@ -18,10 +67,10 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Client</th>
-                      <th class="px-4 py-3">Amount</th>
+                      <th class="px-4 py-3">Candidats</th>
+                      <th class="px-4 py-3">Satus</th>
                       <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Date d'entretien</th>
                     </tr>
                   </thead>
                   <tbody
@@ -70,7 +119,12 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+            
+          
+
+            
+
+            <!-- -->
           </div>
         </main>
       </div>
