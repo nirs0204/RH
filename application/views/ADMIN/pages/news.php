@@ -80,6 +80,8 @@
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
+                  <?php if(isset($selection)) { ?>
+                    <?php  foreach ($selection as $row) { ?>  
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -99,7 +101,9 @@
                             ></div>
                           </div>
                           <div>
-
+                            <p class="font-semibold"> <?php echo isset($row->nom) ? $row->nom : ''; ?><?php echo isset($row->prenom) ? $row->prenom : ''; ?></p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                            <?php echo isset($row->age) ? $row->age : ''; ?>  Ans
                             </p>
                           </div>
                         </div>
@@ -119,13 +123,15 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-
+                      <?php echo isset($row->debutent) ? $row->debutent : ''; ?>
                       </td>
                       <td >
                         <a href="">Details</a>
                       </td>
                     </tr>
-
+                    <?php } ?>
+                    <?php } ?>  
+                      
                   </tbody>
                 </table>
               </div>
