@@ -5,6 +5,7 @@ class CTA_Critere extends CI_Controller
     public function __construct() {
         parent::__construct();
         $this->load->model('MDA_Critere');
+        $this->load->model('MDA_Besoin');
         $this->load->model('MDA_Tache');
     }
 
@@ -37,10 +38,9 @@ class CTA_Critere extends CI_Controller
         $smatri = $this->input->post('smatri');
         $datefin = $this->input->post('datefin');
         $debutentretien = $this->input->post('debutentretien');
-
-        $this->MDA_Critere->saveCriteria($service, $idbesoin, $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $datefin, $debutentretien);
-
-        redirect('CTA_Critere/criteria_view');
+        $besoin = $this->MDA_Besoin->LastBesoin();
+        $this->MDA_Critere->saveCriteria($service, $besoin[0]['idbesoin'], $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $datefin, $debutentretien);
+        redirect('CTA_Cv_list/');
     }
 }
 ?>
