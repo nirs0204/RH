@@ -105,6 +105,32 @@ create table coefCv(
     divorcee int
 );
 
+create table employe(
+  idemploye serial primary key,
+  nom varchar(50),
+  prenom varchar(100),
+  dtn date,
+  cin varchar(12),
+  pere varchar(150),
+  mere varchar(150),
+  adresse varchar(150),
+  contact varchar(15),
+  embauche int,
+  cnaps int
+);
+
+create table essaicontrat(
+    idessaicontrat serial primary key,
+    idemploye int references employe(idemploye),
+    duree int,
+    salaire decimal(11,2),
+    lieutravail varchar(50),
+    eventualite text,
+    debut date,
+    fin date,
+    creation date
+);
+
 ---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"

@@ -1,3 +1,4 @@
+<?php if(!isset($cv)) $cv=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -9,12 +10,12 @@
         <h4
             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
         >
-            Besoin personnel
+            Contrat d'essai
         </h4>
         <div
             class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
         >
-            <form action="<?php echo site_url('') ?>" method="post">
+            <form action="<?php echo site_url('CTA_Essai/trial_contract_submit') ?>" method="post">
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Nom
@@ -23,7 +24,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="nom"
-                        value=""
+                        value="<?php $cv[0]->nom;?>"
                     />
                 </label>
 
@@ -35,7 +36,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="prenom"
-                        value=""
+                        value="<?php $cv[0]->prenom;?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -46,7 +47,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="date"
                         name="dtn"
-                        value=""
+                        value="<?php $cv[0]->dtn;?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -57,7 +58,6 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="lieun"
-                        value=""
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -68,7 +68,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="smatri"
-                        value=""
+                        value="<?php $cv[0]->smatri;?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -79,7 +79,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="adresse"
-                        value=""
+                        value="<?php $cv[0]->adresse;?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -90,7 +90,6 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="cin"
-                        value=""
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -101,7 +100,6 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="contact"
-                        value=""
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -112,7 +110,6 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="pere"
-                        value=""
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -123,7 +120,6 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="mere"
-                        value=""
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -148,13 +144,42 @@
                 </label>
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
+                  Duree
+                </span>
+                    <input
+                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="number"
+                            name="duree"
+                    />
+                </label>
+                <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Eventualite
+                </span>
+                    <input
+                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="text"
+                            name="eventualite"
+                    />
+                </label>
+                <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Salaire
+                </span>
+                    <input
+                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="text"
+                            name="salaire"
+                    />
+                </label>
+                <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
                   Tape le
                 </span>
                     <input
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="date"
                         name="creationessai"
-                        value=""
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -166,6 +191,35 @@
                         type="text"
                         name="lieutravail"
                     />
+                </label>
+                <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Affilé à CNaps
+                </span>
+                    <div class="mt-2">
+                        <label
+                                class="inline-flex items-center text-gray-600 dark:text-gray-400"
+                        >
+                            <input
+                                    type="radio"
+                                    class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    name="cnaps"
+                                    value="1"
+                            />
+                            <span class="ml-2">Oui</span>
+                        </label>
+                        <label
+                                class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                        >
+                            <input
+                                    type="radio"
+                                    class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    name="cnaps"
+                                    value="0"
+                            />
+                            <span class="ml-2">Non</span>
+                        </label>
+                    </div>
                 </label>
                 <br>
                 <div>
