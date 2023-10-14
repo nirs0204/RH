@@ -25,6 +25,7 @@ class CTA_Cv_list extends CI_Controller {
     public function index(){
         $service = $_SESSION['service'];
         $data['news'] =  $this->MDC_Annonce->New_service($service);
+        $data['selection'] = array();
         $this->viewer('/news',$data);
     }
     public function cvList(){
