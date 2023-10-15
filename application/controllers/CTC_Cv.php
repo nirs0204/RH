@@ -7,6 +7,7 @@ class CTC_Cv extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('MDC_Cv');
+        $this->load->model('MDC_CV');
         $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
 		{
@@ -35,6 +36,11 @@ class CTC_Cv extends CI_Controller {
         $besoin = $this->session->userdata('besoin');
         $this->MDC_Cv->saveCV($idclient, $besoin , $diplome, $langue1, $langue2, $langue3, $sexe, $sm, $nom, $add, $prenom, $dtn, $exp);
         redirect('CTC_Question/index');
+    }
+
+    public function detailCVcandidat($idclient) {
+        $data['detail'] = $this->MDC_CV->oneCV($idclient);
+        $this->viewer('detail_CV',$data);
     }
     
 }
