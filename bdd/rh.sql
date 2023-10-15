@@ -131,6 +131,23 @@ create table essaicontrat(
     creation date
 );
 
+CREATE  TABLE fiche_employe ( 
+	id_fiche_employe serial PRIMARY KEY,
+	idemploye int REFERENCES employe(idemploye),
+	id_fiche_poste int REFERENCES fiche_poste(id_fiche_poste)
+ );
+ 
+ CREATE  TABLE fiche_poste ( 
+	id_fiche_poste SERIAL PRIMARY KEY,
+	id_service int references service(idservice),
+	id_tache int REFERENCES tache(idtache),
+	mission text,
+	responsabilite text,
+	objectif text,
+	competence_requise text,
+	superieur_hierarchique varchar(200),
+ );
+
 ---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"

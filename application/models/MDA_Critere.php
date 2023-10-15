@@ -3,9 +3,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MDA_Critere extends CI_Model
 {
     //    enregistrer un critere(create)
-    public function saveCriteria($idservice, $idbesoin, $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $dateFin, $debutEnt){
-        $sql = "insert into critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
-        $sql = sprintf($sql,$this->db->escape($idservice),$this->db->escape($idbesoin),$this->db->escape($diplome),$this->db->escape($experience),$this->db->escape($nationalite),$this->db->escape($sexe),$this->db->escape($smatri),$this->db->escape($langue1),$this->db->escape($langue2),$this->db->escape($langue3),$this->db->escape($dateFin),$this->db->escape($debutEnt));
+    public function saveCriteria($idservice, $idbesoin, $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $dateDebutEntretien) {
+        $sql = "INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, debutent, datefin) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)";
+        date_default_timezone_set('Europe/Moscow');
+
+        // Convertir la date de début en objet DateTime
+        $startDate = new DateTime($dateDebutEntretien);
+    
+        // Calculer la date de fin en ajoutant 15 minutes à la date de début
+        $endDate = clone $startDate;
+        $endDate->add(new DateInterval('PT15M'));
+    
+        // Formatage des dates au format MySQL (Y-m-d H:i:s)
+        $dateDebutFormatted = $startDate->format('Y-m-d H:i:s');
+        $dateFinFormatted = $endDate->format('Y-m-d H:i:s');
+    
+        $sql = sprintf(
+            $sql,
+            $this->db->escape($idservice),
+            $this->db->escape($idbesoin),
+            $this->db->escape($diplome),
+            $this->db->escape($experience),
+            $this->db->escape($nationalite),
+            $this->db->escape($sexe),
+            $this->db->escape($smatri),
+            $this->db->escape($langue1),
+            $this->db->escape($langue2),
+            $this->db->escape($langue3),
+            $this->db->escape($dateDebutFormatted),
+            $this->db->escape($dateFinFormatted)
+        );
+    
         $this->db->query($sql);
     }
 
@@ -53,52 +81,26 @@ class MDA_Critere extends CI_Model
 //    }
 
     // Fonction programmer heure d'entretien
-    public function programmeHeureEntretien($id) {
-        // Load the CodeIgniter database library if not already loaded
-        $this->load->database();
-        
-        // Define the duration of each interview (15 minutes)
-        $interviewDuration = new DateInterval('PT15M');
-        
-        // Get the criteria for the interview based on the $id
-        $criteria = $this->db->get_where('critere', ['idbesoin' => $id])->row();
+    public function scheduleInterview($idservice, $idbesoin, $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $dateFin, $debutEnt) {
+        date_default_timezone_set('Europe/Moscow');
     
-        if ($criteria) {
-            // Calculate the number of interviews required based on the available time
-            $startDate = new DateTime($criteria->debutEnt);
-            $endDate = new DateTime($criteria->dateFin);
-            $interviewCount = $startDate->diff($endDate)->h * 4; // Assuming 4 interviews per hour
-            
-            // Schedule interviews
-            $scheduledInterviews = [];
-            for ($i = 0; $i < $interviewCount; $i++) {
-                $endTime = clone $startDate;
-                $endTime->add($interviewDuration);
-                
-                // Store the interview time in your preferred format (e.g., as strings)
-                $scheduledInterviews[] = [
-                    'start_time' => $startDate->format('Y-m-d H:i:s'),
-                    'end_time' => $endTime->format('Y-m-d H:i:s'),
-                ];
-                
-                // Move to the next interview slot
-                $startDate = $endTime;
-            }
-            
-            // Store the scheduled interview times or perform other actions
-            // For example, you can insert them into another table in the database
-            
-            // Assuming you have a table named 'interview_schedule'
-            foreach ($scheduledInterviews as $interview) {
-                $this->db->insert('interview_schedule', $interview);
-            }
-            
-            // You can return the scheduled interview times or a success message as needed
-            return 'Interviews scheduled successfully';
-        } else {
-            // Handle the case when no criteria are found for the given $id
-            return 'Criteria not found';
-        }
+        // Convert dateFin to a DateTime object
+        $startDate = new DateTime($dateFin);
+        
+        // Create the end time by adding 15 minutes to the start time
+        $endDate = clone $startDate;
+        $endDate->add(new DateInterval('PT15M'));
+    
+        // Now, $startDate contains the start time, and $endDate contains the end time
+    
+        // You can use these values to schedule the interview or store them in a database
+        // For example:
+        $sql = "INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)";
+        $sql = sprintf($sql, $this->db->escape($idservice), $this->db->escape($idbesoin), $this->db->escape($diplome), $this->db->escape($experience), $this->db->escape($nationalite), $this->db->escape($sexe), $this->db->escape($smatri), $this->db->escape($langue1), $this->db->escape($langue2), $this->db->escape($langue3), $this->db->escape($startDate->format('Y-m-d H:i:s')), $this->db->escape($endDate->format('Y-m-d H:i:s')));
+    
+        // Execute the SQL query to save the interview schedule
+        $this->db->query($sql);
     }
+    
 }
 ?>

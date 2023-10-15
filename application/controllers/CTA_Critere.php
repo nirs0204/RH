@@ -40,7 +40,7 @@ class CTA_Critere extends CI_Controller
         $debutentretien = $this->input->post('debutentretien');
         $besoin = $this->MDA_Besoin->LastBesoin();
         $this->MDA_Critere->saveCriteria($service, $besoin[0]['idbesoin'], $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $datefin, $debutentretien);
-        redirect('CTA_Cv_list/');
+        //redirect('CTA_Cv_list/');
     }
 
     public function schedule_job_interview() {
