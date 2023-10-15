@@ -205,6 +205,14 @@ VALUES (1, 6, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', '
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
 
+INSERT INTO cv (idclient, idbesoin, diplome, langue1, langue2, langue3, sexe, Smatri, nom, adresse, prenom, dtn, experience) VALUES
+(5, 1, 8.5, 7.2, 5.0, 5.0, 1, 6.0, 'Futiosa', '123 Street', 'Laura', '1990-07-29', 'Some experience'),
+(6, 1, 8.0, 8.0, 6.0, 5.0, 1, 6.0, 'Jenner', '456 Street', 'Kailee', '1992-04-15', 'Considerable experience');
+
+INSERT INTO noteClient (idbesoin, noteClient, idclient) VALUES
+(1, 25, 5),
+(1, 50, 6);
+
 -- Insertion dans la table "coefCv"
 INSERT INTO coefCv 
 (idtache, doctorat, master, licence, bacc, bepc, cepe, mlg, frc, ang,
