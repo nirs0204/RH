@@ -174,9 +174,15 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link"  href="<?php echo site_url('#')?>">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Accueil</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="<?php echo site_url('CTC_Annonce/')?>">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Nouvelle et Annonce</span>
             </a>
           </li>
           <li class="nav-item">
@@ -244,13 +250,13 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
+              <span class="menu-title">Authentification</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('CTA_Admin/login_view')?>"> Connexion Admin </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('CTC_Client/login_view')?>"> Connexion Client </a></li>
               </ul>
             </div>
           </li>

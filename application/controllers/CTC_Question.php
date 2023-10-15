@@ -7,6 +7,7 @@ class CTC_Question extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('MDA_Questionnaire');
+        $this->load->model('MDA_Service');
         $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
 		{
@@ -36,24 +37,22 @@ class CTC_Question extends CI_Controller {
         $this->viewer('/questionnaire',$data);
     }
 
-    public function verifyResponse() {
-        $reponses = $this->input->get('reponsesquestion');
-        for($i=0; $i<count($reponses); $i++) {
-            //get the boolean
-            $verification=$reponses[$i]->reponseVerif;
-            if($verification == TRUE) {
-                $idQuestionnaire = $responses[$i]->idquestion;
-                $pointQuestion= $this->db('questionnaire')->where('id',$idQuestionnaire)->value('coef');
-                
-                $client = $this->session->userdata('client');
-                $sql = "insert into noteClient (noteClient, idclient) values (%s, %s)";
-                $sql = sprintf($sql, $this->db->escape($pointQuestion), $this->db->escape($client['idclient']));
-                $this->db->query($sql);
+    // Creer une question
+    public function create()
+    {
+        $data['services'] = $this->MDA_Service->allServices();
+        $this->load->view('ADMIN/pages/create-quiz', $data);
+    }
 
-            } else {
+    // Inserer la question dans la base
+    public function store()
+    {
+        $idservice= $this->input->post('idservice');
+        $question= $this->input->post('question');
+        $coef= $this->input->post('coef');
 
-            }
-        }
+        $this->MDA_Questionnaire->saveQuiz($idservice, $question, $coef);
+        redirect('CTC_Question/index');
 
     }
   

@@ -7,6 +7,8 @@ class CTA_Besoin extends CI_Controller
         parent::__construct();
         $this->load->model('MDA_Besoin');
         $this->load->model('MDA_Tache');
+        $this->load->model('MDA_Service');
+        $this->load->model('MDA_Questionnaire');
     }
     private function viewer($page, $data)
     {
@@ -32,6 +34,16 @@ class CTA_Besoin extends CI_Controller
         $this->MDA_Besoin->saveNeed($idtache, $volumeTache, $volumeHoraire);
 
         redirect('CTA_Critere/criteria_view');
+    }
+
+    public function insertQuestion_view(){
+        $data['services'] = $this->MDA_Service->allServices();
+        $this->load->view('ADMIN/pages/create-quiz',$data);
+    }
+
+    public function insertReponse_view(){
+        $data['questions'] = $this->MDA_Questionnaire->allQuizs();
+        $this->load->view('ADMIN/pages/create-response',$data);
     }
 }
 ?>

@@ -105,6 +105,32 @@ create table coefCv(
     divorcee int
 );
 
+create table employe(
+  idemploye serial primary key,
+  nom varchar(50),
+  prenom varchar(100),
+  dtn date,
+  cin varchar(12),
+  pere varchar(150),
+  mere varchar(150),
+  adresse varchar(150),
+  contact varchar(15),
+  embauche int,
+  cnaps int
+);
+
+create table essaicontrat(
+    idessaicontrat serial primary key,
+    idemploye int references employe(idemploye),
+    duree int,
+    salaire decimal(11,2),
+    lieutravail varchar(50),
+    eventualite text,
+    debut date,
+    fin date,
+    creation date
+);
+
 ---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"
@@ -126,6 +152,8 @@ INSERT INTO service (nom) VALUES ('Finance');
 
 -- Insertion dans la table "tache"
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'technicien reseau');
+INSERT INTO tache (idservice, nomTache) VALUES (1, 'developpeur');
+INSERT INTO tache (idservice, nomTache) VALUES (1, 'data Analyst');
 INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
 INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 
@@ -133,7 +161,7 @@ INSERT INTO tache (idservice, nomTache) VALUES (3, 'caissier');
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (1, 120, 24);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
-
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
 
 
 -- Critere {
@@ -159,6 +187,10 @@ VALUES (2, 2, 'master', '4 ans', 'Malagasy', 'Femme', 'marie', '', 'anglais', 'f
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
 VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', 'anglais', '', '2023-10-15', '2023-10-25');
+
+
+INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
+VALUES (1, 6, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
 
 
 -- CV (/20) {
@@ -418,14 +450,33 @@ WHERE idreponse = 2; -- L'ID de la question que vous souhaitez mettre à jour
 ---------------------------SELECT-------------------------
 
 --Select ANNONCE
-SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel,b.idbesoin
+SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumetache/b.volumehoraire) as personnel,b.idbesoin
 FROM critere c
 JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice;
 
+--Select COMPLETE
+SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumetache/b.volumehoraire) as personnel,b.idbesoin
+FROM critere c
+JOIN besoin b ON c.idbesoin = b.idbesoin
+JOIN tache t ON b.idtache = t.idtache
+JOIN service s ON t.idservice = s.idservice
+JOIN cv cv ON b.idbesoin = cv.idbesoin
+JOIN noteClient n ON n.idbesoin = b.idbesoin
+WHERE n.idclient = 1 and b.idbesoin = 1 ;
+
+--CV completed
+SELECT t.nomTache, s.nom AS nomService, TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumetache/b.volumehoraire) as personnel,b.idbesoin
+FROM critere c
+JOIN besoin b ON c.idbesoin = b.idbesoin
+JOIN tache t ON b.idtache = t.idtache
+JOIN service s ON t.idservice = s.idservice
+JOIN cv cv ON b.idbesoin = cv.idbesoin
+WHERE cv.idclient = 1 ;
+
 --Select Details Annonce
-SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.heure/b.jour) as personnel FROM critere c
+SELECT * , TO_CHAR(dateFin, 'DD-MM-YY') AS datefin, (b.volumehoraire/b.volumetache) as personnel FROM critere c
 JOIN besoin b ON c.idbesoin = b.idbesoin
 JOIN tache t ON b.idtache = t.idtache
 JOIN service s ON t.idservice = s.idservice
@@ -461,7 +512,21 @@ SELECT * FROM questionnaire q
 JOIN reponse r ON q.idquestion = r.idquestion
 WHERE r.idreponse = 8;
 
-select *  from client;
+--NOTE de CV d'un client a chaque beoin de service
+select +diplome+langue1+langue2+langue3+sexe+Smatri as noteCv
+FROM cv 
+WHERE idclient = 1 and idbesoin =1 ;
+
+SELECT * , (c.diplome + c.langue1 + c.langue2 + c.langue3 + c.sexe + c.Smatri) as total_cv_note,n.idNoteClient, n.noteClient
+FROM  cv c
+JOIN  noteClient n ON  c.idclient = n.idclient
+ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
+
+
+select * from besoin order by idbesoin desc limit 1;
+
+
+Select *  from client;
 select *  from service;
 select *  from besoin;
 select *  from tache;

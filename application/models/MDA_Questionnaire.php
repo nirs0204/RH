@@ -4,7 +4,7 @@ class MDA_Questionnaire extends CI_Model
 {
     //    enregistrer un questionnaire(create)
     public function saveQuiz($idservice, $question, $reponse, $coef){
-        $sql = "insert into questionnaire (idservice, question, reponse, coef) values (%s, %s, %s, %s) ";
+        $sql = "insert into questionnaire (idservice, question, coef) values (%s, %s, %s) ";
         $sql = sprintf($sql,$this->db->escape($idservice),$this->db->escape($question),$this->db->escape($reponse),$this->db->escape($coef));
         $this->db->query($sql);
     }

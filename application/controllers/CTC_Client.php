@@ -56,7 +56,7 @@ class CTC_Client extends CI_Controller {
 
         if ($client){
             $this->session->set_userdata('client', $client);
-            redirect('CTC_Cv/index');
+            redirect('CTC_Etape');
             return;
         }
         else{
@@ -84,5 +84,9 @@ class CTC_Client extends CI_Controller {
         $this->session->unset_userdata('client');
         $this->session->unset_userdata('besoin');
         redirect('CTC_Annonce');
+    }
+
+    public function login_view(){
+        $this->load->view('CLIENT/pages/login');
     }
 }

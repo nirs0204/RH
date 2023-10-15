@@ -19,12 +19,12 @@
                              <div class="row">
                                 <div class="col-md-12">
                                   <div class="form-group">
-                                      <p class="card-description"><?php echo $questions[$i]['question']; ?></p>
+                                      <p class="card-description"><?php echo $questions[$i]['question']; ?>(<?php echo $questions[$i]['coef']; ?>)</p>
                                       <?php foreach ($reponse[$questions[$i]['question']] as $rps) : ?>
                                           <div class="form-check">
                                               <label class="form-check-label">
                                                   <input type="checkbox" name="reponse[]" value=" <?php echo $rps['idreponse']; ?>" class="form-check-input">
-                                                  <?php echo $rps['reponse']; ?>
+                                                  <?php echo $rps['reponse']; ?>                           (***<?php echo $rps['reponseverif']; ?>)
                                               </label>
                                           </div>
                                       <?php endforeach; ?>
