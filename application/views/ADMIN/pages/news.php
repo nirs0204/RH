@@ -3,22 +3,14 @@
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
   <body>
-    <div
-      class="flex h-screen bg-gray-50 dark:bg-gray-900"
-      :class="{ 'overflow-hidden': isSideMenuOpen }">
-      <!-- Desktop sidebar -->
-      
-      <!-- Mobile sidebar -->
-      <!-- Backdrop -->
-    
-      <div class="flex flex-col flex-1 w-full">
+   
         
         <main class="h-full overflow-y-auto">
           <div class="container px-6 mx-auto grid">
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Dashboard
+              Annonces
             </h2>
             
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-5">
@@ -80,8 +72,8 @@
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  <?php if(isset($selection)) { ?>
-                    <?php  foreach ($selection as $row) { ?>  
+                  <?php if(isset($entretien)) { ?>
+                    <?php  foreach ($entretien as $row) { ?>  
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -101,9 +93,9 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold"> <?php echo isset($row->nom) ? $row->nom : ''; ?><?php echo isset($row->prenom) ? $row->prenom : ''; ?></p>
+                            <p class="font-semibold"> <?php echo isset($row['candidat']) ? $row['candidat'] : ''; ?> </p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                            <?php echo isset($row->age) ? $row->age : ''; ?>  Ans
+                            <?php echo isset($row['age']) ? $row['age'] : ''; ?>   Ans
                             </p>
                           </div>
                         </div>
@@ -123,12 +115,12 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                      <?php echo isset($row->debutent) ? $row->debutent : ''; ?>
-                      
+                      <?php echo isset($row['heure_entretien']) ? $row['heure_entretien'] : ''; ?> 
                       </td>
                       <td >
-                        <a href="<?php echo site_url('CTC_Cv/detailCVcandidat/' . $row->idclient) ?>">Details</a>
-
+                      <a href="index.html" class="btn btn-primary"  data-target="#exampleModal">
+                       Détails
+                    </a>
                       </td>
                     </tr>
                     <?php } ?>
@@ -141,6 +133,7 @@
             </div>
 
             <!-- Charts -->
+            
             
                 </div>
               </div>

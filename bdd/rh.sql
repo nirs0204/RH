@@ -537,6 +537,8 @@ WHERE idclient = 1 and idbesoin =1 ;
 SELECT * , (c.diplome + c.langue1 + c.langue2 + c.langue3 + c.sexe + c.Smatri) as total_cv_note,n.idNoteClient, n.noteClient
 FROM  cv c
 JOIN  noteClient n ON  c.idclient = n.idclient
+JOIN  critere cr ON  cr.idbesoin = c.idbesoin
+where c.idbesoin=1
 ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
 
 
