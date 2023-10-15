@@ -9,6 +9,9 @@ class CTC_Cv extends CI_Controller {
         $this->load->model('MDC_Cv');
         $this->load->model('MDC_CV');
         $this->load->helper('main_helper');
+        $this->load->model('MDC_Noteclient');
+        $this->load->model('MDC_Annonce');
+        $this->load->helper('main_helper');
         if($this->session->userdata('client') === null) 
 		{
 			redirect(bu('CTC_Client/sign?error=' . urlencode('Vous n`êtes pas connectée en tant que client')));
@@ -38,9 +41,16 @@ class CTC_Cv extends CI_Controller {
         redirect('CTC_Question/index');
     }
 
-    public function detailCVcandidat($idclient) {
-        $data['detail'] = $this->MDC_CV->oneCV($idclient);
-        $this->viewer('detail_CV',$data);
+    public function cvList(){
+        $service = $_SESSION['service'];
+        $besoin = $this->session->userdata('besoin');
+        $detail = $this->MDC_Annonce->oneNews($besoin);
+        $pers =$detail['personnel'];
+        $data['news'] =  $this->MDC_Annonce->New_service($service);
+        $data['selection'] = $this->MDC_Noteclient->note_trier($besoin,$pers);
+        $interviews = $this->MDC_Noteclient->generateInterviewSchedule($data['selection']);
+        $data['entretien'] = $interviews;
+        $this->viewer('/cv_list',$data);
     }
-    
+
 }

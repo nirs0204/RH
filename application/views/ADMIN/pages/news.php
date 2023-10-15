@@ -65,6 +65,8 @@
                       <th class="px-4 py-3">Candidats</th>
                       <th class="px-4 py-3">Status</th>
                       <th class="px-4 py-3">Status</th>
+                      <th class="px-4 py-3">CV</th>
+                      <th class="px-4 py-3">Questions</th>
                       <th class="px-4 py-3">Date d'entretien</th>
                       <th class="px-4 py-3"></th>
                     </tr>
@@ -115,6 +117,12 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
+                      <?php echo isset($row['total_cv_note']) ? $row['total_cv_note'] : ''; ?> 
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                      <?php echo isset($row['noteclient']) ? $row['noteclient'] : ''; ?> 
+                      </td>
+                      <td class="px-4 py-3 text-sm">
                       <?php echo isset($row['heure_entretien']) ? $row['heure_entretien'] : ''; ?> 
                       </td>
                       <td >
@@ -142,5 +150,43 @@
         </main>
       </div>
     </div>
+
+    <!-- Boîte de dialogue -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Détails du candidat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Contenu de la boîte de dialogue -->
+        <!-- Ajoutez le contenu que vous souhaitez afficher dans la boîte de dialogue ici -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Sauvegarder les modifications</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src=<?php echo base_url("assets_ADMIN/js/init-alpine.js"); ?>></script>
+    <script src=<?php echo base_url("assets_ADMIN/js/jquery.min.js"); ?>></script>
+    <script src=<?php echo base_url("assets_ADMIN/js/popper.min.js"); ?>></script>
+    <script src=<?php echo base_url("assets_ADMIN/js/bootstrap.min.js"); ?>></script>
+<script>
+  $(document).ready(function(){
+    // Gérer l'événement de clic sur le lien de détails
+    $('a.btn.btn-primary').click(function(e){
+      e.preventDefault(); // Empêche le comportement par défaut du lien
+      $('#exampleModal').modal('show'); // Afficher la boîte de dialogue
+    });
+  });
+</script>
+
+
   </body>
 </html>

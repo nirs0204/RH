@@ -25,28 +25,28 @@
                           <td></td>
                           <td>Check de Connexion Ok</td>
                           <td></td>
-                          <td><a class="badge badge-<?php echo $client['s'] ?>" href="<?php echo base_url($client['p']); ?>" ><?php echo $client['v'] ?></a></td>
+                          <td><a class="badge badge-<?php echo $client['s'] ?>" href="<?php echo site_url($client['p']); ?>" ><?php echo $client['v'] ?></a></td>
                         </tr>
                         <tr>
                           <th>2-</th>
                             <td></td>
                           <td>Séléction de cv : Remplir le cv électronique</td>
                             <td></td>
-                            <td><a class="badge badge-<?php echo $apply['s'] ?>"  href="<?php echo base_url($apply['p']); ?>"><?php echo $apply['v'] ?></a></td>
+                            <td><a class="badge badge-<?php echo $apply['s'] ?>"  href="<?php echo site_url($apply['p']); ?>"><?php echo $apply['v'] ?></a></td>
                         </tr>
                         <tr>
                           <th>3-</th>
                             <td></td>
                           <td>Questionnaire de recrutement : Remplir le questionnaire</td>
                             <td></td>
-                            <td><a class="badge badge-<?php echo $complete['s'] ?>"  href="<?php echo base_url($complete['p']); ?>"><?php echo $complete['v'] ?></a></td>
+                            <td><a class="badge badge-<?php echo $complete['s'] ?>"  href="<?php echo site_url($complete['p']); ?>"><?php echo $complete['v'] ?></a></td>
                         </tr>
                         <tr>
                           <th>4-</th>
                             <td></td>
                           <td>Entretien en cas de succes aux 2 dernieres cités ci-dessus</td>
                             <td></td>
-                            <td><a class="badge badge-warning" href="#">Inachevé</a></td>
+                            <td><a class="badge badge-info"  href="<?php echo site_url('CTC_CV/cvlist'); ?>">Entretien</a></td>
                         </tr>
                       </tbody>
                     </table>

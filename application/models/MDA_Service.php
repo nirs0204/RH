@@ -51,6 +51,9 @@ class MDA_Service extends CI_Model
         $sql = sprintf($sql,$this->db->escape($nom),$this->db->escape($id));
         $this->db->query($sql);
     }
+
+    //avec idbesoin 
+    
 }
 
 ?>
