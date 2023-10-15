@@ -124,9 +124,11 @@
                       </td>
                       <td class="px-4 py-3 text-sm">
                       <?php echo isset($row->debutent) ? $row->debutent : ''; ?>
+                      
                       </td>
                       <td >
-                        <a href="">Details</a>
+                        <a href="<?php echo site_url('CTC_Cv/detailCVcandidat/' . $row->idclient) ?>">Details</a>
+
                       </td>
                     </tr>
                     <?php } ?>
