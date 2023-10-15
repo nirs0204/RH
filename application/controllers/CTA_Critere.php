@@ -42,5 +42,19 @@ class CTA_Critere extends CI_Controller
         $this->MDA_Critere->saveCriteria($service, $besoin[0]['idbesoin'], $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $datefin, $debutentretien);
         redirect('CTA_Cv_list/');
     }
+
+    public function schedule_job_interview() {
+        // Call the programmeHeureEntretien function from the model
+        $result = $this->MDA_Critere->programmeHeureEntretien($id);
+        
+        // Handle the result as needed
+        if ($result === 'Interviews scheduled successfully') {
+            // Interviews were scheduled successfully
+            // You can show a success message or redirect to another page
+        } else {
+            // Criteria not found or other error
+            // Handle the error case
+        }
+    }
 }
 ?>

@@ -51,5 +51,54 @@ class MDA_Critere extends CI_Model
 //        $sql = sprintf($sql,$this->db->escape($idbesoin),$this->db->escape($diplome),$this->db->escape($experience),$this->db->escape($nationalite),$this->db->escape($sexe),$this->db->escape($smatri),$this->db->escape($langue1),$this->db->escape($langue2),$this->db->escape($langue3),$this->db->escape($dateFin),$this->db->escape($debutEnt), $this->db->escape($idservice));
 //        $this->db->query($sql);
 //    }
+
+    // Fonction programmer heure d'entretien
+    public function programmeHeureEntretien($id) {
+        // Load the CodeIgniter database library if not already loaded
+        $this->load->database();
+        
+        // Define the duration of each interview (15 minutes)
+        $interviewDuration = new DateInterval('PT15M');
+        
+        // Get the criteria for the interview based on the $id
+        $criteria = $this->db->get_where('critere', ['idbesoin' => $id])->row();
+    
+        if ($criteria) {
+            // Calculate the number of interviews required based on the available time
+            $startDate = new DateTime($criteria->debutEnt);
+            $endDate = new DateTime($criteria->dateFin);
+            $interviewCount = $startDate->diff($endDate)->h * 4; // Assuming 4 interviews per hour
+            
+            // Schedule interviews
+            $scheduledInterviews = [];
+            for ($i = 0; $i < $interviewCount; $i++) {
+                $endTime = clone $startDate;
+                $endTime->add($interviewDuration);
+                
+                // Store the interview time in your preferred format (e.g., as strings)
+                $scheduledInterviews[] = [
+                    'start_time' => $startDate->format('Y-m-d H:i:s'),
+                    'end_time' => $endTime->format('Y-m-d H:i:s'),
+                ];
+                
+                // Move to the next interview slot
+                $startDate = $endTime;
+            }
+            
+            // Store the scheduled interview times or perform other actions
+            // For example, you can insert them into another table in the database
+            
+            // Assuming you have a table named 'interview_schedule'
+            foreach ($scheduledInterviews as $interview) {
+                $this->db->insert('interview_schedule', $interview);
+            }
+            
+            // You can return the scheduled interview times or a success message as needed
+            return 'Interviews scheduled successfully';
+        } else {
+            // Handle the case when no criteria are found for the given $id
+            return 'Criteria not found';
+        }
+    }
 }
 ?>
