@@ -45,7 +45,7 @@ class CTA_Essai extends CI_Controller
         $salaire = $this->input->post('salaire');
         $eventualite = $this->input->post('eventualite');
 
-        $idemp = $this->MDA_EMploye->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $tel, 0, $cnaps);
+        $idemp = $this->MDA_Employe->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps);
         $this->MDA_Essai->saveTrialContract($idemp, $duree, $salaire, $lieutravail, $eventualite, $debutessai, $finessai, $creationessai);
 
         redirect('CTA_Essai/');

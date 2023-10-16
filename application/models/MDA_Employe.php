@@ -6,6 +6,7 @@ class MDA_Employe extends CI_Model
     function saveEmployee($nom,$prenom,$dtn, $cin, $pere, $mere,$adresse, $contact, $embauche, $cnaps){
         $sql = "insert into employe (nom,prenom,dtn, cin, pere, mere,adresse,contact, embauche, cnaps) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
         $sql = sprintf($sql,$this->db->escape($nom),$this->db->escape($prenom),$this->db->escape($dtn),$this->db->escape($cin),$this->db->escape($pere),$this->db->escape($mere),$this->db->escape($adresse),$this->db->escape($contact),$this->db->escape($embauche),$this->db->escape($cnaps));
+        echo $sql;
         $this->db->query($sql);
 
         $insert_id = $this->db->insert_id();
