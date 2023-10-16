@@ -24,8 +24,8 @@ class CTA_Admin extends CI_Controller
             $idadmin = $this->MDA_Admin->getIdAdmin($pseudo, $mdp);
             $idservice = $this->MDA_Admin->getIdServiceAdmin($idadmin);
             $this->session->set_userdata('service', $idservice);
+            $this->session->set_userdata('admin', $idadmin);
             redirect('CTA_Besoin/need_view');
-//            redirect('CTA_Accueil/cv_list');
             return;
         }
         else{

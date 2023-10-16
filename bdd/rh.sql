@@ -145,7 +145,7 @@ CREATE  TABLE fiche_employe (
 	responsabilite text,
 	objectif text,
 	competence_requise text,
-	superieur_hierarchique varchar(200),
+	superieur_hierarchique varchar(200)
  );
 
 ---------------------------INSERTION-------------------------
@@ -548,6 +548,10 @@ JOIN  noteClient n ON  c.idclient = n.idclient
 JOIN  critere cr ON  cr.idbesoin = c.idbesoin
 where c.idbesoin=1
 ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
+
+SELECT * FROM  essaicontrat ec
+JOIN employe e ON e.idemploye = ec.idemploye
+ORDER BY idessaicontrat DESC LIMIT 1;
 
 
 select * from besoin order by idbesoin desc limit 1;

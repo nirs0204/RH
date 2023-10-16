@@ -12,7 +12,7 @@ class CTA_FichePoste extends CI_Controller {
         $this->load->helper('main_helper');
         if($this->session->userdata('admin') === null) 
 		{
-			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée en tant que client')));
+			redirect(bu('CTA_Admin/sign?error=' . urlencode('Vous n`êtes pas connectée en admin')));
 		}
     }
 	private function viewer($page, $data){
