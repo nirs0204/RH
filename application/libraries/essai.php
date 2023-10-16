@@ -1,9 +1,7 @@
 <?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
+require('../fpdf.php');
 
-require(APPPATH . 'third_party/fpdf.php');
-
-class Essai extends FPDF {
+class PDF extends FPDF {
     function Header()
     {
         // A propos de la societe

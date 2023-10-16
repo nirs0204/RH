@@ -51,6 +51,7 @@ class MDC_CV extends CI_Model
         $this->db->join('besoin b', 'c.idtache = b.idtache');
         $this->db->where('b.idbesoin', $id);
         $query = $this->db->get();  
+        echo $this->db->last_query();
         return $query->result_array();
     }
 //    rempli le coef par 0 si vide    

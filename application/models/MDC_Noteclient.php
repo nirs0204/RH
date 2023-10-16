@@ -57,6 +57,7 @@ class MDC_Noteclient extends CI_Model
     
             $interviewTime = date("d-m-Y h:i A", $debuttemps); 
             $entretien[] = array(
+                'idclient' => $row->idclient,
                 'candidat' => $row->nom . ' ' . $row->prenom,
                 'age' => $row->age,
                 'total_cv_note'  => $row->total_cv_note,
@@ -64,7 +65,7 @@ class MDC_Noteclient extends CI_Model
                 'heure_entretien' => $interviewTime 
             );
     
-            $debuttemps = strtotime("+60 minutes", $debuttemps);
+            $debuttemps = strtotime("+20 minutes", $debuttemps);
         }
     
         return $entretien;
