@@ -24,7 +24,7 @@ class CTA_Essai extends CI_Controller
         $this->viewer('/contrat-essai-form', $data);
     }
 
-    public function trial_contract_submit(){
+    public function trial_contract_submit  (){
         $nom = $this->input->post('nom');
         $prenom = $this->input->post('prenom');
         $dtn = $this->input->post('dtn');
@@ -52,6 +52,13 @@ class CTA_Essai extends CI_Controller
 
     }
 
+    public function contrat_essai(){
+		$this->load->library('Essai');
+		$pdf = new Essai();
+		$pdf->AddPage();
+		$pdf->ajouterEmp('No002092e8781', 'Nom ', 'Prenom', '10 Juin 2002', 'Madagascar', 'Celibataire', 'Ambalavao', '0348902873', 'mdkncwdir', 'hdbhwgiqwwi', '202000', '02 fev 2023', '05 mmai 2023', 'Antsirabe', '23 oct 2022');
+		$pdf->Output();
+	}
 
 }
 ?>
