@@ -131,6 +131,23 @@ create table essaicontrat(
     creation date
 );
 
+CREATE  TABLE fiche_employe ( 
+	id_fiche_employe serial PRIMARY KEY,
+	idemploye int REFERENCES employe(idemploye),
+	id_fiche_poste int REFERENCES fiche_poste(id_fiche_poste)
+ );
+ 
+ CREATE  TABLE fiche_poste ( 
+	id_fiche_poste SERIAL PRIMARY KEY,
+	id_service int references service(idservice),
+	id_tache int REFERENCES tache(idtache),
+	mission text,
+	responsabilite text,
+	objectif text,
+	competence_requise text,
+	superieur_hierarchique varchar(200),
+ );
+
 ---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"
@@ -204,6 +221,14 @@ VALUES (1, 6, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', '
     --4)SMatri    
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
+
+INSERT INTO cv (idclient, idbesoin, diplome, langue1, langue2, langue3, sexe, Smatri, nom, adresse, prenom, dtn, experience) VALUES
+(5, 1, 8.5, 7.2, 5.0, 5.0, 1, 6.0, 'Futiosa', '123 Street', 'Laura', '1990-07-29', 'Some experience'),
+(6, 1, 8.0, 8.0, 6.0, 5.0, 1, 6.0, 'Jenner', '456 Street', 'Kailee', '1992-04-15', 'Considerable experience');
+
+INSERT INTO noteClient (idbesoin, noteClient, idclient) VALUES
+(1, 25, 5),
+(1, 50, 6);
 
 -- Insertion dans la table "coefCv"
 INSERT INTO coefCv 
@@ -520,6 +545,8 @@ WHERE idclient = 1 and idbesoin =1 ;
 SELECT * , (c.diplome + c.langue1 + c.langue2 + c.langue3 + c.sexe + c.Smatri) as total_cv_note,n.idNoteClient, n.noteClient
 FROM  cv c
 JOIN  noteClient n ON  c.idclient = n.idclient
+JOIN  critere cr ON  cr.idbesoin = c.idbesoin
+where c.idbesoin=1
 ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
 
 

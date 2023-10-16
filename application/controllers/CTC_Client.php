@@ -21,7 +21,9 @@ class CTC_Client extends CI_Controller {
     public function index(){
         $data = array();
         $besoin = $this->input->get('besoin');
+        $service = $this->input->get('service');
         $this->session->set_userdata('besoin', $besoin);      
+        $this->session->set_userdata('service', $service);      
         $this->load->view('CLIENT/pages/login', $data);
     }
     public function sign(){

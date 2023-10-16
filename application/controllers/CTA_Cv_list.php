@@ -33,6 +33,8 @@ class CTA_Cv_list extends CI_Controller {
         $pers = $_GET['pers'];
         $data['news'] =  $this->MDC_Annonce->New_service($service);
         $data['selection'] = $this->MDC_Noteclient->note_trier($besoin,$pers);
+        $interviews = $this->MDC_Noteclient->generateInterviewSchedule($data['selection']);
+        $data['entretien'] = $interviews;
         $this->viewer('/news',$data);
     }
     

@@ -32,6 +32,43 @@ class MDC_Noteclient extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function generateInterviewSchedule($selection) {
+        date_default_timezone_set('Indian/Antananarivo'); 
+        $debutEnt = date("Y-m-d", strtotime($selection[0]->debutent)); 
+        $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
+        $fintemps = strtotime("4:00 PM", strtotime($debutEnt)); 
+        $entretien = array();
+    
+        foreach ($selection as $index => $row) {
+            $currentDate = date("Y-m-d", strtotime($row->debutent));
+    
+            if ($currentDate > $debutEnt) {
+                $debutEnt = $currentDate;
+                $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
+                $fintemps = strtotime("4:00 PM", strtotime($debutEnt));
+            }
+    
+            while ($debuttemps > $fintemps) {
+                $debutEnt = date("Y-m-d", strtotime('+1 day', strtotime($debutEnt)));
+                $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
+                $fintemps = strtotime("4:00 PM", strtotime($debutEnt));
+            }
+    
+            $interviewTime = date("d-m-Y h:i A", $debuttemps); 
+            $entretien[] = array(
+                'candidat' => $row->nom . ' ' . $row->prenom,
+                'age' => $row->age,
+                'total_cv_note'  => $row->total_cv_note,
+                'noteclient'  => $row->noteclient,
+                'heure_entretien' => $interviewTime 
+            );
+    
+            $debuttemps = strtotime("+60 minutes", $debuttemps);
+        }
+    
+        return $entretien;
+    }
     
 }
 ?>

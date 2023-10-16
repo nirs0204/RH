@@ -74,7 +74,7 @@
                 <div class="row">
                 <div class="col-md-10"></div>
                   <div class="col-md-2">  
-                     <a type="button" class="btn btn-info" href="<?php echo site_url('CTC_Client')?>?besoin=<?php echo $detail['idbesoin']; ?>" >Postuler</a>
+                     <a type="button" class="btn btn-info" href="<?php echo site_url('CTC_Client')?>?besoin=<?php echo $detail['idbesoin']; ?>&&service=<?php echo $detail['idservice']; ?>" >Postuler</a>
                   </div>
                 </div>
               </div>
