@@ -10,9 +10,9 @@ class CTA_FichePoste extends CI_Controller {
         $this->load->model('MDA_Tache');
         $this->load->model('MDA_FichePoste');
         $this->load->helper('main_helper');
-        if($this->session->userdata('client') === null) 
+        if($this->session->userdata('admin') === null) 
 		{
-			redirect(bu('CTC_Client/sign?error=' . urlencode('Vous n`êtes pas connectée en tant que client')));
+			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée en tant que client')));
 		}
     }
 	private function viewer($page, $data){
