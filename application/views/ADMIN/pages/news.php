@@ -106,7 +106,7 @@
                       <td class="px-4 py-3 text-xs">
                         <a
                           class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
-                          href="<?php echo site_url('CTA_Cv_list/refuser')?>?idclient=<?php echo isset($row['idclient']) ? $row['idclient'] : ''; ?>&&idbesoin=<?php echo isset($row['idbesoin']) ? $row['idbesoin'] : ''; ?>"
+                          href="<?php echo site_url('CTA_Cv_list/refuser')?>?idclient=<?php echo isset($row['idclient']) ? $row['idclient'] : ''; ?>&&idbesoin=<?php echo isset($row['idbesoin']) ? $row['idbesoin'] : ''; ?>&&pers=<?php echo isset($row['personnel']) ? $row['personnel'] : ''; ?>"
                           >
                           Refuser
                         </a>
