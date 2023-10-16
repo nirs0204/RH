@@ -33,4 +33,9 @@ class CTC_Annonce extends CI_Controller {
 		$data['detail'] =  $this->MDC_Annonce->oneNews($id);
 		$this->viewer('/detail',$data);
 	}	
+	public function contrat_essai(){
+		$this->load->library('PDF');
+        $pdf = new Essai();
+
+	}
 }
