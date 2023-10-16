@@ -18,7 +18,7 @@ class CTA_Essai extends CI_Controller
         $this->load->view('ADMIN/pages/template/basepage', $v);
     }
 
-    public function trial_contract_view(){
+    public function index(){
         $idclient = $this->input->get('idclient');
         $data['cv'] = $this->MDC_CV->oneCV($idclient);
         $this->viewer('/contrat-essai-form', $data);
@@ -48,7 +48,7 @@ class CTA_Essai extends CI_Controller
         $idemp = $this->MDA_EMploye->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $tel, 0, $cnaps);
         $this->MDA_Essai->saveTrialContract($idemp, $duree, $salaire, $lieutravail, $eventualite, $debutessai, $finessai, $creationessai);
 
-        redirect('CTA_Essai/trial_contract_view');
+        redirect('CTA_Essai/');
 
     }
 

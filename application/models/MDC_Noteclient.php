@@ -62,7 +62,8 @@ class MDC_Noteclient extends CI_Model
                 'age' => $row->age,
                 'total_cv_note'  => $row->total_cv_note,
                 'noteclient'  => $row->noteclient,
-                'heure_entretien' => $interviewTime 
+                'heure_entretien' => $interviewTime,
+                'idclient' => $row ->idclient
             );
     
             $debuttemps = strtotime("+20 minutes", $debuttemps);
