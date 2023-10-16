@@ -48,7 +48,16 @@ class CTA_Essai extends CI_Controller
         $idemp = $this->MDA_Employe->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps);
         $this->MDA_Essai->saveTrialContract($idemp, $duree, $salaire, $lieutravail, $eventualite, $debutessai, $finessai, $creationessai);
 
-        redirect('CTA_Essai/');
+        ob_start(); // Démarrez la mise en mémoire tampon de sortie
+
+        $this->load->library('Essai');
+        $pdf = new Essai();
+        $pdf->AddPage();
+        $pdf->ajouterEmp($idemp,$nom,$prenom,$dtn,$lieun,$smatri,$adresse,$tel,$pere,$mere,$salaire,$debutessai,$finessai,$lieutravail,$creationessai);
+        $pdf->Output();
+    
+        ob_end_flush(); 
+       // redirect('CTA_Essai/');
 
     }
 
