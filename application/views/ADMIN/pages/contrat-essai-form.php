@@ -24,7 +24,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="nom"
-                        value="<?php $cv[0]->nom;?>"
+                        value="<?php echo isset($cv[0]->nom) ? $cv[0]->nom : '';?>"
                     />
                 </label>
 
@@ -36,7 +36,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="prenom"
-                        value="<?php $cv[0]->prenom;?>"
+                        value="<?php echo isset($cv[0]->prenom) ? $cv[0]->prenom : '';?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -47,7 +47,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="date"
                         name="dtn"
-                        value="<?php $cv[0]->dtn;?>"
+                        value="<?php echo isset($cv[0]->dtn) ? $cv[0]->dtn : '';?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -68,7 +68,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="smatri"
-                        value="<?php $cv[0]->smatri;?>"
+                        value="<?php echo isset($cv[0]->smatri) ? $cv[0]->smatri : '';?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -79,7 +79,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         name="adresse"
-                        value="<?php $cv[0]->adresse;?>"
+                        value="<?php echo isset($cv[0]->adresse) ? $cv[0]->adresse : '';?>"
                     />
                 </label>
                 <label class="block mt-4 text-sm">
@@ -215,7 +215,7 @@
                                     type="radio"
                                     class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                     name="cnaps"
-                                    value="0"
+                                    value="2"
                             />
                             <span class="ml-2">Non</span>
                         </label>
