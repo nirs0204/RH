@@ -1,4 +1,5 @@
-<?php if(!isset($news)) $posts=array(); ?>
+<?php if(!isset($news)) $news=array(); ?>
+<?php if(!isset($entretien)) $entretien=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -103,16 +104,17 @@
                         </div>
                       </td>
                       <td class="px-4 py-3 text-xs">
-                        <span
+                        <a
                           class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
-                        >
+                          href="<?php echo site_url('CTA_Cv_list/refuser')?>?idclient=<?php echo isset($row['idclient']) ? $row['idclient'] : ''; ?>&&idbesoin=<?php echo isset($row['idbesoin']) ? $row['idbesoin'] : ''; ?>"
+                          >
                           Refuser
-                        </span>
+                        </a>
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <a
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                          href="<?php echo site_url('CTA_Essai/')?>?idclient=<?php echo isset($row['idclient']) ? $row['idclient'] : ''; ?> "
+                          href="<?php echo site_url('CTA_Essai/')?>?idclient=<?php echo isset($row['idclient']) ? $row['idclient'] : ''; ?>&&idbesoin=<?php echo isset($row['idbesoin']) ? $row['idbesoin'] : ''; ?>"
                           >
                           Accepter
                     </a>
@@ -152,27 +154,7 @@
       </div>
     </div>
 
-    <!-- Boîte de dialogue -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Détails du candidat</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Contenu de la boîte de dialogue -->
-        <!-- Ajoutez le contenu que vous souhaitez afficher dans la boîte de dialogue ici -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Sauvegarder les modifications</button>
-      </div>
-    </div>
-  </div>
-</div>
+  
 
 <script src=<?php echo base_url("assets_ADMIN/js/init-alpine.js"); ?>></script>
     <script src=<?php echo base_url("assets_ADMIN/js/jquery.min.js"); ?>></script>

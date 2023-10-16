@@ -26,6 +26,7 @@ class MDC_Noteclient extends CI_Model
         $this->db->join('noteclient n', 'c.idclient = n.idclient');
         $this->db->join('critere cr', 'cr.idbesoin = c.idbesoin');
         $this->db->where('c.idbesoin', $besoin);
+        $this->db->where('c.typee', 0);
         $this->db->order_by('total_cv_note', 'DESC');
         $this->db->order_by('n.noteclient', 'DESC');
         $this->db->limit($nbr);
@@ -34,43 +35,47 @@ class MDC_Noteclient extends CI_Model
     }
 
     public function generateInterviewSchedule($selection) {
-        date_default_timezone_set('Indian/Antananarivo'); 
-        $debutEnt = date("Y-m-d", strtotime($selection[0]->debutent)); 
-        $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
-        $fintemps = strtotime("4:00 PM", strtotime($debutEnt)); 
-        $entretien = array();
-    
-        foreach ($selection as $index => $row) {
-            $currentDate = date("Y-m-d", strtotime($row->debutent));
-    
-            if ($currentDate > $debutEnt) {
-                $debutEnt = $currentDate;
+        if (!empty($selection)) {
+                date_default_timezone_set('Indian/Antananarivo'); 
+                $debutEnt = date("Y-m-d", strtotime($selection[0]->debutent)); 
                 $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
-                $fintemps = strtotime("4:00 PM", strtotime($debutEnt));
-            }
+                $fintemps = strtotime("4:00 PM", strtotime($debutEnt)); 
+                $entretien = array();
+            
+                foreach ($selection as $index => $row) {
+                    $currentDate = date("Y-m-d", strtotime($row->debutent));
+            
+                    if ($currentDate > $debutEnt) {
+                        $debutEnt = $currentDate;
+                        $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
+                        $fintemps = strtotime("4:00 PM", strtotime($debutEnt));
+                    }
+            
+                    while ($debuttemps > $fintemps) {
+                        $debutEnt = date("Y-m-d", strtotime('+1 day', strtotime($debutEnt)));
+                        $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
+                        $fintemps = strtotime("4:00 PM", strtotime($debutEnt));
+                    }
+            
+                    $interviewTime = date("d-m-Y h:i A", $debuttemps); 
+                    $entretien[] = array(
+                        'idbesoin' => $row->idbesoin,
+                        'candidat' => $row->nom . ' ' . $row->prenom,
+                        'age' => $row->age,
+                        'total_cv_note'  => $row->total_cv_note,
+                        'noteclient'  => $row->noteclient,
+                        'heure_entretien' => $interviewTime,
+                        'idclient' => $row ->idclient
+                    );
+            
+                    $debuttemps = strtotime("+20 minutes", $debuttemps);
+                }
     
-            while ($debuttemps > $fintemps) {
-                $debutEnt = date("Y-m-d", strtotime('+1 day', strtotime($debutEnt)));
-                $debuttemps = strtotime("8:00 AM", strtotime($debutEnt));
-                $fintemps = strtotime("4:00 PM", strtotime($debutEnt));
-            }
-    
-            $interviewTime = date("d-m-Y h:i A", $debuttemps); 
-            $entretien[] = array(
-                'idclient' => $row->idclient,
-                'candidat' => $row->nom . ' ' . $row->prenom,
-                'age' => $row->age,
-                'total_cv_note'  => $row->total_cv_note,
-                'noteclient'  => $row->noteclient,
-                'heure_entretien' => $interviewTime,
-                'idclient' => $row ->idclient
-            );
-    
-            $debuttemps = strtotime("+20 minutes", $debuttemps);
+                return $entretien;
+        }else{
+            return array();
         }
-    
-        return $entretien;
     }
-    
+   
 }
 ?>

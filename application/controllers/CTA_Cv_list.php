@@ -8,6 +8,7 @@ class CTA_Cv_list extends CI_Controller {
         parent::__construct();
         $this->load->model('MDC_Noteclient');
         $this->load->model('MDC_Annonce');
+        $this->load->model('MDC_CV');
         $this->load->helper('main_helper');
         if($this->session->userdata('admin') === null) 
 		{
@@ -37,5 +38,11 @@ class CTA_Cv_list extends CI_Controller {
         $data['entretien'] = $interviews;
         $this->viewer('/news',$data);
     }
-    
+    public function refuser(){
+        $besoin = $_GET['idbesoin'];
+        $client = $_GET['idclient'];
+        $type =2;
+        $this->MDC_CV->updateCv($type,$client,$besoin);
+        redirect('CTA_Cv_list/cvlist');
+    }
 }

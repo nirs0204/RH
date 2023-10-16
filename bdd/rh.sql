@@ -21,9 +21,10 @@ create table cv (
     adresse varchar(150),
     prenom varchar(150),
     dtn varchar(150),
-    experience text
+    experience text,
+    typee int
 );
-
+ALTER TABLE cv add column typeE int;
 CREATE table noteClient (
     idNoteClient serial PRIMARY KEY,
     idbesoin int references besoin(idbesoin),
@@ -107,6 +108,7 @@ create table coefCv(
 
 create table employe(
   idemploye serial primary key,
+  idservice int  references service(idservice),
   nom varchar(50),
   prenom varchar(100),
   dtn date,
@@ -222,9 +224,9 @@ VALUES (1, 6, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', '
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
 
-INSERT INTO cv (idclient, idbesoin, diplome, langue1, langue2, langue3, sexe, Smatri, nom, adresse, prenom, dtn, experience) VALUES
-(1, 1, 8.5, 7.2, 5.0, 5.0, 1, 6.0, 'Futiosa', '123 Street', 'Laura', '1990-07-29', 'Some experience'),
-(2, 1, 8.0, 8.0, 6.0, 5.0, 1, 6.0, 'Jenner', '456 Street', 'Kailee', '1992-04-15', 'Considerable experience');
+INSERT INTO cv (idclient, idbesoin, diplome, langue1, langue2, langue3, sexe, Smatri, nom, adresse, prenom, dtn, experience,typee) VALUES
+(1, 1, 8.5, 7.2, 5.0, 5.0, 1, 6.0, 'Futiosa', '123 Street', 'Laura', '1990-07-29', 'Some experience',0),
+(2, 1, 8.0, 8.0, 6.0, 5.0, 1, 6.0, 'Jenner', '456 Street', 'Kailee', '1992-04-15', 'Considerable experience',0);
 
 INSERT INTO noteClient (idbesoin, noteClient, idclient) VALUES
 (1, 25, 1),
@@ -472,6 +474,9 @@ SET  reponseVerif = TRUE
 WHERE idreponse = 2; -- L'ID de la question que vous souhaitez mettre à jour
 
 
+update cv set typee = 2  where idclient =1 and idbesoin = 1;
+update cv set typee = 2  where idclient =2 and idbesoin = 1;
+
 ---------------------------SELECT-------------------------
 
 --Select ANNONCE
@@ -548,6 +553,9 @@ JOIN  noteClient n ON  c.idclient = n.idclient
 JOIN  critere cr ON  cr.idbesoin = c.idbesoin
 where c.idbesoin=1
 ORDER BY total_cv_note DESC, n.noteClient DESC limit 5;
+
+SELECT * FROM employe 
+WHERE ;
 
 SELECT * FROM  essaicontrat ec
 JOIN employe e ON e.idemploye = ec.idemploye
