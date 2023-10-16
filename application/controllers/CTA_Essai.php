@@ -47,26 +47,23 @@ class CTA_Essai extends CI_Controller
         $idemp = $this->MDA_Employe->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps);
         $this->MDA_Essai->saveTrialContract($idemp, $duree, $salaire, $lieutravail, $eventualite, $debutessai, $finessai, $creationessai);
 
-        ob_start(); // Démarrez la mise en mémoire tampon de sortie
-
+        ob_start(); 
         $this->load->library('Essai');
         $pdf = new Essai();
         $pdf->AddPage();
-        $pdf->ajouterEmp($idemp,$nom,$prenom,$dtn,$lieun,$smatri,$adresse,$tel,$pere,$mere,$salaire,$debutessai,$finessai,$lieutravail,$creationessai);
-        $pdf->Output();
+        $pdf->ajouterEmp($idemp, $nom, $prenom, $dtn, $lieun, $smatri, $adresse, $tel, $pere, $mere, $salaire, $debutessai, $finessai, $lieutravail, $creationessai); 
+        $pdfData = $pdf->Output('','S'); 
+        ob_end_clean(); 
     
-        ob_end_flush(); 
-       // redirect('CTA_Essai/');
+        $pdfData = base64_encode($pdfData); 
 
+        echo '<script>';
+        echo 'var win = window.open();';
+        echo 'win.document.write(\'<iframe width="100%" height="100%" src="data:application/pdf;base64,' . $pdfData . '"></iframe>\');'; 
+        echo 'window.location.href = "' . base_url() . 'CTA_Essai/";'; 
+        echo '</script>';   
     }
 
-    public function contrat_essai(){
-		$this->load->library('Essai');
-		$pdf = new Essai();
-		$pdf->AddPage();
-		$pdf->ajouterEmp('No002092e8781', 'Nom ', 'Prenom', '10 Juin 2002', 'Madagascar', 'Celibataire', 'Ambalavao', '0348902873', 'mdkncwdir', 'hdbhwgiqwwi', '202000', '02 fev 2023', '05 mmai 2023', 'Antsirabe', '23 oct 2022');
-		$pdf->Output();
-	}
 
 }
 ?>
