@@ -145,7 +145,7 @@ CREATE  TABLE fiche_employe (
 	responsabilite text,
 	objectif text,
 	competence_requise text,
-	superieur_hierarchique varchar(200),
+	superieur_hierarchique varchar(200)
  );
 
 ---------------------------INSERTION-------------------------

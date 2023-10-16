@@ -110,11 +110,12 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-xs">
-                        <span
+                        <a
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                        >
+                          href="<?php echo site_url('CTA_Essai/')?>?idclient=<?php echo isset($row['idclient']) ? $row['idclient'] : ''; ?> "
+                          >
                           Accepter
-                        </span>
+                    </a>
                       </td>
                       <td class="px-4 py-3 text-sm">
                       <?php echo isset($row['total_cv_note']) ? $row['total_cv_note'] : ''; ?> 
