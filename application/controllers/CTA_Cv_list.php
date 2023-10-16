@@ -9,10 +9,10 @@ class CTA_Cv_list extends CI_Controller {
         $this->load->model('MDC_Noteclient');
         $this->load->model('MDC_Annonce');
         $this->load->helper('main_helper');
-        // if($this->session->userdata('admin') === null) 
-		// {
-		// 	redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée en Admin')));
-		// }
+        if($this->session->userdata('admin') === null) 
+		{
+			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée en Admin')));
+		}
     }
     private function viewer($page, $data)
     {
