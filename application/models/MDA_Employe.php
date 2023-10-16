@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MDA_Employe extends CI_Model
 {
 //    enregistrer un employe (create)
-    function saveEmployee($nom,$prenom,$dtn, $cin, $pere, $mere,$adresse, $contact, $embauche, $cnaps){
-        $sql = "insert into employe (nom,prenom,dtn, cin, pere, mere,adresse,contact, embauche, cnaps) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
-        $sql = sprintf($sql,$this->db->escape($nom),$this->db->escape($prenom),$this->db->escape($dtn),$this->db->escape($cin),$this->db->escape($pere),$this->db->escape($mere),$this->db->escape($adresse),$this->db->escape($contact),$this->db->escape($embauche),$this->db->escape($cnaps));
+    function saveEmployee($nom,$prenom,$dtn, $cin, $pere, $mere,$adresse, $contact, $embauche, $cnaps,$service){
+        $sql = "insert into employe (nom,prenom,dtn, cin, pere, mere,adresse,contact, embauche, cnaps,idservice) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
+        $sql = sprintf($sql,$this->db->escape($nom),$this->db->escape($prenom),$this->db->escape($dtn),$this->db->escape($cin),$this->db->escape($pere),$this->db->escape($mere),$this->db->escape($adresse),$this->db->escape($contact),$this->db->escape($embauche),$this->db->escape($cnaps),$this->db->escape($service));
         echo $sql;
         $this->db->query($sql);
 

@@ -4,7 +4,7 @@ class MDC_CV extends CI_Model
 {
 //    enregistrer un CV (create)
     function saveCV($idclient, $idbesoin, $diplome, $langue1, $langue2, $langue3, $sexe, $Smatri, $nom, $adresse, $prenom, $dtn, $experience){
-        $sql = "insert into cv (idclient, idbesoin , diplome, langue1, langue2, langue3, sexe, smatri, nom, adresse, prenom, dtn, experience) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s , %s, %s, %s) ";
+        $sql = "insert into cv (idclient, idbesoin , diplome, langue1, langue2, langue3, sexe, smatri, nom, adresse, prenom, dtn, experience,typee) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s , %s, %s, %s,0) ";
         $sql = sprintf($sql,$this->db->escape($idclient),$this->db->escape($idbesoin),$this->db->escape($diplome),$this->db->escape($langue1),$this->db->escape($langue2),$this->db->escape($langue3),$this->db->escape($sexe),$this->db->escape($Smatri),$this->db->escape($nom),$this->db->escape($adresse),$this->db->escape($prenom),$this->db->escape($dtn),$this->db->escape($experience));
         $this->db->query($sql);
         echo $sql; 
@@ -69,5 +69,12 @@ class MDC_CV extends CI_Model
         $cv = $query->result_array();
         return $cv;
     }    
+
+//  UPDATE
+     public function updateCv($type,$client,$besoin){
+        $sql = "update cv set typee = %s  where idclient =%s and idbesoin = %s";
+        $sql = sprintf($sql,$this->db->escape($type),$this->db->escape($client),$this->db->escape($besoin));
+        $this->db->query($sql);
+    }
 }
 ?>

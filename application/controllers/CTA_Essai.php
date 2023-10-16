@@ -21,6 +21,9 @@ class CTA_Essai extends CI_Controller
     public function index(){
         $idclient = $this->input->get('idclient');
         $data['cv'] = $this->MDC_CV->oneCV($idclient);
+        $besoin = $_GET['idbesoin'];
+        $type =5;
+        $this->MDC_CV->updateCv($type,$idclient,$besoin);
         $this->viewer('/contrat-essai-form', $data);
     }
 
@@ -44,8 +47,9 @@ class CTA_Essai extends CI_Controller
 
         $salaire = $this->input->post('salaire');
         $eventualite = $this->input->post('eventualite');
+        $service =$_SESSION['service'];
 
-        $idemp = $this->MDA_Employe->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps);
+        $idemp = $this->MDA_Employe->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps,$service);
         $this->MDA_Essai->saveTrialContract($idemp, $duree, $salaire, $lieutravail, $eventualite, $debutessai, $finessai, $creationessai);
 
         ob_start(); 
@@ -61,7 +65,7 @@ class CTA_Essai extends CI_Controller
         echo '<script>';
         echo 'var win = window.open();';
         echo 'win.document.write(\'<iframe width="100%" height="100%" src="data:application/pdf;base64,' . $pdfData . '"></iframe>\');'; 
-        echo 'window.location.href = "' . base_url() . 'CTA_Essai/";'; 
+        echo 'window.location.href = "' . base_url() . 'CTA_Cv_list/";'; 
         echo '</script>';   
     }
 
