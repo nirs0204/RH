@@ -1,7 +1,9 @@
 <?php 
-require('../fpdf.php');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PDF extends FPDF {
+require(APPPATH . 'third_party/fpdf.php');
+
+class Essai extends FPDF {
     function Header()
     {
         // A propos de la societe
@@ -64,8 +66,5 @@ class PDF extends FPDF {
     }
 }
 
-$pdf = new PDF();
-$pdf->AddPage();
-$pdf->ajouterEmp('No002092e8781', 'Nom ', 'Prenom', '10 Juin 2002', 'Madagascar', 'Celibataire', 'Ambalavao', '0348902873', 'mdkncwdir', 'hdbhwgiqwwi', '202000', '02 fev 2023', '05 mmai 2023', 'Antsirabe', '23 oct 2022');
-$pdf->Output();
-?>4
+
+?>
