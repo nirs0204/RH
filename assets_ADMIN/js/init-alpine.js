@@ -36,6 +36,13 @@ function data() {
     closeNotificationsMenu() {
       this.isNotificationsMenuOpen = false
     },
+    isCustomMenuOpen: false,
+    toggleNotificationsMenu() {
+      this.isCustomMenuOpen = !this.isCustomMenuOpen
+    },
+    closeNotificationsMenu() {
+      this.isCustomMenuOpen = false
+    },
     isProfileMenuOpen: false,
     toggleProfileMenu() {
       this.isProfileMenuOpen = !this.isProfileMenuOpen
@@ -47,6 +54,7 @@ function data() {
     togglePagesMenu() {
       this.isPagesMenuOpen = !this.isPagesMenuOpen
     },
+   
     // Modal
     isModalOpen: false,
     trapCleanup: null,
