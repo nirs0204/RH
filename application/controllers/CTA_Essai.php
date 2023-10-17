@@ -32,7 +32,6 @@ class CTA_Essai extends CI_Controller
         $prenom = $this->input->post('prenom');
         $dtn = $this->input->post('dtn');
         $lieun = $this->input->post('lieun');
-        $smatri = $this->input->post('smatri');
         $adresse = $this->input->post('adresse');
         $cin = $this->input->post('cin');
         $tel = $this->input->post('contact');
