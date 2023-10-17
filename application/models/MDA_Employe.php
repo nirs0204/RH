@@ -27,6 +27,25 @@ class MDA_Employe extends CI_Model
         return $table;
     }
 
+    function getOneEmployee($employeeId) {
+        $sql = "SELECT * FROM employe WHERE id = %s";
+        $sql = sprintf($sql, $this->db->escape($employeeId));
 
+        $req = $this->db->query($sql);
+
+        // Vérifier s'il y a des résultats
+        if ($req->num_rows() > 0) {
+            return $req->row();  // Retourne la première ligne de résultat
+        } else {
+            return null;  // Aucun employé trouvé
+        }
+    }
+
+//    mise a jour de embauche (update)
+    function updateEmployeeEmbauche($employeeId, $type) {
+        $sql = "UPDATE employe SET embauche = %s WHERE id = %s";
+        $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($employeeId));
+        $this->db->query($sql);
+    }
 }
 ?>

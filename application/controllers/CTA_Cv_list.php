@@ -43,6 +43,6 @@ class CTA_Cv_list extends CI_Controller {
         $client = $_GET['idclient'];
         $type =2;
         $this->MDC_CV->updateCv($type,$client,$besoin);
-        redirect('CTA_Cv_list/cvlist');
+        redirect('CTA_Cv_list/');
     }
 }
