@@ -50,5 +50,10 @@ class CTA_FichePoste extends CI_Controller {
         $this->MDA_FichePoste->insertFichePoste($idservice, $idtache, $mission, $responsabilite, $objectif, $compreq, $superieur);
         redirect('CTA_FichePoste/create');
     }
+
+    // Afficher une fiche de poste
+    public function displayFicheDePoste($id_service, $id_tache) {
+        $descriptionsPoste = $this->MDA_FichePoste->displayFicheDePoste($id_service, $id_tache);
+    }
   
 }
