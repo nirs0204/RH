@@ -18,72 +18,59 @@
               <ul class="flex items-center flex-shrink-0 space-x-6">
                 <!-- Theme toggler -->
                 <!-- Notifications menu -->
+                
                 <li class="relative ml-auto">
-                  <svg
-                    class="w-5 h-5 cursor-pointer"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    @click="toggleCustomMenu"
-                    @keydown.escape="closeCustomMenu"
-                    aria-label="Notifications"
-                    aria-haspopup="true"
-                  >
-                    <path
-                      d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z"
-                    ></path>
-                  </svg>
-                  <template x-if="isCustomMenuOpen">
-                    <ul
-                      x-transition:leave="transition ease-in duration-150"
-                      x-transition:leave-start="opacity-100"
-                      x-transition:leave-end="opacity-0"
-                      @click.away="closeCustomMenu"
-                      @keydown.escape="closeCustomMenu"
-                      class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
-                    >
-                      <li id="messages" class="flex">
-                        <a
-                          class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                          href="#"
-                        >
-                          <span>Messages</span>
-                          <span
-                            class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600"
-                          >
-                            13
-                          </span>
-                        </a>
-                      </li>
-                      <li id="sales2" class="flex">
-                        <a
-                          class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                          href="#"
-                        >
-                          <span>Sales2</span>
-                          <span
-                            class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600"
-                          >
-                            2
-                          </span>
-                        </a>
-                      </li>
-                      <li id="alerts" class="flex">
-                        <a
-                          class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                          href="#"
-                        >
-                          <span>Alerts</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </template>
-                </li>
+  <button id="svgButton" onclick="toggleMenu()">
+    <svg
+      class="w-5 h-5 cursor-pointer"
+      aria-hidden="true"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      aria-label="Notifications"
+    >
+      <path
+        d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z"
+      ></path>
+    </svg>
+  </button>
+
+  <ul id="menuList" class="hidden absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+     <li class="flex">
+      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+        <span>Messages</span>
+      </a>
+    </li>
+    <li class="flex">
+      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+        <span>Sales</span>
+      </a>
+    </li>
+    <li class="flex">
+      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+        <span>Alerts</span>
+      </a>
+    </li>
+  </ul>
+</li>
+
+<script>
+  // JavaScript pour basculer l'affichage du menu
+  function toggleMenu() {
+    var menuList = document.getElementById("menuList");
+    if (menuList.style.display === "none" || menuList.style.display === "") {
+      menuList.style.display = "block";
+    } else {
+      menuList.style.display = "none";
+    }
+  }
+</script>
                 <!-- Profile menu -->
               </ul>
             </div>
             <div>
               <br>
+
+
 
          
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-5">
