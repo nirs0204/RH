@@ -25,7 +25,6 @@ class CTA_FichePoste extends CI_Controller {
 
     public function index(){
         $besoin = $this->session->userdata('besoin');
-        
     }
 
     // Creer une question
@@ -54,6 +53,12 @@ class CTA_FichePoste extends CI_Controller {
     // Afficher une fiche de poste
     public function displayFicheDePoste($id_service, $id_tache) {
         $descriptionsPoste = $this->MDA_FichePoste->displayFicheDePoste($id_service, $id_tache);
+    }
+
+    // Display fiche de poste
+    public function displayFichePostView()
+    {
+        $this->viewer('displayficheposte');
     }
   
 }
