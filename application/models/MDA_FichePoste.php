@@ -18,5 +18,12 @@ class MDA_FichePoste extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function displayFicheDePostes() {
+        $this->db->select('*');
+        $this->db->from('fiche_poste');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

@@ -13,7 +13,7 @@
             <div class="container px-6 mx-auto grid" >
                 <a class="mb-4 text-lg font-semibold text-gray-600 dark:text-white-300" >Options</a>
                 <li class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300" >
-                  <ul><a href="<?php echo site_url('CTA_FichePoste/displayFichePostView'); ?>" >Détails fiche de poste</a></ul>
+                  <ul><a href="<?php echo base_url('CTA_FichePoste/displayFichePostView'); ?>" >Détails fiche de poste</a></ul>
                 </li>
             </div>
             <div

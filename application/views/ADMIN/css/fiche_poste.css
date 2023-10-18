@@ -1,0 +1,25 @@
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .job-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .job-item {
+    margin-bottom: 20px;
+  }
+  
+  .job-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .job-responsibility {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
