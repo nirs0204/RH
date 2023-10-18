@@ -21,10 +21,11 @@ class MDC_Noteclient extends CI_Model
     }
 
     public function note_trier($besoin,$nbr) {
-        $this->db->select("*, (c.diplome + c.langue1 + c.langue2 + c.langue3 + c.sexe + c.Smatri) as total_cv_note, n.idNoteClient, n.noteClient, EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM TO_DATE(c.dtn, 'YYYY-MM-DD')) AS age", false);
+        $this->db->select("*, (c.diplome + c.langue1 + c.langue2 + c.langue3 + c.sexe + c.Smatri) as total_cv_note, n.idNoteClient, n.noteClient, EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM TO_DATE(c.dtn, 'YYYY-MM-DD')) AS age, (b.volumetache/b.volumehoraire) as personnel", false);
         $this->db->from('cv c');
         $this->db->join('noteclient n', 'c.idclient = n.idclient');
         $this->db->join('critere cr', 'cr.idbesoin = c.idbesoin');
+        $this->db->join('besoin b', 'c.idbesoin = b.idbesoin');
         $this->db->where('c.idbesoin', $besoin);
         $this->db->where('c.typee', 0);
         $this->db->order_by('total_cv_note', 'DESC');
@@ -60,6 +61,7 @@ class MDC_Noteclient extends CI_Model
                     $interviewTime = date("d-m-Y h:i A", $debuttemps); 
                     $entretien[] = array(
                         'idbesoin' => $row->idbesoin,
+                        'personnel' => $row->personnel,
                         'candidat' => $row->nom . ' ' . $row->prenom,
                         'age' => $row->age,
                         'total_cv_note'  => $row->total_cv_note,

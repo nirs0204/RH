@@ -41,8 +41,15 @@ class CTA_Cv_list extends CI_Controller {
     public function refuser(){
         $besoin = $_GET['idbesoin'];
         $client = $_GET['idclient'];
+        $pers = $_GET['pers'];
         $type =2;
         $this->MDC_CV->updateCv($type,$client,$besoin);
-        redirect('CTA_Cv_list/');
+        
+        $service = $_SESSION['service'];
+        $data['news'] =  $this->MDC_Annonce->New_service($service);
+        $data['selection'] = $this->MDC_Noteclient->note_trier($besoin,$pers);
+        $interviews = $this->MDC_Noteclient->generateInterviewSchedule($data['selection']);
+        $data['entretien'] = $interviews;
+        $this->viewer('/news',$data);
     }
 }
