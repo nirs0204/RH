@@ -143,6 +143,7 @@ CREATE  TABLE fiche_employe (
 	id_fiche_poste int REFERENCES fiche_poste(id_fiche_poste)
  );
  
+ 
  CREATE  TABLE fiche_poste ( 
 	id_fiche_poste SERIAL PRIMARY KEY,
 	id_service int references service(idservice),
