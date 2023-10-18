@@ -3,17 +3,76 @@
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
+<!-- ... Le reste de votre code ... -->
+
   <body>
-   
-        
+
+
         <main class="h-full overflow-y-auto">
           <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
+            <h2 class="my-6 text-2xl font-semibold text-gray- 700 dark:text-gray-200">
               Annonces
             </h2>
-            
+
+            <div class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+              <ul class="flex items-center flex-shrink-0 space-x-6">
+                <!-- Theme toggler -->
+                <!-- Notifications menu -->
+                
+                <li class="relative ml-auto">
+  <button id="svgButton" onclick="toggleMenu()">
+    <svg
+      class="w-5 h-5 cursor-pointer"
+      aria-hidden="true"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      aria-label="Notifications"
+    >
+      <path
+        d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z"
+      ></path>
+    </svg>
+  </button>
+
+  <ul id="menuList" class="hidden absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+     <li class="flex">
+      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+        <span>Messages</span>
+      </a>
+    </li>
+    <li class="flex">
+      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+        <span>Sales</span>
+      </a>
+    </li>
+    <li class="flex">
+      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+        <span>Alerts</span>
+      </a>
+    </li>
+  </ul>
+</li>
+
+<script>
+  // JavaScript pour basculer l'affichage du menu
+  function toggleMenu() {
+    var menuList = document.getElementById("menuList");
+    if (menuList.style.display === "none" || menuList.style.display === "") {
+      menuList.style.display = "block";
+    } else {
+      menuList.style.display = "none";
+    }
+  }
+</script>
+                <!-- Profile menu -->
+              </ul>
+            </div>
+            <div>
+              <br>
+
+
+
+         
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-5">
             <?php foreach ($news as $row) { ?>
               <a href="<?php echo site_url('CTA_Cv_list/cvlist/')?>?besoin=<?php echo $row->idbesoin; ?> &&pers=<?php echo $row->personnel; ?> ">
@@ -156,19 +215,7 @@
 
   
 
-<script src=<?php echo base_url("assets_ADMIN/js/init-alpine.js"); ?>></script>
-    <script src=<?php echo base_url("assets_ADMIN/js/jquery.min.js"); ?>></script>
-    <script src=<?php echo base_url("assets_ADMIN/js/popper.min.js"); ?>></script>
-    <script src=<?php echo base_url("assets_ADMIN/js/bootstrap.min.js"); ?>></script>
-<script>
-  $(document).ready(function(){
-    // Gérer l'événement de clic sur le lien de détails
-    $('a.btn.btn-primary').click(function(e){
-      e.preventDefault(); // Empêche le comportement par défaut du lien
-      $('#exampleModal').modal('show'); // Afficher la boîte de dialogue
-    });
-  });
-</script>
+
 
 
   </body>
