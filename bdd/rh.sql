@@ -150,6 +150,18 @@ CREATE  TABLE fiche_employe (
 	superieur_hierarchique varchar(200)
  );
 
+create table contrat_travail(
+    id_contrat_travail serial primary key,
+    idemploye int references employe(idemploye),
+    debut date,
+    fin date,
+    salaire decimal(11,2),
+    lieutravail varchar(100),
+    conditiontravail int,
+    categorie varchar(150),
+    creation date
+);
+
 ---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"
@@ -181,7 +193,7 @@ INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (1, 120, 24);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
-
+INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 300, 8);
 
 -- Critere {
     --1)diplome
@@ -209,7 +221,7 @@ VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', '
 
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
-VALUES (1, 6, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
+VALUES (1, 5, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
 
 
 -- CV (/20) {
@@ -237,8 +249,8 @@ INSERT INTO coefCv
 (idtache, doctorat, master, licence, bacc, bepc, cepe, mlg, frc, ang,
  homme, femme, autre, mariee, celibat, divorcee)
 VALUES
-    (4, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 2, 2, 5, 1, 2),
-    (5, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 0, 2, 1, 5, 2);
+    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 2, 2, 5, 1, 2),
+    (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 0, 2, 1, 5, 2),
     (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 2, 1, 5, 3, 2);
 
 --- QUESTIONS ---
