@@ -16,6 +16,7 @@
             class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
         >
             <form action="<?php echo site_url('CTA_Essai/trial_contract_submit') ?>" method="post">
+            <input type="hidden" name="genre" value="<?php echo isset($cv[0]->sexe) ? $cv[0]->sexe : '';?>">
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Nom
@@ -141,6 +142,28 @@
                             name="duree"
                     />
                 </label>
+                <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Nombre d'enfant
+                </span>
+                    <input
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        type="number"
+                        min=0
+                        name="naissance"
+                    />
+                </label>
+               <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">
+                    Superieur
+                    </span>
+                    <select name="sup"
+                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    >
+                    <option>Homme</option>
+                    <option>Femme<option>
+                    </select>
+               </label>
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Eventualite
