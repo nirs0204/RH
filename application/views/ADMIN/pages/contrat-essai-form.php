@@ -18,6 +18,7 @@
         >
             <form action="<?php echo site_url('CTA_Essai/trial_contract_submit') ?>" method="post">
             <input type="hidden" name="genre" value="<?php echo isset($cv[0]->sexe) ? $cv[0]->sexe : '';?>">
+            <input type="hidden" name="tache" value="<?php echo isset($cv[0]->idtache) ? $cv[0]->idtache : '';?>">
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Nom

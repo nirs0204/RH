@@ -25,7 +25,11 @@ class MDC_CV extends CI_Model
 
 //    un CV (read)
     function oneCV($idclient){
-        $sql="select * from cv  where  idclient = %s";
+        $sql="SELECT * 
+        FROM cv c 
+        JOIN besoin b ON b.idbesoin = c.idbesoin
+        JOIN tache t ON t.idtache = b.idtache
+        where c.idclient  = %s";
         $sql = sprintf($sql,$this->db->escape($idclient));
         $req=$this->db->query($sql);
         $table=array();
