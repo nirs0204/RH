@@ -109,6 +109,9 @@ create table coefCv(
 create table employe(
   idemploye serial primary key,
   idservice int  references service(idservice),
+  idmanager int references employe(idemploye) default null,
+  genre int,
+  enfant int default 0,
   nom varchar(50),
   prenom varchar(100),
   dtn date,
@@ -193,7 +196,16 @@ INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (1, 120, 24);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
-INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 300, 8);
+
+
+-- Insertion d'employe
+INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, null, 0, 3, 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 0, 1);
+INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, 1, 3, 2, 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 0, 1);
+INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, 2, 1, 2, 'Williams', 'Sarah', '1992-03-25', '456789123012', 'Mike Williams', 'Laura Williams', '789 Rue C', '4567891230', 0, 1);
+
 
 -- Critere {
     --1)diplome
@@ -236,9 +248,10 @@ VALUES (1, 5, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', '
                   --marie    (2)      Celibat(2)     Divorce(2)
 --}
 
+
 INSERT INTO cv (idclient, idbesoin, diplome, langue1, langue2, langue3, sexe, Smatri, nom, adresse, prenom, dtn, experience,typee) VALUES
-(1, 1, 8.5, 7.2, 5.0, 5.0, 1, 6.0, 'Futiosa', '123 Street', 'Laura', '1990-07-29', 'Some experience',0),
-(2, 1, 8.0, 8.0, 6.0, 5.0, 1, 6.0, 'Jenner', '456 Street', 'Kailee', '1992-04-15', 'Considerable experience',0);
+(1, 1, 8.5, 7.2, 5.0, 5.0, 2, 6.0, 'Futiosa', '123 Street', 'Laura', '1990-07-29', 'Some experience',0),
+(2, 1, 8.0, 8.0, 6.0, 5.0, 2, 6.0, 'Jenner', '456 Street', 'Kailee', '1992-04-15', 'Considerable experience',0);
 
 INSERT INTO noteClient (idbesoin, noteClient, idclient) VALUES
 (1, 25, 1),
@@ -249,9 +262,11 @@ INSERT INTO coefCv
 (idtache, doctorat, master, licence, bacc, bepc, cepe, mlg, frc, ang,
  homme, femme, autre, mariee, celibat, divorcee)
 VALUES
-    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 2, 2, 5, 1, 2),
-    (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 0, 2, 1, 5, 2),
-    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 2, 1, 5, 3, 2);
+
+    (4, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 1, 2, 5, 1, 2),
+    (5, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 1, 2, 1, 5, 2);
+    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 1, 1, 5, 3, 2);
+
 
 --- QUESTIONS ---
 --- Questions qcm Dptmnt Informatique -> Technicien ---

@@ -22,7 +22,7 @@ class CTA_Essai extends CI_Controller
         $idclient = $this->input->get('idclient');
         $data['cv'] = $this->MDC_CV->oneCV($idclient);
         $besoin = $_GET['idbesoin'];
-        $type =5;
+        $type =0;
         $this->MDC_CV->updateCv($type,$idclient,$besoin);
         $this->viewer('/contrat-essai-form', $data);
     }
@@ -30,6 +30,7 @@ class CTA_Essai extends CI_Controller
     public function trial_contract_submit  (){
         $nom = $this->input->post('nom');
         $prenom = $this->input->post('prenom');
+        $genre = $this->input->post('genre');
         $dtn = $this->input->post('dtn');
         $lieun = $this->input->post('lieun');
         $adresse = $this->input->post('adresse');
