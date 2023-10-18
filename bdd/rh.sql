@@ -149,8 +149,7 @@ CREATE  TABLE fiche_employe (
 	mission text,
 	responsabilite text,
 	objectif text,
-	competence_requise text,
-	superieur_hierarchique varchar(200)
+	competence_requise text
  );
 
 create table contrat_travail(
@@ -206,6 +205,15 @@ VALUES (1, 1, 3, 2, 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith',
 INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
 VALUES (1, 2, 1, 2, 'Williams', 'Sarah', '1992-03-25', '456789123012', 'Mike Williams', 'Laura Williams', '789 Rue C', '4567891230', 0, 1);
 
+-- Inserion de fiche de poste :
+INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
+VALUES (1, 1, 'Mission 1', 'Responsabilité 1', 'Objectif 1', 'Compétence requise 1');
+
+INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
+VALUES (1, 4, 'Mission 2', 'Responsabilité 2', 'Objectif 2', 'Compétence requise 2');
+
+INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
+VALUES (1, 5, 'Mission 3', 'Responsabilité 3', 'Objectif 3', 'Compétence requise 3');
 
 -- Critere {
     --1)diplome
@@ -588,6 +596,7 @@ SELECT * FROM  essaicontrat ec
 JOIN employe e ON e.idemploye = ec.idemploye
 ORDER BY idessaicontrat DESC LIMIT 1;
 
+SELECT * FROM employe where idservice =1;|
 
 select * from besoin order by idbesoin desc limit 1;
 
