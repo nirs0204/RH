@@ -26,4 +26,13 @@ class CTA_List_employe extends CI_Controller {
         $data['posts'] = $this->MDA_Tache->getAllTasksByService($idservice);
         $this->viewer('/listPersonnel',$data);
     }
+    public function resultat(){
+        $idservice = $_SESSION['service'];
+        $genre = $_GET['genre']; // Valeur du genre
+        $age = $_GET['age']; // Ordre de tri par âge
+        $poste = $_GET['poste']; 
+        $data['emp'] = $this->MDA_Employe->filtreEmploye($idservice, $genre, $age, $poste);
+        $data['posts'] = $this->MDA_Tache->getAllTasksByService($idservice);
+        $this->viewer('/listPersonnel',$data);
+    }
 }
