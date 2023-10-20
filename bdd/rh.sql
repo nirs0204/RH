@@ -199,7 +199,6 @@ INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
 
-
 -- Insertion d'employe
 INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
 VALUES (1, null, 1, 0, 3, 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 0, 1);
@@ -597,7 +596,9 @@ SELECT * FROM  essaicontrat ec
 JOIN employe e ON e.idemploye = ec.idemploye
 ORDER BY idessaicontrat DESC LIMIT 1;
 
-SELECT * FROM employe where idservice =1;|
+SELECT * FROM employe e
+JOIN tache t ON  e.idtache = t.idtache
+where e.idservice =1;
 
 SELECT * FROM besoin ORDER BY idbesoin DESC LIMIT 1;
 
