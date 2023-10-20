@@ -20,9 +20,11 @@ class CTA_Essai extends CI_Controller
 
     public function index(){
         $idclient = $this->input->get('idclient');
+        $idservice = $_SESSION['service'];
         $data['cv'] = $this->MDC_CV->oneCV($idclient);
+        $data['emp'] = $this->MDA_Employe->getEmployes($idservice);
         $besoin = $_GET['idbesoin'];
-        $type =0;
+        $type =5;
         $this->MDC_CV->updateCv($type,$idclient,$besoin);
         $this->viewer('/contrat-essai-form', $data);
     }
@@ -30,7 +32,10 @@ class CTA_Essai extends CI_Controller
     public function trial_contract_submit  (){
         $nom = $this->input->post('nom');
         $prenom = $this->input->post('prenom');
-        $genre = $this->input->post('genre');
+        $genre = intval($this->input->post('genre'));
+        $tache = $this->input->post('tache');
+        $enfant = $this->input->post('enfant');
+        $sup = $this->input->post('sup');
         $dtn = $this->input->post('dtn');
         $lieun = $this->input->post('lieun');
         $adresse = $this->input->post('adresse');
@@ -48,8 +53,8 @@ class CTA_Essai extends CI_Controller
         $salaire = $this->input->post('salaire');
         $eventualite = $this->input->post('eventualite');
         $service =$_SESSION['service'];
-
-        $idemp = $this->MDA_Employe->saveEmployee($nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps,$service);
+    
+        $idemp = $this->MDA_Employe->saveEmployee($genre,$tache, $enfant, $sup, $nom, $prenom, $dtn, $cin, $pere, $mere, $adresse, $tel, 0, $cnaps,$service);
         $this->MDA_Essai->saveTrialContract($idemp, $duree, $salaire, $lieutravail, $eventualite, $debutessai, $finessai, $creationessai);
 
         ob_start(); 

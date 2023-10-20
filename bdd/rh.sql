@@ -106,23 +106,24 @@ create table coefCv(
     divorcee int
 );
 
-create table employe(
-  idemploye serial primary key,
-  idservice int  references service(idservice),
-  idmanager int references employe(idemploye) default null,
-  genre int,
-  enfant int default 0,
-  nom varchar(50),
-  prenom varchar(100),
-  dtn date,
-  cin varchar(12),
-  pere varchar(150),
-  mere varchar(150),
-  adresse varchar(150),
-  contact varchar(15),
-  embauche int,
-  cnaps int
-);
+    create table employe(
+    idemploye serial primary key,
+    idservice int  references service(idservice),
+    idmanager int references employe(idemploye) default null,
+    idtache int references tache(idtache),
+    genre int,
+    enfant int default 0,
+    nom varchar(50),
+    prenom varchar(100),
+    dtn date,
+    cin varchar(12),
+    pere varchar(150),
+    mere varchar(150),
+    adresse varchar(150),
+    contact varchar(15),
+    embauche int,
+    cnaps int
+    );
 
 create table essaicontrat(
     idessaicontrat serial primary key,
@@ -142,6 +143,7 @@ CREATE  TABLE fiche_employe (
 	id_fiche_poste int REFERENCES fiche_poste(id_fiche_poste)
  );
  
+ 
  CREATE  TABLE fiche_poste ( 
 	id_fiche_poste SERIAL PRIMARY KEY,
 	id_service int references service(idservice),
@@ -149,8 +151,7 @@ CREATE  TABLE fiche_employe (
 	mission text,
 	responsabilite text,
 	objectif text,
-	competence_requise text,
-	superieur_hierarchique varchar(200)
+	competence_requise text
  );
 
 create table contrat_travail(
@@ -186,6 +187,7 @@ INSERT INTO service (nom) VALUES ('Finance');
 
 -- Insertion dans la table "tache"
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'technicien reseau');
+INSERT INTO tache (idservice, nomTache) VALUES (1, 'DAF Info');
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'developpeur');
 INSERT INTO tache (idservice, nomTache) VALUES (1, 'data Analyst');
 INSERT INTO tache (idservice, nomTache) VALUES (2, 'gardien');
@@ -197,15 +199,21 @@ INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (2, 60, 12);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (3, 40, 8);
 INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
 
-
 -- Insertion d'employe
-INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, null, 0, 3, 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 0, 1);
-INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, 1, 3, 2, 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 0, 1);
-INSERT INTO employe(idservice, idmanager, enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, 2, 1, 2, 'Williams', 'Sarah', '1992-03-25', '456789123012', 'Mike Williams', 'Laura Williams', '789 Rue C', '4567891230', 0, 1);
+INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, null, 1, 0, 3, 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 0, 1);
+INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, 1, 4, 3, 2, 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 0, 1);
 
+-- Inserion de fiche de poste :
+INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
+VALUES (1, 1, 'Mission 1', 'Responsabilité 1', 'Objectif 1', 'Compétence requise 1');
+
+INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
+VALUES (1, 4, 'Mission 2', 'Responsabilité 2', 'Objectif 2', 'Compétence requise 2');
+
+INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
+VALUES (1, 5, 'Mission 3', 'Responsabilité 3', 'Objectif 3', 'Compétence requise 3');
 
 -- Critere {
     --1)diplome
@@ -588,8 +596,17 @@ SELECT * FROM  essaicontrat ec
 JOIN employe e ON e.idemploye = ec.idemploye
 ORDER BY idessaicontrat DESC LIMIT 1;
 
+SELECT * FROM employe e
+JOIN tache t ON  e.idtache = t.idtache
+where e.idservice =1;
 
-select * from besoin order by idbesoin desc limit 1;
+SELECT * FROM besoin ORDER BY idbesoin DESC LIMIT 1;
+
+SELECT * 
+FROM cv c 
+JOIN besoin b ON b.idbesoin = c.idbesoin
+JOIN tache t ON t.idtache = b.idtache
+where c.idclient = 1;
 
 
 Select *  from client;
