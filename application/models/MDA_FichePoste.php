@@ -8,5 +8,15 @@ class MDA_FichePoste extends CI_Model
         $sql = sprintf($sql,$this->db->escape($idservice),$this->db->escape($idtache),$this->db->escape($mission),$this->db->escape($responsabilite),$this->db->escape($objectif),$this->db->escape($competence_requise),$this->db->escape($superieur_hierarchique));
         $this->db->query($sql);
     }
+
+    // Afficher une fiche de poste spécifique
+    public function displayFicheDePoste($id_service, $id_tache) {
+        $this->db->select('*');
+        $this->db->from('fiche_poste');
+        $this->db->where('id_service', $id_service);
+        $this->db->where('id_tache', $id_tache);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>
