@@ -50,8 +50,9 @@ class MDA_Employe extends CI_Model
 //  
     public function getEmployes($idservice) {
         $this->db->select('*');
-        $this->db->from('employe');
-        $this->db->where('idservice', $idservice);
+        $this->db->from('employe e');
+        $this->db->join('tache t', 'e.idtache = t.idtache');
+        $this->db->where('e.idservice', $idservice);
         $query = $this->db->get();
         return $query->result(); 
     }
