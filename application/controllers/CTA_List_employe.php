@@ -8,6 +8,7 @@ class CTA_List_employe extends CI_Controller {
         parent::__construct();
         $this->load->model('MDA_Employe');
         $this->load->model('MDC_CV');
+        $this->load->model('MDA_Tache');
         $this->load->helper('main_helper');
      
     }
@@ -22,6 +23,7 @@ class CTA_List_employe extends CI_Controller {
     public function index(){
         $idservice = $_SESSION['service'];
         $data['emp'] = $this->MDA_Employe->getEmployes($idservice);
+        $data['posts'] = $this->MDA_Tache->getAllTasksByService($idservice);
         $this->viewer('/listPersonnel',$data);
     }
 }

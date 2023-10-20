@@ -41,26 +41,45 @@
                           
                       </select>
                   </label>
-
+                      <br>
                   <label class="block text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Mission</span>
-                          <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" placeholder="" name="mission"/>
+                  <span class="text-gray-700 dark:text-gray-400">Missions</span>
+                <textarea
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  rows="3"
+                  placeholder=""
+                  name="mission"
+                ></textarea>
+              </label>
+              <br>
+                  <label class="block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Responsabilités</span>
+                <textarea
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  rows="3"
+                  placeholder=""
+                  name="responsb"
+                ></textarea>
                   </label>
+                  <br>
                   <label class="block text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Responsabilite</span>
-                          <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" placeholder="" name="responsb"/>
+                  <span class="text-gray-700 dark:text-gray-400">Objectifs</span>
+                <textarea
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  rows="3"
+                  placeholder=""
+                  name="objecti"
+                ></textarea>
                   </label>
+                  <br>
                   <label class="block text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Objectif</span>
-                          <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" placeholder="" name="objecti"/>
-                  </label>
-                  <label class="block text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Competences requis</span>
-                          <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" placeholder="" name="cpreq"/>
-                  </label>
-                  <label class="block text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Superieur Hierarchique</span>
-                          <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" placeholder="" name="suphi"/>
+                  <span class="text-gray-700 dark:text-gray-400">Compétences requises</span>
+                <textarea
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  rows="3"
+                  placeholder=""
+                  name="cpreq"
+                ></textarea>
                   </label>
                   <br>
                   <div>

@@ -47,14 +47,17 @@ class MDA_Employe extends CI_Model
         $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($employeeId));
         $this->db->query($sql);
     }
-//  
+//  maka employe d'une service
     public function getEmployes($idservice) {
-        $this->db->select('*');
+        $this->db->select("*, EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM e.dtn::date) AS age");
         $this->db->from('employe e');
         $this->db->join('tache t', 'e.idtache = t.idtache');
         $this->db->where('e.idservice', $idservice);
+        echo $this->db->last_query();
         $query = $this->db->get();
         return $query->result(); 
     }
+
+
 }
 ?>
