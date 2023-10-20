@@ -609,6 +609,13 @@ JOIN besoin b ON b.idbesoin = c.idbesoin
 JOIN tache t ON t.idtache = b.idtache
 where c.idclient = 1;
 
+SELECT *,
+    EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM dtn) AS age
+FROM employe
+WHERE idservice = 1
+and genre =3
+order by age desc;
+
 
 Select *  from client;
 select *  from service;
