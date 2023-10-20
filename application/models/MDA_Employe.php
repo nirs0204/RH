@@ -48,14 +48,16 @@ class MDA_Employe extends CI_Model
         $this->db->query($sql);
     }
 //  maka employe d'une service
-    public function getEmployes($idservice) {
+    public function getEmployes($idservice,$val) {
         $this->db->select("*, EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM e.dtn::date) AS age");
         $this->db->from('employe e');
         $this->db->join('tache t', 'e.idtache = t.idtache');
         $this->db->where('e.idservice', $idservice);
+        $this->db->where('e.embauche', $val);
         $query = $this->db->get();
         return $query->result(); 
     }
+
 
 //  filtre liste d'employe
     public function filtreEmploye($idservice, $genre, $age, $poste) {
@@ -63,6 +65,7 @@ class MDA_Employe extends CI_Model
         $this->db->from('employe e');
         $this->db->join('tache t', 'e.idtache = t.idtache');
         $this->db->where('e.idservice', $idservice);
+        $this->db->where('e.embauche', 5);
 
         if ($poste != null) {
             $this->db->where('e.idtache', $poste);

@@ -22,7 +22,7 @@ class CTA_List_employe extends CI_Controller {
     }
     public function index(){
         $idservice = $_SESSION['service'];
-        $data['emp'] = $this->MDA_Employe->getEmployes($idservice);
+        $data['emp'] = $this->MDA_Employe->getEmployes($idservice,5);
         $data['posts'] = $this->MDA_Tache->getAllTasksByService($idservice);
         $this->viewer('/listPersonnel',$data);
     }
