@@ -22,7 +22,7 @@ class CTA_Essai extends CI_Controller
         $idclient = $this->input->get('idclient');
         $idservice = $_SESSION['service'];
         $data['cv'] = $this->MDC_CV->oneCV($idclient);
-        $data['emp'] = $this->MDA_Employe->getEmployes($idservice);
+        $data['emp'] = $this->MDA_Employe->getEmployes($idservice,5);
         $besoin = $_GET['idbesoin'];
         $type =5;
         $this->MDC_CV->updateCv($type,$idclient,$besoin);
@@ -74,6 +74,11 @@ class CTA_Essai extends CI_Controller
         echo '</script>';   
     }
 
+    public function getEssai(){
+        $idservice = $_SESSION['service'];
+        $data['emp'] = $this->MDA_Employe->getEmployes($idservice,0);
+        $this->viewer('/essaiPersonnel',$data);
+    }
 
 }
 ?>
