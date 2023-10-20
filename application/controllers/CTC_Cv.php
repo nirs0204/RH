@@ -26,6 +26,11 @@ class CTC_Cv extends CI_Controller {
 	}
 
     public function index(){
+        $data = array();
+        if($this->input->get('error') != null  )
+        {
+            $data['error'] = $this->input->get('error');
+        }
         $besoin = $this->session->userdata('besoin');
         $data['coef'] = $this->MDC_Cv->allCoefCv($besoin);
         $this->viewer('/cv',$data);
@@ -37,8 +42,15 @@ class CTC_Cv extends CI_Controller {
         $sexe = $this->input->post('sexe');             $sm = $this->input->post('sm');
         $idclient = $_SESSION['client'][0]['idclient'];
         $besoin = $this->session->userdata('besoin');
-        $this->MDC_Cv->saveCV($idclient, $besoin , $diplome, $langue1, $langue2, $langue3, $sexe, $sm, $nom, $add, $prenom, $dtn, $exp);
-        redirect('CTC_Question/index');
+        $valid = $this->MDC_Cv->alertAge($dtn);
+        if($valid == 1){
+            $this->MDC_Cv->saveCV($idclient, $besoin , $diplome, $langue1, $langue2, $langue3, $sexe, $sm, $nom, $add, $prenom, $dtn, $exp);
+            redirect('CTC_Question/index');
+            return;
+        }else if($valid == -1){
+            $data['error'] = 'Votre age est invalide ';
+        }
+        redirect('CTC_Cv/index?error=' . urlencode($data['error']));
     }
 
     public function cvList(){

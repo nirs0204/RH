@@ -16,6 +16,16 @@
                     <p class="card-description">
                       Info personnel
                     </p>
+
+                    <?php if(isset($error)){ ?>
+                          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> <?php echo $error ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                    <?php } ?>
+
                     <div class="row">
                       <div class="col-md-12">
                           <div class="form-group row">
