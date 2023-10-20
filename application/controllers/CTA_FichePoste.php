@@ -46,7 +46,7 @@ class CTA_FichePoste extends CI_Controller {
         $compreq= $this->input->post('cpreq');
         $superieur= $this->input->post('suphi');
 
-        $this->MDA_FichePoste->insertFichePoste($idservice, $idtache, $mission, $responsabilite, $objectif, $compreq, $superieur);
+        $this->MDA_FichePoste->insertFichePoste($idservice, $idtache, $mission, $responsabilite, $objectif, $compreq);
         redirect('CTA_FichePoste/create');
     }
 
