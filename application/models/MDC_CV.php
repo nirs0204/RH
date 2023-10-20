@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class MDC_CV extends CI_Model
-{
+class MDC_CV extends CI_Model{
+
 //    enregistrer un CV (create)
     function saveCV($idclient, $idbesoin, $diplome, $langue1, $langue2, $langue3, $sexe, $Smatri, $nom, $adresse, $prenom, $dtn, $experience){
         $sql = "insert into cv (idclient, idbesoin , diplome, langue1, langue2, langue3, sexe, smatri, nom, adresse, prenom, dtn, experience,typee) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s , %s, %s, %s,0) ";
@@ -55,7 +55,6 @@ class MDC_CV extends CI_Model
         $this->db->join('besoin b', 'c.idtache = b.idtache');
         $this->db->where('b.idbesoin', $id);
         $query = $this->db->get();  
-        echo $this->db->last_query();
         return $query->result_array();
     }
 //    rempli le coef par 0 si vide    
@@ -80,5 +79,18 @@ class MDC_CV extends CI_Model
         $sql = sprintf($sql,$this->db->escape($type),$this->db->escape($client),$this->db->escape($besoin));
         $this->db->query($sql);
     }
+//  Notification
+    public function alertAge($dtn) {
+        date_default_timezone_set('Europe/Paris');
+        $dateOfBirth = new DateTime($dtn);
+        $today = new DateTime('today');
+        $age = $dateOfBirth->diff($today)->y;
+        if ($age > 58 || $age < 18) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
 }
 ?>
