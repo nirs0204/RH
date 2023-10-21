@@ -10,14 +10,14 @@ class MDA_DemandeConge extends CI_Model
     }
 
     //    valider le demande de conge (update)
-    public function validLeaveRequest($id){
+    public function approveLeaveRequest($id){
         $sql = "update conge_demande set decision = 2  where idemploye = %s";
         $sql = sprintf($sql,$this->db->escape($id));
         $this->db->query($sql);
     }
 
     //    refuser le demande de conge (update)
-    public function refuseLeaveRequest($id){
+    public function rejectLeaveRequest($id){
         $sql = "update conge_demande set decision = 5  where idemploye = %s";
         $sql = sprintf($sql,$this->db->escape($id));
         $this->db->query($sql);
@@ -32,16 +32,31 @@ class MDA_DemandeConge extends CI_Model
 
 //    Demande de conge ou decision = 1
     public function getLeaveRequestBy1(){
-        $this->db->select('e.nom, e.prenom, cd.type, cd.datedebut, cd.nbjours', 'cd.datedemande');
+        $this->db->select('cd.idemploye, e.pseudo, cd.type, cd.datedebut, cd.nbjours, cd.datedemande');
         $this->db->from('conge_demande cd');
-        $this->db->join('employe e', 'cd.idemploye = e.idemploye');
+        $this->db->join('admin e', 'cd.idemploye = e.idadmin');
         $this->db->where('cd.decision', 1);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
+            echo $this->db->last_query();
             return $query->result();
         } else {
             return array();
         }
     }
+
+//    public function getLeaveRequestBy1(){
+//        $this->db->select('cd.idemploye, e.nom, e.prenom, cd.type, cd.datedebut, cd.nbjours', 'cd.datedemande');
+//        $this->db->from('conge_demande cd');
+//        $this->db->join('employe e', 'cd.idemploye = e.idemploye');
+//        $this->db->where('cd.decision', 1);
+//        $query = $this->db->get();
+//        if ($query->num_rows() > 0) {
+//            return $query->result();
+//        } else {
+//            return array();
+//        }
+//        echo $this->db->last_query();
+//    }
 }
 ?>

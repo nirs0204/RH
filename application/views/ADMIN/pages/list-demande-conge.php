@@ -52,7 +52,7 @@
                                     ></div>
                                 </div>
                                 <div>
-                                    <p class="font-semibold"><?php echo isset($demande->nom) ? $demande->nom : '';?> <?php echo isset($demande->prenom) ? $demande->prenom : '';?></p>
+                                    <p class="font-semibold"><?php echo isset($demande->pseudo) ? $demande->pseudo : '';?></p>
                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                         10x Developer
                                     </p>
@@ -72,18 +72,20 @@
                             <?php echo isset($demande->datedemande) ? $demande->datedemande : '';?>
                         </td>
                         <td class="px-4 py-3 text-xs">
-                        <span
+                        <a
                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                            href="<?php echo site_url('CTA_Conge/approve_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>"
                         >
                           Approved
-                        </span>
+                        </a>
                         </td>
                         <td class="px-4 py-3 text-xs">
-                        <span
+                        <a
                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
+                            href="<?php echo site_url('CTA_Conge/reject_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>"
                         >
                           Rejected
-                        </span>
+                        </a>
                         </td>
                     </tr>
                     <?php } ?>
