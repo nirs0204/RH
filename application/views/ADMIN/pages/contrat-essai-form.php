@@ -1,4 +1,5 @@
 <?php if(!isset($cv)) $cv=array(); ?>
+<?php if(!isset($emp)) $emp=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -17,6 +18,7 @@
         >
             <form action="<?php echo site_url('CTA_Essai/trial_contract_submit') ?>" method="post">
             <input type="hidden" name="genre" value="<?php echo isset($cv[0]->sexe) ? $cv[0]->sexe : '';?>">
+            <input type="hidden" name="tache" value="<?php echo isset($cv[0]->idtache) ? $cv[0]->idtache : '';?>">
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Nom
@@ -160,8 +162,9 @@
                     <select name="sup"
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                     >
-                    <option>Homme</option>
-                    <option>Femme<option>
+                    <?php foreach ($emp as $val) { ?>
+                            <option value="<?php echo $val->idemploye; ?>"><?php echo $val->nom; ?> <?php echo $val->prenom; ?> - <?php echo $val->nomtache; ?> </option>
+                    <?php } ?>
                     </select>
                </label>
                 <label class="block mt-4 text-sm">

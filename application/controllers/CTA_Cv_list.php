@@ -12,7 +12,7 @@ class CTA_Cv_list extends CI_Controller {
         $this->load->helper('main_helper');
         if($this->session->userdata('admin') === null) 
 		{
-			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée en Admin')));
+			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée !')));
 		}
     }
     private function viewer($page, $data)

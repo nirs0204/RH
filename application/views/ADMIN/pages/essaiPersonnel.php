@@ -1,6 +1,5 @@
 
 <?php if(!isset($emp)) $emp=array(); ?>
-<?php if(!isset($posts)) $posts=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -61,74 +60,12 @@
               </ul>
             </div>
             <div>
-
+              
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Liste personnel
-            </h2>
-            
-           
-            <div class="col-md-1">
-                <div class="p-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                   <form action="<?php echo site_url('CTA_List_employe/resultat'); ?>">
-                      <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">
-                            Genre
-                            </span>
-                            <select
-                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="genre"
-                            >
-                            <option value=""></option>
-                            <option value="3">Homme</option>
-                            <option value="2">Femme</option>
-                            <option value="1">Autre</option>
-                            </select>
-                      </label>
-
-                      <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">
-                            Ordre Age
-                            </span>
-                            <select
-                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="age"
-                            >
-                            <option value=""></option>
-                            <option value="asc">croissant</option>
-                            <option value="desc">décroissant</option>
-                            </select>
-                      </label>
-
-                      <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">
-                            Poste
-                            </span>
-                            <select
-                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="poste"
-                            >
-                            <option value=""></option>
-                            <?php foreach ($posts as $poste) { ?>
-                              <option value="<?php echo $poste->idtache; ?>" ><?php echo $poste->nomtache; ?></option>
-                            <?php } ?>
-                            </select>
-                      </label>
-
-
-                        <br>
-
-                      <div>
-                        <button
-                          class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                        >
-                          Filtrer
-                        </button>
-                        </form>
-                      </div>
-                  
-              </div>
-            </div>
-            
-                    
+              Liste personnel en période d'essai
+            </h2>    
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
@@ -185,12 +122,11 @@
                       </td>
                       <td class="px-4 py-3 text-sm">
                               <div>
-                                  <a
+                                  <button
                                     class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    href="<?php echo site_url('CTA_FichePoste/FicheDePoste_Employe'); ?>?idE=<?php echo $val->idemploye; ?>&&idT=<?php echo $val->idtache; ?> "
                                   >
-                                    Fiche de Poste
-                                  </a>
+                                    Contrat de Travail
+                                  </button>
                               </div>
                       </td>
                     </tr>
