@@ -4,7 +4,10 @@ class MDA_FicheDepaie extends CI_Model
 {
     function createFicheDePaie()
     {
-        
+        function createFicheDePaie()
+        {
+            
+        }
     }
 }
 ?>

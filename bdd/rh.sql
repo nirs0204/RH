@@ -184,7 +184,7 @@ create table conge_demande(
 create table fiche_paie (
     idemploye int references employe(idemploye),
     id_contrat_travail int references contrat_travail(id_contrat_travail) null,
-    idessaicontrat int references essaicontrat(idessaicontrat),
+    idessaicontrat int references essaicontrat(idessaicontrat) null,
     datefichedp date,
     id_taux1 int references taux(id_taux) null,
     id_taux2 int references taux(id_taux) null
