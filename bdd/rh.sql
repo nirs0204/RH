@@ -24,7 +24,7 @@ create table cv (
     experience text,
     typee int
 );
-ALTER TABLE cv add column typeE int;
+
 CREATE table noteClient (
     idNoteClient serial PRIMARY KEY,
     idbesoin int references besoin(idbesoin),
@@ -106,7 +106,7 @@ create table coefCv(
     divorcee int
 );
 
-    create table employe(
+create table employe(
     idemploye serial primary key,
     idservice int  references service(idservice),
     idmanager int references employe(idemploye) default null,
@@ -116,14 +116,14 @@ create table coefCv(
     nom varchar(50),
     prenom varchar(100),
     dtn date,
-    cin varchar(12),
+    cin varchar(35),
     pere varchar(150),
     mere varchar(150),
     adresse varchar(150),
     contact varchar(15),
     embauche int,
     cnaps int
-    );
+);
 
 create table essaicontrat(
     idessaicontrat serial primary key,
@@ -256,7 +256,7 @@ VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', '
 
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
-VALUES (1, 5, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
+VALUES (1, 4, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
 
 
 -- CV (/20) {
