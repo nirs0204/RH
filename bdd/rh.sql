@@ -165,6 +165,20 @@ create table contrat_travail(
     creation date
 );
 
+create table conge(
+    idemploye int references admin(idadmin),
+    resteconge int
+);
+
+create table conge_demande(
+    idemploye int references admin(idadmin),
+    type varchar(50),
+    datedebut timestamp,
+    nbjours int,
+    decision int,
+    datedemande date
+);
+
 ---------------------------INSERTION-------------------------
 
 -- Insertion dans la table "client"

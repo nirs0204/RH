@@ -1,4 +1,3 @@
-<?php if(!isset($posts)) $posts=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
  
@@ -15,7 +14,7 @@
             <div
               class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
             >
-            <form action="<?php echo site_url('CTA_Besoin/save_need') ?>" method="post">
+            <form action="<?php echo site_url('CTA_Conge/leave_request_submit') ?>" method="post">
 
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
@@ -25,9 +24,9 @@
                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                             name="type"
                     >
-                        <option value="">Maternite</option>
-                        <option value="">Paternite</option>
-                        <option value="">Normal</option>
+                        <option value="maternite">Maternite</option>
+                        <option value="paternite">Paternite</option>
+                        <option value="normal">Normal</option>
                     </select>
                 </label>
               <label class="block mt-4 text-sm">
