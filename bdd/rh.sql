@@ -132,7 +132,7 @@ create table essaicontrat(
     salaire decimal(11,2),
     lieutravail varchar(50),
     eventualite text,
-    debut date,
+    debut date, /*Date d'embauche*/
     fin date,
     creation date
 );
@@ -178,6 +178,23 @@ create table conge_demande(
     nbjours int,
     decision int,
     datedemande date
+);
+
+/* id_taux1 pour cnaps et id_taux2 pour irsa */
+create table fiche_paie (
+    idemploye int references employe(idemploye),
+    id_contrat_travail int references contrat_travail(id_contrat_travail) null,
+    idessaicontrat REFERENCES essaicontrat(idessaicontrat),
+    datefichedp date,
+    id_taux1 int REFERENCES taux(id_taux) null,
+    id_taux2 int REFERENCES taux(id_taux) null
+);
+
+/*Soit cnaps ou irsa*/
+create table taux(
+    id_taux serial,
+    taux decimal(11,2),
+    nom varchar(25)
 );
 
 ---------------------------INSERTION-------------------------
