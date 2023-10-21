@@ -184,15 +184,15 @@ create table conge_demande(
 create table fiche_paie (
     idemploye int references employe(idemploye),
     id_contrat_travail int references contrat_travail(id_contrat_travail) null,
-    idessaicontrat REFERENCES essaicontrat(idessaicontrat),
+    idessaicontrat int references essaicontrat(idessaicontrat),
     datefichedp date,
-    id_taux1 int REFERENCES taux(id_taux) null,
-    id_taux2 int REFERENCES taux(id_taux) null
+    id_taux1 int references taux(id_taux) null,
+    id_taux2 int references taux(id_taux) null
 );
 
 /*Soit cnaps ou irsa*/
 create table taux(
-    id_taux serial,
+    id_taux serial PRIMARY KEY,
     taux decimal(11,2),
     nom varchar(25)
 );
