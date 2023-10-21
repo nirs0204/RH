@@ -6,6 +6,10 @@ class CTA_Contrat_Travail extends CI_Controller
         parent::__construct();
         $this->load->model('MDA_Employe');
         $this->load->model('MDA_ContratTravail');
+        if($this->session->userdata('admin') === null) 
+		{
+			redirect('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée !'));
+		}
     }
 
     private function viewer($page, $data)

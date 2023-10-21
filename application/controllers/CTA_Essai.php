@@ -7,6 +7,10 @@ class CTA_Essai extends CI_Controller
         $this->load->model('MDC_CV');
         $this->load->model('MDA_Employe');
         $this->load->model('MDA_Essai');
+        if($this->session->userdata('admin') === null) 
+		{
+			redirect('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée!'));
+		}
     }
 
     private function viewer($page, $data)

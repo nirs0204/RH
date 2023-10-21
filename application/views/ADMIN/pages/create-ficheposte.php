@@ -19,7 +19,7 @@
             <div
               class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
             >
-              <form action="<?php echo base_url('CTA_FichePoste/store') ?>" method="post">
+              <form action="<?php echo site_url('CTA_FichePoste/store') ?>" method="post">
 
                   <label class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">Service</span>

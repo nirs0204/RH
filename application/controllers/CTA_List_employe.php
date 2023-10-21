@@ -10,6 +10,10 @@ class CTA_List_employe extends CI_Controller {
         $this->load->model('MDC_CV');
         $this->load->model('MDA_Tache');
         $this->load->helper('main_helper');
+        if($this->session->userdata('admin') === null) 
+		{
+			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée!')));
+		}
      
     }
     private function viewer($page, $data)
