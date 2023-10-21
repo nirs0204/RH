@@ -9,6 +9,10 @@ class CTA_Besoin extends CI_Controller
         $this->load->model('MDA_Tache');
         $this->load->model('MDA_Service');
         $this->load->model('MDA_Questionnaire');
+        if($this->session->userdata('admin') === null) 
+		{
+			redirect('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée !'));
+		}
     }
     private function viewer($page, $data)
     {

@@ -7,6 +7,10 @@ class CTA_Critere extends CI_Controller
         $this->load->model('MDA_Critere');
         $this->load->model('MDA_Besoin');
         $this->load->model('MDA_Tache');
+        if($this->session->userdata('admin') === null) 
+		{
+			redirect('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée !'));
+		}
     }
 
     private function viewer($page, $data)
@@ -21,7 +25,6 @@ class CTA_Critere extends CI_Controller
     public function criteria_view(){
         $service = $_SESSION['service'];
         $data['posts'] = $this->MDA_Tache->getAllTasksByService($service);
-
         $this->viewer('/critere', $data);
     }
 
@@ -40,7 +43,7 @@ class CTA_Critere extends CI_Controller
         $debutentretien = $this->input->post('debutentretien');
         $besoin = $this->MDA_Besoin->LastBesoin();
         $this->MDA_Critere->saveCriteria($service, $besoin[0]['idbesoin'], $diplome, $experience, $nationalite, $sexe, $smatri, $langue1, $langue2, $langue3, $datefin, $debutentretien);
-        //redirect('CTA_Cv_list/');
+        redirect('CTA_Cv_list/');
     }
 
     public function schedule_job_interview() {

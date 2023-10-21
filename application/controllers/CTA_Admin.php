@@ -8,7 +8,12 @@ class CTA_Admin extends CI_Controller
     }
 
     public function login_view(){
-        $this->load->view('ADMIN/pages/login');
+        $data = array();
+        if($this->input->get('error') != null  )
+        {
+            $data['error'] = $this->input->get('error');
+        }
+        $this->load->view('ADMIN/pages/login',$data);
     }
 
     public function subscribe_view(){
@@ -31,6 +36,11 @@ class CTA_Admin extends CI_Controller
         else{
             $data['error'] = 'Pseudo ou mot de passe invalide';
         }
+        redirect('CTA_Admin/login_view?error=' . urlencode($data['error']));
+    }
+    public function deconnect()	{
+        $this->session->unset_userdata('admin');
+        $this->session->unset_userdata('service');
         redirect('CTA_Admin/login_view');
     }
 }

@@ -185,11 +185,12 @@
                       </td>
                       <td class="px-4 py-3 text-sm">
                               <div>
-                                  <button
+                                  <a
                                     class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    href="<?php echo site_url('CTA_FichePoste/FicheDePoste_Employe'); ?>?idE=<?php echo $val->idemploye; ?>&&idT=<?php echo $val->idtache; ?> "
                                   >
                                     Fiche de Poste
-                                  </button>
+                                  </a>
                               </div>
                       </td>
                     </tr>

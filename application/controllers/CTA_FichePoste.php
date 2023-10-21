@@ -8,11 +8,12 @@ class CTA_FichePoste extends CI_Controller {
         parent::__construct();
         $this->load->model('MDA_Service');
         $this->load->model('MDA_Tache');
+        $this->load->model('MDA_Employe');
         $this->load->model('MDA_FichePoste');
         $this->load->helper('main_helper');
         if($this->session->userdata('admin') === null) 
 		{
-			redirect(bu('CTA_Admin/sign?error=' . urlencode('Vous n`êtes pas connectée en admin')));
+			redirect(bu('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée!')));
 		}
     }
 	private function viewer($page, $data){
@@ -60,5 +61,12 @@ class CTA_FichePoste extends CI_Controller {
     {
         $this->viewer('displayficheposte');
     }
-  
+    public function FicheDePoste_Employe(){
+        $tache = $_GET['idT'];
+        $emp = $_GET['idE'];
+        $service = $_SESSION['service'];
+        $data['fiche'] = $this->MDA_FichePoste->displayFicheDePoste($service,$tache);
+        $data['emp'] = $this->MDA_Employe->getOneEmployee($emp);
+        $this->viewer('/displayficheposte',$data);
+    }
 }
