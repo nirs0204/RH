@@ -9,5 +9,13 @@ class MDA_ContratTravail extends CI_Model
         echo $sql;
         $this->db->query($sql);
     }
+
+    // get contral de travail d'un employé
+    function getOneWorkContract($idemploye)
+    {
+        $sql = "select * from contrat_travail where idemploye = %s";
+        $sql = sprintf($sql,$this->db->escape($idemploye));
+        $this->db->query($sql);
+    }
 }
 ?>

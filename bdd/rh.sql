@@ -182,6 +182,7 @@ create table conge_demande(
 
 /* id_taux1 pour cnaps et id_taux2 pour irsa */
 create table fiche_paie (
+    idfichepaie serial primary key,
     idemploye int references employe(idemploye),
     id_contrat_travail int references contrat_travail(id_contrat_travail) null,
     idessaicontrat int references essaicontrat(idessaicontrat) null,
