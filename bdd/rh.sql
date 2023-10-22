@@ -84,7 +84,7 @@ CREATE TABLE reponse (
 
 -- idadmin = idemploye, type = 1 (admin), type = 5 (employe)
 create table admin(
-    idadmin int references employe(idemploye),
+    idadmin int references employe(idemploye) primary key,
     pseudo varchar(150),
     mdp varchar(80),
     idservice int references service(idservice),
@@ -208,15 +208,17 @@ create table fiche_paie (
     id_contrat_travail int references contrat_travail(id_contrat_travail) null,
     idessaicontrat int references essaicontrat(idessaicontrat) null,
     datefichedp date,
-    id_irsa int references irsa(id_irsa) null,
-    id_cnaps int references cnaps(id_cnaps) null
+    irsa int null,
+    id_cnaps int null
 );
 
+/*
 create table irsa (
     id_irsa serial primary key,
     categorie varchar(35),
     taux decimal(5,2)
 );
+*/
 
 create table cnaps (
     id_cnaps serial primary key,

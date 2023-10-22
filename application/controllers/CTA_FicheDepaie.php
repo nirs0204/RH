@@ -26,7 +26,7 @@
         public function get_emp()
         {
             $data['emp']= $this->MDA_Employe->getAllEmployees();
-            $this->viewer('/create_fiche_paie', $data);
+            $this->viewer('/get_emp_fiche_paie', $data);
 
         }
 
@@ -40,21 +40,23 @@
             $data['employe'] = $this->MDA_Employe->getOneEmployee($idemploye);
             $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
             $data['contratessai'] = $this->MDA_Essai->OneEssai($idemploye);
-            if ($data['contratessai']) 
+            
+            
+            if ($data['contratessai'] != null) 
             {
-                $finValue = $data['contratessai']->fin;
+                $finValue = $data['contratessai'][0]->fin;
                 if ($date > $finValue) 
                 {
                     $data['contratessai'] = null;
                 } else {
-                    $salaireDebase = $data['contratessai']->salaire;
+                    $salaireDebase = $data['contratessai'][0]->salaire;
                 }
             } 
-            if ($data['contrattrav'] && $data['contratessai'] == null) 
+            if ($data['contrattrav'] != null && $data['contratessai'] == null) 
             {
-                if($date >= $data['contrattrav']->debut && $date <= $data['contrattrav']->fin) 
+                if($date >= $data['contrattrav'][0]->debut && $date <= $data['contrattrav'][0]->fin) 
                 {
-                    $salaireDebase = $data['contrattrav']->salaire;
+                    $salaireDebase = $data['contrattrav'][0]->salaire;
                 }
             }
             
@@ -85,7 +87,15 @@
             $data['salaireDebase'] = $salaireDebase;
             $data['salaireNet'] = $salaireNet;
 
-            $this->MDA_FicheDepaie->createFicheDePaie($idemploye,$data['contrattrav']->id_contrat_travail,$data['contratessai']->idessaicontrat,$date,$irsa,null);
+            if($data['contrattrav']==null)
+            {
+                $this->MDA_FicheDepaie->createFicheDePaie($idemploye,null,$data['contratessai'][0]->idessaicontrat,$date,$irsa,null);
+            }
+            elseif ($data['contratessai']==null) {
+                $this->MDA_FicheDepaie->createFicheDePaie($idemploye,$data['contrattrav'][0]->id_contrat_travail,null,$date,$irsa,null);
+
+            }
+
             $this->viewer('/create_fiche_paie', $data);
         }
 
