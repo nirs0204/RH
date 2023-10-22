@@ -636,6 +636,29 @@ WHERE idservice = 1
 and genre =3
 order by age desc;
 
+--Superieur:
+
+WITH RECURSIVE superior_hierarchy AS (
+    SELECT e1.idemploye, e1.nom, e1.idmanager, e1.idtache, t.nomTache as nomtache, e1.prenom as prenom_manager
+    FROM employe e1
+    LEFT JOIN tache t ON e1.idtache = t.idtache
+    WHERE e1.idemploye = 3
+    UNION
+    SELECT e2.idemploye, e2.nom, e2.idmanager, e2.idtache, t.nomTache as nomtache, e2.prenom as prenom_manager
+    FROM employe e2
+    JOIN superior_hierarchy sh ON e2.idemploye = sh.idmanager
+    LEFT JOIN tache t ON e2.idtache = t.idtache
+)
+SELECT * FROM superior_hierarchy;
+
+
+--Subordonne
+
+SELECT idemploye, nom, prenom, idtache
+FROM employe
+WHERE idmanager = 1;
+
+
 
 Select *  from client;
 select *  from service;
