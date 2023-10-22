@@ -84,7 +84,7 @@ CREATE TABLE reponse (
 
 -- idadmin = idemploye, type = 1 (admin), type = 5 (employe)
 create table admin(
-    idadmin int references employe(idemploye),
+    idadmin int references employe(idemploye) primary key,
     pseudo varchar(150),
     mdp varchar(80),
     idservice int references service(idservice),
