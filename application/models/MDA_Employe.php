@@ -34,9 +34,11 @@ class MDA_Employe extends CI_Model
     
 
 //    mise a jour de embauche (update)
-    function updateEmployeeEmbauche($employeeId, $type) {
-        $sql = "UPDATE employe SET embauche = %s WHERE idemploye = %s";
-        $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($employeeId));
+    function updateEmployeeEmbauche($employeeId,$type) {
+        date_default_timezone_set('Indian/Antananarivo'); 
+        $date = date('Y-m-d');
+        $sql = "UPDATE employe SET embauche = %s , dateEmbauche=%s  WHERE idemploye = %s";
+        $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($date), $this->db->escape($employeeId));
         $this->db->query($sql);
     }
 //  maka employe d'une service
@@ -103,6 +105,16 @@ class MDA_Employe extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    //liste employe plus d'un an 
+    public function getEmployesPlusUnAn() {
+        $this->db->select('employe.*');
+        $this->db->from('employe');
+        $this->db->join('tache t', 'employe.idtache = t.idtache');
+        $this->db->where('dateEmbauche <= CURRENT_DATE - INTERVAL "1 year"');
+        
+        $query = $this->db->get();
+        return $query->result();
+    }    
     
 }
 ?>

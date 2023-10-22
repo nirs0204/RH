@@ -6,6 +6,52 @@
 
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
+
+    <br>
+          <div class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+              <ul class="flex items-center flex-shrink-0 space-x-6">
+                <li class="relative ml-auto">
+                          <button id="svgButton" onclick="toggleMenu()">
+                            <svg
+                              class="w-5 h-5 cursor-pointer"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              aria-label="Notifications"
+                            >
+                              <path
+                                d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z"
+                              ></path>
+                            </svg>
+                          </button>
+
+                      <ul id="menuList" class="hidden absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+                        <li class="flex">
+                          <a href="<?php echo site_url("CTA_Conge/attribut"); ?>" class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+                            <span>Congé Annuel</span>
+                          </a>
+                        </li>
+                      </ul>
+                </li>
+              </ul>
+
+                <script>
+                  // JavaScript pour basculer l'affichage du menu
+                  function toggleMenu() {
+                    var menuList = document.getElementById("menuList");
+                    if (menuList.style.display === "none" || menuList.style.display === "") {
+                      menuList.style.display = "block";
+                    } else {
+                      menuList.style.display = "none";
+                    }
+                  }
+                </script>
+                
+              </ul>
+            </div>
+            <div>
+              
+
         <h2
             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
         >
