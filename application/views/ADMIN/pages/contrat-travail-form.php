@@ -1,4 +1,5 @@
 <?php if(!isset($emp)) $emp=array(); ?>
+
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -15,20 +16,20 @@
         <div
             class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
         >
-            <form action="<?php echo site_url('CTA_Essai/employement_contract_submit') ?>" method="post">
-                <input type="hidden" name="idemploye" value="<?php echo isset($emp[0]->idemploye) ? $emp[0]->idemploye : '';?>">
+            <form action="<?php echo site_url('CTA_Contrat_Travail/employement_contract_submit') ?>" method="post">
+                <input type="hidden" name="idemploye" value="<?php echo isset($emp->idemploye) ? $emp->idemploye : '';?>">
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Nom :
                 </span>
-                    <?php echo isset($emp[0]->nom) ? $emp[0]->nom : '';?>
+                    <?php echo isset($emp->nom) ? $emp->nom : '';?>
                 </label>
 
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Prenom :
                 </span>
-                    <?php echo isset($emp[0]->prenom) ? $emp[0]->prenom : '';?>
+                    <?php echo isset($emp->prenom) ? $emp->prenom : '';?>
                 </label>
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">

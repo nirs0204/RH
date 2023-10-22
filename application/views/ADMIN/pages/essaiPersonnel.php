@@ -122,11 +122,11 @@
                       </td>
                       <td class="px-4 py-3 text-sm">
                               <div>
-                                  <button
+                                  <a href="<?php echo site_url("CTA_Contrat_Travail/"); ?>?employe= <?php echo $val->idemploye; ?> "
                                     class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                   >
                                     Contrat de Travail
-                                  </button>
+                                  </a>
                               </div>
                       </td>
                     </tr>
