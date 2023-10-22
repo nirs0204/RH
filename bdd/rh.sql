@@ -193,7 +193,7 @@ create table contrat_travail(
 */
 
 create table conge(
-    idemploye int references admin(idadmin),
+    idemploye int references employe(idemploye),
     resteconge int
 );
 
