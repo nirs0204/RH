@@ -24,7 +24,9 @@ create table cv (
     experience text,
     typee int
 );
+
 ALTER TABLE cv add column typeE int;
+
 CREATE table noteClient (
     idNoteClient serial PRIMARY KEY,
     idbesoin int references besoin(idbesoin),
@@ -610,6 +612,10 @@ WHERE ;
 SELECT * FROM  essaicontrat ec
 JOIN employe e ON e.idemploye = ec.idemploye
 ORDER BY idessaicontrat DESC LIMIT 1;
+
+SELECT * FROM  essaicontrat ec
+JOIN employe e ON e.idemploye = ec.idemploye
+where ec.idemploye = 1;
 
 SELECT * FROM employe e
 JOIN tache t ON  e.idtache = t.idtache

@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require(APPPATH . 'third_party/fpdf.php');
 
 class Essai extends FPDF {
-    function Header()
-    {
+    function Header()    {
         // A propos de la societe
         $this->SetFont('Arial','B',18);
         $this->Cell(65);

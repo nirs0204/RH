@@ -36,7 +36,7 @@ class MDA_Employe extends CI_Model
 
 //    mise a jour de embauche (update)
     function updateEmployeeEmbauche($employeeId, $type) {
-        $sql = "UPDATE employe SET embauche = %s WHERE id = %s";
+        $sql = "UPDATE employe SET embauche = %s WHERE idemploye = %s";
         $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($employeeId));
         $this->db->query($sql);
     }

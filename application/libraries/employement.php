@@ -1,7 +1,9 @@
 <?php 
-require('../fpdf.php');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PDF extends FPDF {
+require(APPPATH . 'third_party/fpdf.php');
+
+class Employement extends FPDF {
     function Header()
     {
         // A propos de la societe
@@ -22,10 +24,10 @@ class PDF extends FPDF {
         $this->Cell(10,5,"Nom et prenoms : $nom $prenom",0,0,'L');
         $this->Ln(10);
         $this->Cell(10);
-        $this->Cell(10,5,"Date et lieu de naissance : $dtn a $ln",0,0,'L');
+        $this->Cell(10,5,"numéro CIN : $dtn a $ln",0,0,'L');
         $this->Ln(10);
         $this->Cell(10);
-        $this->Cell(10,5,"Situation matrimoniale : $smatri",0,0,'L');
+        $this->Cell(10,5,"Catégorie de travail : $smatri",0,0,'L');
         $this->Ln(10);
         $this->Cell(10);
         $this->Cell(10,5,"Adresse : $adresse",0,0,'L');
@@ -41,7 +43,7 @@ class PDF extends FPDF {
 
         $this->Ln(25);
         $this->Cell(10);
-        $this->Cell(10,5,"Salaire : $salaire",0,0,'L');
+        $this->Cell(10,5,"Salaire : $salaire Ar",0,0,'L',"");
         $this->Ln(10);
         $this->Cell(10);
         $this->Cell(10,5,"Condition de travail : $condition",0,0,'L');
@@ -67,8 +69,4 @@ class PDF extends FPDF {
     }
 }
 
-$pdf = new PDF();
-$pdf->AddPage();
-$pdf->ajouterEmp('No002092e8781', 'Nom ', 'Prenom', '10 Juin 2002', 'Madagascar', 'Celibataire', 'Ambalavao', '0348902873', 'mdkncwdir', 'hdbhwgiqwwi', '202000', '', '02 fev 2023', '05 mmai 2023', 'Antsirabe', '23 oct 2022');
-$pdf->Output();
-?>4
+?>
