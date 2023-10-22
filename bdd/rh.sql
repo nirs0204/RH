@@ -115,6 +115,7 @@ create table employe(
     idservice int  references service(idservice),
     idmanager int references employe(idemploye) default null,
     idtache int references tache(idtache),
+    dateEmbauche date default null,
     genre int,
     enfant int default 0,
     nom varchar(50),
@@ -141,12 +142,6 @@ create table essaicontrat(
     creation date
 );
 
-CREATE  TABLE fiche_employe ( 
-	id_fiche_employe serial PRIMARY KEY,
-	idemploye int REFERENCES employe(idemploye),
-	id_fiche_poste int REFERENCES fiche_poste(id_fiche_poste)
- );
- 
  
  CREATE  TABLE fiche_poste ( 
 	id_fiche_poste SERIAL PRIMARY KEY,
