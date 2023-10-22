@@ -1,6 +1,8 @@
 
 <?php if(!isset($emp)) $emp=array(); ?>
+<?php if(!isset($sup)) $sup=array(); ?>
 <?php if(!isset($fiche)) $fiche=array(); ?>
+<?php if(!isset($sub)) $sub=array(); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -110,6 +112,22 @@
                       <tr>
                           <th class="px-0 py-4">Compétences requises</th>
                           <td ><?php echo $f->competence_requise; ?></td>
+                      </tr>
+                      <tr>
+                          <th class="px-0 py-4">Ses supérieurs :</th>
+                          <td >
+                          <?php for($i =1;$i<count($sup);$i++) { ?>
+                                <p><?php echo $sup[$i]->nom; ?> <?php echo $sup[$i]->prenom_manager; ?>  - <?php echo $sup[$i]->nomtache; ?></p>
+                            <?php } ?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th class="px-0 py-4">Ses subordonnées</th>
+                          <td >
+                            <?php for($i =0;$i<count($sub);$i++) { ?>
+                                <p><?php echo $sub[$i]->nom; ?> <?php echo $sub[$i]->prenom; ?>  - <?php echo $sub[$i]->nomtache; ?></p>
+                            <?php } ?>
+                          </td>
                       </tr>
                       <?php endforeach; ?>
                   </tbody>
