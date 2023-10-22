@@ -108,7 +108,7 @@ create table coefCv(
     divorcee int
 );
 
-    create table employe(
+create table employe(
     idemploye serial primary key,
     idservice int  references service(idservice),
     idmanager int references employe(idemploye) default null,
@@ -118,14 +118,14 @@ create table coefCv(
     nom varchar(50),
     prenom varchar(100),
     dtn date,
-    cin varchar(12),
+    cin varchar(35),
     pere varchar(150),
     mere varchar(150),
     adresse varchar(150),
     contact varchar(15),
     embauche int,
     cnaps int
-    );
+);
 
 create table essaicontrat(
     idessaicontrat serial primary key,
@@ -134,7 +134,7 @@ create table essaicontrat(
     salaire decimal(11,2),
     lieutravail varchar(50),
     eventualite text,
-    debut date,
+    debut date, /*Date d'embauche*/
     fin date,
     creation date
 );
@@ -181,6 +181,32 @@ create table conge_demande(
     decision int,
     datedemande date
 );
+
+/* id_taux1 pour cnaps et id_taux2 pour irsa */
+create table fiche_paie (
+    idfichepaie serial primary key,
+    idemploye int references employe(idemploye),
+    id_contrat_travail int references contrat_travail(id_contrat_travail) null,
+    idessaicontrat int references essaicontrat(idessaicontrat) null,
+    datefichedp date,
+    id_irsa int references irsa(id_irsa) null,
+    id_cnaps int references cnaps(id_cnaps) null
+);
+
+/*Soit cnaps ou irsa*/
+create table irsa (
+    id_irsa serial primary key,
+    categorie varchar(35),
+    taux decimal(5,2)
+);
+
+create table cnaps (
+    id_cnaps serial primary key,
+    categorie varchar(35),
+    taux decimal(5,2)
+);
+
+
 
 ---------------------------INSERTION-------------------------
 
@@ -258,7 +284,7 @@ VALUES (3, 3, 'doctorat', '6 ans', 'etranger', 'Femme', 'Divorce', 'Malagasy', '
 
 
 INSERT INTO critere (idservice, idbesoin, diplome, experience, nationalite, sexe, Smatri, langue1, langue2, langue3, dateFin, debutEnt)
-VALUES (1, 5, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
+VALUES (1, 4, 'master', '8 ans', 'etranger', 'homme', 'mariee', '', 'anglais', 'français', '2023-11-15', '2023-11-25');
 
 
 -- CV (/20) {

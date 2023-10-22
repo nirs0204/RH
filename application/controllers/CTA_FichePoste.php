@@ -21,7 +21,7 @@ class CTA_FichePoste extends CI_Controller {
 			'page' => $page,
 			'data' => $data
 		);
-		$this->load->view('ADMIN/pages/template/basepage', $v);
+		$this->load->view('ADMIN/pages/template/basepage',$v);
 	}
 
     public function index(){
@@ -52,16 +52,21 @@ class CTA_FichePoste extends CI_Controller {
     }
 
     // Afficher une fiche de poste
-    public function displayFicheDePoste($id_service, $id_tache) {
-        $descriptionsPoste = $this->MDA_FichePoste->displayFicheDePoste($id_service, $id_tache);
+    /*
+    public function displayFicheDePostes() {
+         
     }
+    */
 
     // Display fiche de poste
     public function displayFichePostView()
     {
-        $this->viewer('displayficheposte');
+        $data['fichesP'] = $this->MDA_FichePoste->displayFicheDePostes();
+        $this->viewer('displayficheposte',$data);
     }
-    public function FicheDePoste_Employe(){
+
+    public function FicheDePoste_Employe()
+    {
         $tache = $_GET['idT'];
         $emp = $_GET['idE'];
         $service = $_SESSION['service'];
