@@ -37,6 +37,12 @@
             return $query->result();
         }
 
+        public function OneEssai2($idemploye) {
+
+            $result = $this->db->join('employe', 'employe.idemploye = essaicontrat.idemploye')->get_where('essaicontrat', $idemploye)->row();
+
+            return $result;
+        }
 
 
     }
