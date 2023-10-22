@@ -82,11 +82,13 @@ CREATE TABLE reponse (
     reponseVerif boolean
 );
 
+-- idadmin = idemploye, type = 1 (admin), type = 5 (employe)
 create table admin(
-    idadmin serial primary key,
+    idadmin int references employe(idemploye),
     pseudo varchar(150),
     mdp varchar(80),
-    idservice int references service(idservice)
+    idservice int references service(idservice),
+    type int
 );
 
 create table coefCv(
@@ -190,9 +192,9 @@ INSERT INTO client (email, mdp) VALUES ('lova@example.com', '456');
 INSERT INTO client (email, mdp) VALUES ('rado@example.com', '789');
 
 -- Insertion dans la table "admin"
-INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Paul', '123', 1);
-INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Selena', '456', 2);
-INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Gary', '789', 3);
+INSERT INTO admin (idadmin, pseudo, mdp, idservice, type) VALUES (1, 'Paul', '123', 1, 1);
+INSERT INTO admin (idadmin, pseudo, mdp, idservice, type) VALUES (2, 'Selena', '456', 2, 5);
+-- INSERT INTO admin (idadmin, pseudo, mdp, idservice, type) VALUES ('Gary', '789', 3);
 
 
 -- Insertion dans la table "service"
