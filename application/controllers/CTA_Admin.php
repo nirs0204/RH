@@ -23,7 +23,8 @@ class CTA_Admin extends CI_Controller
     public function login() {
         $pseudo = $this->input->post('pseudo');
         $mdp = $this->input->post('mdp');
-        $admin = $this->MDA_Admin->verify($pseudo, $mdp);
+        $admin = $this->MDA_Admin->verifyAdmin($pseudo, $mdp);
+        $employee = $this->MDA_Admin->verifyEmployee($pseudo, $mdp);
 
         if ($admin){
             $idadmin = $this->MDA_Admin->getIdAdmin($pseudo, $mdp);
@@ -31,6 +32,14 @@ class CTA_Admin extends CI_Controller
             $this->session->set_userdata('service', $idservice);
             $this->session->set_userdata('admin', $idadmin);
             redirect('CTA_Besoin/need_view');
+            return;
+        }
+        elseif ($employee){
+            $idadmin = $this->MDA_Admin->getIdAdmin($pseudo, $mdp);
+            $idservice = $this->MDA_Admin->getIdServiceAdmin($idadmin);
+            $this->session->set_userdata('service', $idservice);
+            $this->session->set_userdata('admin', $idadmin);
+            redirect('CTA_Conge/');
             return;
         }
         else{

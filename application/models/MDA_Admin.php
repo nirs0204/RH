@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MDA_Admin extends CI_Model
 {
 //    enregistrer un admin (create)
-    function saveAdmin($pseudo, $mdp, $idservice){
-        $sql = "insert into admin (pseudo,mdp,idservice) values ( %s, %s, %s) ";
-        $sql = sprintf($sql,$this->db->escape($pseudo),$this->db->escape($mdp),$this->db->escape($idservice));
+    function saveAdmin($pseudo, $mdp, $idservice, $type){
+        $sql = "insert into admin (pseudo,mdp,idservice,type) values ( %s, %s, %s, %s) ";
+        $sql = sprintf($sql,$this->db->escape($pseudo),$this->db->escape($mdp),$this->db->escape($idservice), $this->db->escape($type));
         $this->db->query($sql);
 
         $insert_id = $this->db->insert_id();
@@ -77,8 +77,14 @@ class MDA_Admin extends CI_Model
     }
 
 //  login
-    public function verify($pseudo, $password) {
-        $query = $this->db->get_where('admin', array('pseudo' => $pseudo, 'mdp' => $password));
+    public function verifyAdmin($pseudo, $password) {
+        $query = $this->db->get_where('admin', array('pseudo' => $pseudo, 'mdp' => $password, 'type' => 1));
+        $admin = $query->row(0, 'MDA_Admin');
+        return $admin;
+    }
+
+    public function verifyEmployee($pseudo, $password) {
+        $query = $this->db->get_where('admin', array('pseudo' => $pseudo, 'mdp' => $password, 'type' => 5));
         $admin = $query->row(0, 'MDA_Admin');
         return $admin;
     }

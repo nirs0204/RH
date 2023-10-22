@@ -25,7 +25,7 @@ create table cv (
     typee int
 );
 
-ALTER TABLE cv add column typeE int;
+
 
 CREATE table noteClient (
     idNoteClient serial PRIMARY KEY,
@@ -82,11 +82,13 @@ CREATE TABLE reponse (
     reponseVerif boolean
 );
 
+-- idadmin = idemploye, type = 1 (admin), type = 5 (employe)
 create table admin(
-    idadmin serial primary key,
+    idadmin int references employe(idemploye),
     pseudo varchar(150),
     mdp varchar(80),
-    idservice int references service(idservice)
+    idservice int references service(idservice),
+    type int
 );
 
 create table coefCv(
@@ -113,6 +115,7 @@ create table employe(
     idservice int  references service(idservice),
     idmanager int references employe(idemploye) default null,
     idtache int references tache(idtache),
+    dateEmbauche date default null,
     genre int,
     enfant int default 0,
     nom varchar(50),
@@ -139,12 +142,6 @@ create table essaicontrat(
     creation date
 );
 
-CREATE  TABLE fiche_employe ( 
-	id_fiche_employe serial PRIMARY KEY,
-	idemploye int REFERENCES employe(idemploye),
-	id_fiche_poste int REFERENCES fiche_poste(id_fiche_poste)
- );
- 
  
  CREATE  TABLE fiche_poste ( 
 	id_fiche_poste SERIAL PRIMARY KEY,
@@ -192,7 +189,8 @@ create table contrat_travail(
 
 create table conge(
     idemploye int references admin(idadmin),
-    resteconge int
+    resteconge int,
+    dateinsert date
 );
 
 create table conge_demande(
@@ -238,9 +236,9 @@ INSERT INTO client (email, mdp) VALUES ('lova@example.com', '456');
 INSERT INTO client (email, mdp) VALUES ('rado@example.com', '789');
 
 -- Insertion dans la table "admin"
-INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Paul', '123', 1);
-INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Selena', '456', 2);
-INSERT INTO admin (pseudo, mdp, idservice) VALUES ('Gary', '789', 3);
+INSERT INTO admin (idadmin, pseudo, mdp, idservice, type) VALUES (1, 'Paul', '123', 1, 1);
+INSERT INTO admin (idadmin, pseudo, mdp, idservice, type) VALUES (2, 'Selena', '456', 2, 5);
+-- INSERT INTO admin (idadmin, pseudo, mdp, idservice, type) VALUES ('Gary', '789', 3);
 
 
 -- Insertion dans la table "service"
@@ -265,10 +263,10 @@ INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
 
  
 -- Insertion d'employe
-INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, null, 1, 0, 3, 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 5, 1);
-INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, 1, 4, 3, 2, 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 5, 1);
+INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, dateEmbauche, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, null, 1, 0, 3,'2021-03-10', 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 5, 1);
+INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, dateEmbauche, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, 1, 4, 3, 2,'2022-07-10', 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 5, 1);
 
 -- Inserion de fiche de poste :
 INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
