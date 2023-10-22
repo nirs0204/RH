@@ -702,6 +702,9 @@ SELECT idemploye, nom, prenom, idtache
 FROM employe
 WHERE idmanager = 1;
 
+SELECT * FROM conge c 
+JOIN employe e ON e.idemploye = c.idemploye;
+
 
 
 Select *  from client;
