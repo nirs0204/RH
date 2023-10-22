@@ -168,6 +168,28 @@ create table contrat_travail(
     creation date
 );
 
+/*
+
+    create table contrat_travail(
+        id_contrat_travail serial primary key,
+        idemploye int references employe(idemploye),
+        idcategorie_contrat int references categorie_contrat(idcategorie_contrat),
+        debut date,
+        fin date,
+        salaire decimal(11,2),
+        lieutravail varchar(100),
+        conditiontravail int,
+        categorie varchar(150),
+        creation date
+    );
+
+    create table categorie_contrat (
+        idcategorie_contrat serial primary key,
+        nomCategorie varchar(50)
+    );
+
+*/
+
 create table conge(
     idemploye int references admin(idadmin),
     resteconge int
@@ -182,7 +204,6 @@ create table conge_demande(
     datedemande date
 );
 
-/* id_taux1 pour cnaps et id_taux2 pour irsa */
 create table fiche_paie (
     idfichepaie serial primary key,
     idemploye int references employe(idemploye),
@@ -193,7 +214,6 @@ create table fiche_paie (
     id_cnaps int references cnaps(id_cnaps) null
 );
 
-/*Soit cnaps ou irsa*/
 create table irsa (
     id_irsa serial primary key,
     categorie varchar(35),

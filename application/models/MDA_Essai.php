@@ -28,16 +28,17 @@
             $this->db->query($sql);
         }
         
+        public function OneEssai($idemploye) {
+            $this->db->select('*');
+            $this->db->from('essaicontrat ec');
+            $this->db->join('employe e', 'e.idemploye = ec.idemploye');
+            $this->db->where('ec.idemploye', $idemploye);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+
+
     }
 
-    public function OneEssai($idemploye) {
-        $this->db->select('*');
-        $this->db->from('essaicontrat ec');
-        $this->db->join('employe e', 'e.idemploye = ec.idemploye');
-        $this->db->where('ec.idemploye', $idemploye);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    
-}
 ?>
