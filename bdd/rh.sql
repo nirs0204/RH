@@ -25,7 +25,7 @@ create table cv (
     typee int
 );
 
-ALTER TABLE cv add column typeE int;
+
 
 CREATE table noteClient (
     idNoteClient serial PRIMARY KEY,
@@ -165,7 +165,8 @@ create table contrat_travail(
 
 create table conge(
     idemploye int references admin(idadmin),
-    resteconge int
+    resteconge int,
+    dateinsert date
 );
 
 create table conge_demande(
@@ -212,10 +213,10 @@ INSERT INTO besoin (idtache,   volumetache, volumehoraire) VALUES (4, 300, 8);
 
  
 -- Insertion d'employe
-INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, null, 1, 0, 3, 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 5, 1);
-INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
-VALUES (1, 1, 4, 3, 2, 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 5, 1);
+INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, dateEmbauche, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, null, 1, 0, 3,'2021-03-10', 'Doe', 'John', '1990-05-15', '123456789012', 'John Doe Sr.', 'Jane Doe', '123 Rue A', '1234567890', 5, 1);
+INSERT INTO employe(idservice, idmanager, idtache ,  enfant , genre, dateEmbauche, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, 1, 4, 3, 2,'2022-07-10', 'Smith', 'Alice', '1985-10-20', '987654321012', 'Bob Smith', 'Mary Smith', '456 Rue B', '9876543210', 5, 1);
 
 -- Inserion de fiche de poste :
 INSERT INTO fiche_poste (id_service, id_tache, mission, responsabilite, objectif, competence_requise) 
