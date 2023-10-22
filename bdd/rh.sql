@@ -187,16 +187,24 @@ create table fiche_paie (
     id_contrat_travail int references contrat_travail(id_contrat_travail) null,
     idessaicontrat int references essaicontrat(idessaicontrat) null,
     datefichedp date,
-    id_taux1 int references taux(id_taux) null,
-    id_taux2 int references taux(id_taux) null
+    id_irsa int references irsa(id_irsa) null,
+    id_cnaps int references cnaps(id_cnaps) null
 );
 
 /*Soit cnaps ou irsa*/
-create table taux(
-    id_taux serial PRIMARY KEY,
-    taux decimal(11,2),
-    nom varchar(25)
+create table irsa (
+    id_irsa serial primary key,
+    categorie varchar(35),
+    taux decimal(5,2)
 );
+
+create table cnaps (
+    id_cnaps serial primary key,
+    categorie varchar(35),
+    taux decimal(5,2)
+);
+
+
 
 ---------------------------INSERTION-------------------------
 
