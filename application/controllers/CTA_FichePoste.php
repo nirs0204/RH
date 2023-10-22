@@ -72,6 +72,8 @@ class CTA_FichePoste extends CI_Controller {
         $service = $_SESSION['service'];
         $data['fiche'] = $this->MDA_FichePoste->displayFicheDePoste($service,$tache);
         $data['emp'] = $this->MDA_Employe->getOneEmployee($emp);
+        $data['sup'] = $this->MDA_Employe->getSuperieurs($emp);
+        $data['sub'] = $this->MDA_Employe->getSubordonnees($emp);
         $this->viewer('/displayficheposte',$data);
     }
 }

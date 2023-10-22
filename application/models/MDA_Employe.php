@@ -6,7 +6,6 @@ class MDA_Employe extends CI_Model
     function saveEmployee($genre,$tache ,$enfant,$manager,$nom,$prenom,$dtn, $cin, $pere, $mere,$adresse, $contact, $embauche, $cnaps,$service){
         $sql = "insert into employe (genre, idtache , enfant, idmanager,nom,prenom,dtn, cin, pere, mere,adresse,contact, embauche, cnaps,idservice) values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ";
         $sql = sprintf($sql,$this->db->escape($genre),$this->db->escape($tache),$this->db->escape($enfant),$this->db->escape($manager),$this->db->escape($nom),$this->db->escape($prenom),$this->db->escape($dtn),$this->db->escape($cin),$this->db->escape($pere),$this->db->escape($mere),$this->db->escape($adresse),$this->db->escape($contact),$this->db->escape($embauche),$this->db->escape($cnaps),$this->db->escape($service));
-        echo $sql;
         $this->db->query($sql);
 
         $insert_id = $this->db->insert_id();
@@ -36,7 +35,7 @@ class MDA_Employe extends CI_Model
 
 //    mise a jour de embauche (update)
     function updateEmployeeEmbauche($employeeId, $type) {
-        $sql = "UPDATE employe SET embauche = %s WHERE id = %s";
+        $sql = "UPDATE employe SET embauche = %s WHERE idemploye = %s";
         $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($employeeId));
         $this->db->query($sql);
     }
@@ -74,5 +73,36 @@ class MDA_Employe extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    //GET superieur 
+    public function getSuperieurs($emp) {
+        $query = "
+        WITH RECURSIVE superior_hierarchy AS (
+            SELECT e1.idemploye, e1.nom, e1.idmanager, e1.idtache, t.nomTache as nomtache, e1.prenom as prenom_manager
+            FROM employe e1
+            LEFT JOIN tache t ON e1.idtache = t.idtache
+            WHERE e1.idemploye = $emp
+            UNION
+            SELECT e2.idemploye, e2.nom, e2.idmanager, e2.idtache, t.nomTache as nomtache, e2.prenom as prenom_manager
+            FROM employe e2
+            JOIN superior_hierarchy sh ON e2.idemploye = sh.idmanager
+            LEFT JOIN tache t ON e2.idtache = t.idtache
+        )
+        SELECT * FROM superior_hierarchy";
+        
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+
+    //GET subordonnee
+    public function getSubordonnees($idmanager) {
+        $this->db->select('*');
+        $this->db->from('employe e');
+        $this->db->join('tache t', 'e.idtache = t.idtache');
+        $this->db->where('e.idmanager', $idmanager);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 }
 ?>

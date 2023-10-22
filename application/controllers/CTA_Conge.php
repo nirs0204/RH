@@ -21,10 +21,6 @@ class CTA_Conge extends CI_Controller
         $this->viewer('/conge', array());
     }
 
-    public function list_leave_request_view(){
-        $this->viewer('/list-demande-conge', array());
-    }
-
     public function leave_request_submit(){
         $idemploye = $_SESSION['admin'];
         $type = $this->input->post('type');
@@ -37,28 +33,35 @@ class CTA_Conge extends CI_Controller
 //    Listes des demandes de congé
     public function list_leave_request(){
         date_default_timezone_set('Europe/Moscow');
-        $aujourd_hui = new DateTime();
-        $aujourd_hui_formatte = $aujourd_hui->format('Y-m-d');
         $data['demandeDisponible'] = array();
         $tab = $this->MDA_DemandeConge->getLeaveRequestBy1();
         foreach ($tab as $item) {
             // Convertir la date de la demande en objet DateTime
             $date_demande = new DateTime($item->datedemande);
-
+            $date_depart = new DateTime($item->datedebut);
+            $date_depart_formatte = $date_depart->format('Y-m-d');
             // Ajouter 15 jours à la date actuelle
-            $limite_date = clone $aujourd_hui;
-            $limite_date = $aujourd_hui->modify('+15 days');
-
+            $limite_date = clone $date_demande;
+            $limite_date -> modify('+15 days');
             // Comparer la date de la demande avec la limite
-            if ($date_demande >= $limite_date) {
+            if ($limite_date >= $date_depart_formatte) {
                 // Ajouter la demande au tableau
                 $data['demandeDisponible'][] = $item;
             }
         }
         $this->viewer('/list-demande-conge', $data);
-
     }
 
+    public function reject_leave_request(){
+        $idemploye = $this->input->get('idemploye');
+        $this->MDA_DemandeConge->rejectLeaveRequest($idemploye);
+        redirect('CTA_Conge/list_leave_request');
+    }
 
+    public function approve_leave_request(){
+        $idemploye = $this->input->get('idemploye');
+        $this->MDA_DemandeConge->approveLeaveRequest($idemploye);
+        redirect('CTA_Conge/list_leave_request');
+    }
 }
 ?>
