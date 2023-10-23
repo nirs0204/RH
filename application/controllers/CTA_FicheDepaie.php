@@ -54,9 +54,7 @@
                 //$finValue->setTime(0, 0, 0);
                 echo $finValue;
 
-                
-
-                if ($date >= $finValue && $date <= $finValue) 
+                if ($date < $finValue) 
                 {
                     $data['contratessai'] = $this->MDA_Essai->OneEssai($idemploye);
 
