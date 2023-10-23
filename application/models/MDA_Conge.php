@@ -4,7 +4,7 @@ class MDA_Conge extends CI_Model
 {
     //    enregistrer un congé (create)
     public function saveLeave($idemploye, $reste){
-        $sql = "insert into conge (idemploye, resteconge) values (%s, %s) ";
+        $sql = "insert into conge (idemploye, resteconge,dateinsert) values (%s, %s , current_date) ";
         $sql = sprintf($sql,$this->db->escape($idemploye),$this->db->escape($reste));
         $this->db->query($sql);
     }
@@ -18,18 +18,23 @@ class MDA_Conge extends CI_Model
 
     //  update fucntion max
     function updateMax($employeeId,$reste) {
-        $date = date('Y-m-d');
-        $sql = "UPDATE congeSET dateinsert=%s , resteconge = resteconge + %s WHERE idemploye = %s";
-        $sql = sprintf($sql, $this->db->escape($date), $this->db->escape($reste), $this->db->escape($employeeId));
+        $sql = "UPDATE conge SET dateinsert= current_date , resteconge = resteconge + %s WHERE idemploye = %s";
+        $sql = sprintf($sql, $this->db->escape($reste), $this->db->escape($employeeId));
         $this->db->query($sql);
     }
 
     //  update fucntion minus
     function updateMin($employeeId,$reste) {
-        $date = date('Y-m-d');
-        $sql = "UPDATE congeSET dateinsert=%s , resteconge = resteconge - %s WHERE idemploye = %s";
-        $sql = sprintf($sql, $this->db->escape($date), $this->db->escape($reste), $this->db->escape($employeeId));
+        $sql = "UPDATE conge SET dateinsert= current_date, resteconge = resteconge - %s WHERE idemploye = %s";
+        $sql = sprintf($sql,$this->db->escape($reste), $this->db->escape($employeeId));
         $this->db->query($sql);
+    }
+
+    // conge if exitste
+   function getConge($emp){
+        $this->db->where('idemploye', $emp);
+        $query = $this->db->get('conge'); 
+        return $query->row(); 
     }
 
     // select conge tout le monde 

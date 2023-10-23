@@ -704,8 +704,16 @@ SELECT idemploye, nom, prenom, idtache
 FROM employe
 WHERE idmanager = 1;
 
-SELECT * FROM conge c 
+SELECT c.* FROM conge c 
 JOIN employe e ON e.idemploye = c.idemploye;
+
+SELECT e.*
+            FROM employe e
+            LEFT JOIN conge c ON e.idemploye = c.idemploye
+            LEFT JOIN tache t ON e.idtache = t.idtache
+            LEFT JOIN service s ON t.idservice = s.idservice
+            WHERE e.dateEmbauche <= CURRENT_DATE - INTERVAL '1 year'
+            AND (c.dateinsert IS NULL OR EXTRACT(YEAR FROM c.dateinsert) < EXTRACT(YEAR FROM CURRENT_DATE))
 
 
 
