@@ -107,14 +107,15 @@ class MDA_Employe extends CI_Model
     }
     //liste employe plus d'un an 
     public function getEmployesPlusUnAn() {
-        $this->db->select('employe.*');
-        $this->db->from('employe');
-        $this->db->join('tache t', 'employe.idtache = t.idtache');
-        $this->db->where('dateEmbauche <= CURRENT_DATE - INTERVAL "1 year"');
-        
-        $query = $this->db->get();
-        return $query->result();
-    }    
+        $query = "SELECT e.*
+                FROM employe e
+                LEFT JOIN conge c ON e.idemploye = c.idemploye
+                WHERE e.dateEmbauche <= CURRENT_DATE - INTERVAL '1 year'
+                AND (c.dateinsert IS NULL OR EXTRACT(YEAR FROM c.dateinsert) < EXTRACT(YEAR FROM CURRENT_DATE))";
+    
+        $result = $this->db->query($query);
+        return $result->result();
+    }
     
 }
 ?>

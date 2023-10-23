@@ -15,6 +15,32 @@ class MDA_Conge extends CI_Model
         $sql = sprintf($sql,$this->db->escape($reste),$this->db->escape($id));
         $this->db->query($sql);
     }
+
+    //  update fucntion max
+    function updateMax($employeeId,$reste) {
+        $date = date('Y-m-d');
+        $sql = "UPDATE congeSET dateinsert=%s , resteconge = resteconge + %s WHERE idemploye = %s";
+        $sql = sprintf($sql, $this->db->escape($date), $this->db->escape($reste), $this->db->escape($employeeId));
+        $this->db->query($sql);
+    }
+
+    //  update fucntion minus
+    function updateMin($employeeId,$reste) {
+        $date = date('Y-m-d');
+        $sql = "UPDATE congeSET dateinsert=%s , resteconge = resteconge - %s WHERE idemploye = %s";
+        $sql = sprintf($sql, $this->db->escape($date), $this->db->escape($reste), $this->db->escape($employeeId));
+        $this->db->query($sql);
+    }
+
+    // select conge tout le monde 
+    function AllConge($service){
+        $this->db->select('*');
+        $this->db->from('conge c');
+        $this->db->join('employe e', 'e.idemploye = c.idemploye');
+        $this->db->where('e.idservice', $service);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 
 ?>
