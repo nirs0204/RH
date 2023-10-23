@@ -194,7 +194,7 @@ create table conge(
 );
 
 create table conge_demande(
-    idemploye int references admin(idadmin),
+    idemploye int references employe(idemploye),
     type varchar(50),
     datedebut timestamp,
     nbjours int,

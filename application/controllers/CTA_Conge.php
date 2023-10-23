@@ -60,7 +60,9 @@ class CTA_Conge extends CI_Controller
 
     public function approve_leave_request(){
         $idemploye = $this->input->get('idemploye');
-        $this->MDA_DemandeConge->approveLeaveRequest($idemploye);
+        $this->MDA_DemandeConge->approveLeaveRequest($idemploye);   
+        $demande = $this->MDA_DemandeConge->getDemandeConge($idemploye);
+        $this->MDA_Conge->updateMin($idemploye,$demande->nbjours);
         redirect('CTA_Conge/list_leave_request');
     }
 }
