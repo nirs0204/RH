@@ -81,5 +81,32 @@ class CTA_Conge extends CI_Controller
         }
         redirect('CTA_Conge/list_leave_request');
     }
+
+    public function encours(){
+        $data['encours'] =  $this->MDA_DemandeConge->getCongeencours();
+        $this->viewer('/congeActuel', $data);
+    }
+    public function arrivee(){
+        $idemploye = $this->input->get('idemploye');
+        $iddemande = $this->input->get('demande');
+        $fin =  $this->input->get('fin');
+        $conge = $this->MDA_Conge->getConge($idemploye);
+        $demande = $this->MDA_DemandeConge->getDemandeConge($iddemande);
+        date_default_timezone_set('Indian/Antananarivo'); 
+        $date = date('Y-m-d');
+
+        $tf = strtotime($fin);
+        $td = strtotime($date);
+        $diff= floor(($td - $tf) / (60 * 60 * 24));
+        $value=$demande->nbjours - $diff;
+        if($value >= 0){
+            $this->MDA_Conge->updateMin($idemploye,$demande->nbjours);
+            $this->MDA_DemandeConge->updateDemande($idemploye, $iddemande,8);   
+            echo  'nb jours  = '.$diff;
+        }else{
+            echo  'moins salaire = '.$diff;
+        }
+       
+    }
 }
 ?>

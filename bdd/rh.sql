@@ -716,6 +716,17 @@ SELECT e.*
             WHERE e.dateEmbauche <= CURRENT_DATE - INTERVAL '1 year'
             AND (c.dateinsert IS NULL OR EXTRACT(YEAR FROM c.dateinsert) < EXTRACT(YEAR FROM CURRENT_DATE))
 
+SELECT *
+FROM conge_demande c
+JOIN employe e ON e.idemploye = c.idemploye
+WHERE c.decision = 2
+AND (c.datedebut + INTERVAL '1 DAY' * c.nbjours) > CURRENT_DATE
+AND EXTRACT(YEAR FROM c.datedebut) = EXTRACT(YEAR FROM CURRENT_DATE);
+
+
+SELECT *
+FROM conge_demande
+WHERE decision  =2 AND EXTRACT(YEAR FROM datedebut) = EXTRACT(YEAR FROM CURRENT_DATE);
 
 
 Select *  from client;

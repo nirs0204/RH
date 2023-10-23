@@ -26,6 +26,15 @@ INSERT INTO noteClient (idbesoin, noteClient, idclient) VALUES
 (1, 50, 2);
 
 ---ADMIN
+---------------employe
+---------------------------SERVICE 1
+INSERT INTO employe(idservice, idmanager, idtache , enfant , genre, dateEmbauche, nom, prenom, dtn, cin, pere, mere, adresse, contact, embauche, cnaps) 
+VALUES (1, null, 2, 1, 3, '2021-03-15', 'Andrianjak', 'John', '2020-05-15', '123456789012', 'Andrianjaka Antso', 'Raharilanto Miranto', '123 Rue A', '0342564738', 5, 1),
+       (1, 1, 4, 0, 3, '2021-04-16', 'Rovaniaina', 'Bao', '2021-05-15', '098765432112', 'Rovaniaina Harley', 'Sarikaniaina Miora', '123 Rue A', '032947538', 5, 1),
+       (1, 2, 3, 1, 2, '2021-07-13', 'Balita', 'Arena', '2020-05-15', '678905432165', 'Balita Sitraka', 'Rahavahatriniaina Ruth', '123 Rue A', '033841383', 5, 1),
+       (1, 2, 3, 1, 3, '2021-11-29', 'Ratsarafaritra', 'Rindra', '2022-05-15', '246801357924', 'Ratsarafaritra koto', 'Tanteliniaina Sarah', '123 Rue A', '0328745667', 5, 1),
+       (1, 2, 3, 3, 2, '2022-02-27', 'Rakotoson', 'Alice', '2022-10-20', '147025814701', 'Rakotoson Hajo', 'Rahaja Mirana', '456 Rue B', '034251718', 5, 1);
+
 ---------------service
 INSERT INTO service (nom) VALUES ('Informatique');
 INSERT INTO service (nom) VALUES ('Securite');
@@ -72,13 +81,16 @@ INSERT INTO coefCv
 (idtache, doctorat, master, licence, bacc, bepc, cepe, mlg, frc, ang,
  homme, femme, autre, mariee, celibat, divorcee)
 VALUES
+    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 3, 2, 1, 5, 1, 2),
+    (2, 5, 3, 2, 2, 1, 0, 3, 2, 5, 3, 2, 1, 1, 5, 2),
+    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 3, 2, 1, 5, 3, 2),
+    (1, 5, 4, 3, 2, 1, 0, 5, 1, 2, 3, 2, 1, 5, 1, 2),
+    (2, 5, 3, 2, 2, 1, 0, 5, 2, 31, 3, 2, 1, 1, 5, 2),
+    (3, 5, 3, 3, 2, 1, 0, 5, 5, 2, 3, 2, 1, 2, 5, 1),
+    (1, 5, 4, 3, 2, 1, 0, 3, 5, 3, 3, 2, 1, 2, 1, 1),
+    (2, 5, 3, 2, 2, 1, 0, 3, 2, 5, 3, 2, 1, 1, 5, 2),
+    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 3, 2, 1, 5, 3, 2);
+    
+---------------
 
-    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 1, 2, 5, 1, 2),
-    (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 1, 2, 1, 5, 2),
-    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 1, 1, 5, 3, 2),
-    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 1, 2, 5, 1, 2),
-    (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 1, 2, 1, 5, 2),
-    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 1, 1, 5, 3, 2),
-    (1, 5, 4, 3, 2, 1, 0, 5, 1, 3, 2, 1, 2, 5, 1, 2),
-    (2, 5, 3, 2, 2, 1, 0, 3, 2, 3, 2, 1, 2, 1, 5, 2),
-    (3, 5, 3, 3, 2, 1, 0, 3, 2, 3, 2, 1, 1, 5, 3, 2);
+

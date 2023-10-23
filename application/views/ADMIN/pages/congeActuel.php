@@ -71,19 +71,16 @@
                     <tr
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                        <th class="px-4 py-3">Employe</th>
-                        <th class="px-4 py-3">Type</th>
-                        <th class="px-4 py-3">Depart</th>
+                    <th class="px-4 py-3">Employe</th>
+                        <th class="px-4 py-3">Date debut</th>
                         <th class="px-4 py-3">Nombre de jours</th>
-                        <th class="px-4 py-3">Demande</th>
-                        <th class="px-4 py-3"></th>
-                        <th class="px-4 py-3"></th>
+                        <th class="px-4 py-3">Arrivee</th>
                     </tr>
                     </thead>
                     <tbody
                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                     >
-                    <?php foreach ($demandeDisponible as $demande) { ?>
+                    <?php foreach ($encours as $ec) { ?>
                     <tr class="text-gray-700 dark:text-gray-400">
                         <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
@@ -103,39 +100,22 @@
                                     ></div>
                                 </div>
                                 <div>
-                                    <p class="font-semibold"><?php echo isset($demande->pseudo) ? $demande->pseudo : '';?></p>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                                        10x Developer
-                                    </p>
+                                    <p class="font-semibold"><?php echo $ec->nom; ?><?php echo $ec->prenom; ?></p>
                                 </div>
                             </div>
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            <?php echo isset($demande->type) ? $demande->type : '';?>
+                                <?php echo $ec->datedebut; ?>
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            <?php echo isset($demande->datedebut) ? $demande->datedebut : '';?>
-                        </td>
-                        <td class="px-4 py-3 text-sm">
-                            <?php echo isset($demande->nbjours) ? $demande->nbjours : 0;?>
-                        </td>
-                        <td class="px-4 py-3 text-sm">
-                            <?php echo isset($demande->datedemande) ? $demande->datedemande : '';?>
+                                <?php echo $ec->datefin; ?>
                         </td>
                         <td class="px-4 py-3 text-xs">
                         <a
                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                            href="<?php echo site_url('CTA_Conge/approve_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>&&iddemande=<?php echo isset($demande->idcongedemande) ? $demande->idcongedemande : '';?>"
+                            href="<?php echo site_url('CTA_Conge/arrivee');?>?idemploye=<?php echo $ec->idemploye; ?>&&fin=<?php echo $ec->datefin; ?>&&demande=<?php echo $ec->idcongedemande; ?>"
                         >
-                          Approved
-                        </a>
-                        </td>
-                        <td class="px-4 py-3 text-xs">
-                        <a
-                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
-                            href="<?php echo site_url('CTA_Conge/reject_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>&&iddemande=<?php echo isset($demande->idcongedemande) ? $demande->idcongedemande : '';?>"
-                        >
-                          Rejected
+                          Arrivée
                         </a>
                         </td>
                     </tr>
