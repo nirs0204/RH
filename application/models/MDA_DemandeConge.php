@@ -10,16 +10,16 @@ class MDA_DemandeConge extends CI_Model
     }
 
     //    valider le demande de conge (update)
-    public function approveLeaveRequest($id){
-        $sql = "update conge_demande set decision = 2  where idemploye = %s";
-        $sql = sprintf($sql,$this->db->escape($id));
+    public function approveLeaveRequest($idemploye, $iddemande){
+        $sql = "update conge_demande set decision = 2  where idemploye = %s and idcongedemande = %s";
+        $sql = sprintf($sql,$this->db->escape($idemploye),$this->db->escape($iddemande));
         $this->db->query($sql);
     }
 
     //    refuser le demande de conge (update)
-    public function rejectLeaveRequest($id){
-        $sql = "update conge_demande set decision = 5  where idemploye = %s";
-        $sql = sprintf($sql,$this->db->escape($id));
+    public function rejectLeaveRequest($id, $iddemande){
+        $sql = "update conge_demande set decision = 5  where idemploye = %s and idcongedemande = %s";
+        $sql = sprintf($sql,$this->db->escape($id),$this->db->escape($iddemande));
         $this->db->query($sql);
     }
 
@@ -32,12 +32,13 @@ class MDA_DemandeConge extends CI_Model
 
 //    Demande de conge ou decision = 1
     public function getLeaveRequestBy1(){
-        $this->db->select('cd.idemploye, e.pseudo, cd.type, cd.datedebut, cd.nbjours, cd.datedemande');
+        $this->db->select('cd.idcongedemande, cd.idemploye, e.pseudo, cd.type, cd.datedebut, cd.nbjours, cd.datedemande');
         $this->db->from('conge_demande cd');
         $this->db->join('admin e', 'cd.idemploye = e.idadmin');
         $this->db->where('cd.decision', 1);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
+            echo $this->db->last_query();
             return $query->result();
         } else {
             return array();
