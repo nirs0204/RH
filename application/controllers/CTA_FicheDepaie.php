@@ -33,6 +33,7 @@
 
         public function create_formulaire_fichedepaie()
         {
+            $debutValue = '';
             $finValue = '';
             $idemploye= $this->input->get('idemploye');
             $date= $this->input->get('date');
@@ -48,22 +49,29 @@
 
             if ($data['contratessai'] != null) 
             {
+                $debutValue = $data['contratessai'][0]->debut;
                 $finValue = $data['contratessai'][0]->fin;
                 //$finValue->setTime(0, 0, 0);
                 echo $finValue;
 
-                if ($date < $finValue) 
+                $debutCtrav = $data['contrattrav'][0]->debut;
+                $finCtrav = $data['contrattrav'][0]->fin;
+
+                if ($date >= $finValue && $date <= $finValue) 
                 {
                     $data['contratessai'] = $this->MDA_Essai->OneEssai($idemploye);
 
                     $salaireDebase = $data['contratessai'][0]->salaire;
                    
                 } 
-                elseif ($date > $finValue) 
+                elseif ($date > $finValue)
                 {
-                    $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
-                    $salaireDebase = $data['contrattrav'][0]->salaire;
-                    
+                    if($debutCtrav <= $date && $date <= $finCtrav) 
+                    {
+                        $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
+                        $salaireDebase = $data['contrattrav'][0]->salaire;
+                        
+                    }
                 }
             } 
             
