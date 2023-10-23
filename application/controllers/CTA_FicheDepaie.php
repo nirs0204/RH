@@ -54,8 +54,7 @@
                 //$finValue->setTime(0, 0, 0);
                 echo $finValue;
 
-                $debutCtrav = $data['contrattrav'][0]->debut;
-                $finCtrav = $data['contrattrav'][0]->fin;
+                
 
                 if ($date >= $finValue && $date <= $finValue) 
                 {
@@ -64,14 +63,11 @@
                     $salaireDebase = $data['contratessai'][0]->salaire;
                    
                 } 
-                elseif ($date > $finValue)
+                elseif ($date > $finValue) 
                 {
-                    if($debutCtrav <= $date && $date <= $finCtrav) 
-                    {
-                        $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
-                        $salaireDebase = $data['contrattrav'][0]->salaire;
-                        
-                    }
+                    $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
+                    $salaireDebase = $data['contrattrav'][0]->salaire;
+                    
                 }
             } 
             
