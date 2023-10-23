@@ -16,6 +16,12 @@ class MDA_DemandeConge extends CI_Model
         $this->db->query($sql);
     }
 
+    public function updateDemande($idemploye, $iddemande,$type){
+        $sql = "update conge_demande set decision = %s  where idemploye = %s and idcongedemande = %s";
+        $sql = sprintf($sql, $this->db->escape($type), $this->db->escape($idemploye),$this->db->escape($iddemande));
+        $this->db->query($sql);
+    }
+
     //    refuser le demande de conge (update)
     public function rejectLeaveRequest($id, $iddemande){
         $sql = "update conge_demande set decision = 5  where idemploye = %s and idcongedemande = %s";
@@ -48,5 +54,15 @@ class MDA_DemandeConge extends CI_Model
         $query = $this->db->get('conge_demande'); 
         return $query->row(); 
     }
+    public function getCongeencours() {
+        $query = "SELECT * , (c.datedebut + INTERVAL '1 DAY' * c.nbjours) as datefin
+        FROM conge_demande c
+        JOIN employe e ON e.idemploye = c.idemploye
+        WHERE c.decision = 2 ";
+    
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+    
 }
 ?>
