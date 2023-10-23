@@ -23,7 +23,7 @@ class CTA_Conge extends CI_Controller
         {
             $data['error'] = $this->input->get('error');
         }
-        $this->viewer('/conge', $data);
+        $this->load->view('ADMIN/pages/conge',$data);
     }
 
     public function leave_request_submit(){
