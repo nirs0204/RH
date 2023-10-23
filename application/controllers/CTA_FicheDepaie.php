@@ -33,6 +33,7 @@
 
         public function create_formulaire_fichedepaie()
         {
+            $debutValue = '';
             $finValue = '';
             $idemploye= $this->input->get('idemploye');
             $date= $this->input->get('date');
@@ -48,6 +49,7 @@
 
             if ($data['contratessai'] != null) 
             {
+                $debutValue = $data['contratessai'][0]->debut;
                 $finValue = $data['contratessai'][0]->fin;
                 //$finValue->setTime(0, 0, 0);
                 echo $finValue;
