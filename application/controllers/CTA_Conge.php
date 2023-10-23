@@ -18,7 +18,12 @@ class CTA_Conge extends CI_Controller
     }
 
     public function index(){
-        $this->viewer('/conge', array());
+        $data = array();
+        if($this->input->get('error') != null  )
+        {
+            $data['error'] = $this->input->get('error');
+        }
+        $this->viewer('/conge', $data);
     }
 
     public function leave_request_submit(){
@@ -26,8 +31,15 @@ class CTA_Conge extends CI_Controller
         $type = $this->input->post('type');
         $nb = $this->input->post('nbjour');
         $datedebut = $this->input->post('datedebut');
-        $this->MDA_DemandeConge->saveLeaveRequest($idemploye, $type, $datedebut, $nb);
-        redirect('CTA_Conge/');
+        $conge = $this->MDA_Conge->getConge($idemploye);
+        $value = $conge->resteconge - $nb;
+        if($value >= 0){
+            $this->MDA_DemandeConge->saveLeaveRequest($idemploye, $type, $datedebut, $nb);
+            redirect('CTA_Conge/');
+        } else{
+            $data['error'] = 'Reste congé insufisant';
+        }
+        redirect('CTA_Conge/index?error='. urlencode($data['error']));
     }
 
 //    Listes des demandes de congé
@@ -40,7 +52,7 @@ class CTA_Conge extends CI_Controller
             $date_depart = new DateTime($item->datedebut);
             $limite_date = clone $date_demande;
             $limite_date -> modify('+15 days');
-            if ($limite_date >= $date_depart) {
+            if ($limite_date <= $date_depart) {
                 $data['demandeDisponible'][] = $item;
             }
         }
@@ -58,8 +70,15 @@ class CTA_Conge extends CI_Controller
         $idemploye = $this->input->get('idemploye');
         $iddemande = $this->input->get('iddemande');
         $this->MDA_DemandeConge->approveLeaveRequest($idemploye, $iddemande);   
-        $demande = $this->MDA_DemandeConge->getDemandeConge($idemploye);
-        $this->MDA_Conge->updateMin($idemploye,$demande->nbjours);
+        $demande = $this->MDA_DemandeConge->getDemandeConge($iddemande);
+        $conge = $this->MDA_Conge->getConge($idemploye);
+        if($demande->type ==='normal'){
+            if(empty($conge)){
+              $this->MDA_Conge->saveLeave($idemploye,$demande->nbjours);
+             }else{
+                $this->MDA_Conge->updateMin($idemploye,$demande->nbjours);
+             }
+        }
         redirect('CTA_Conge/list_leave_request');
     }
 }

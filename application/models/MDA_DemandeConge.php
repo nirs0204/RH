@@ -38,29 +38,15 @@ class MDA_DemandeConge extends CI_Model
         $this->db->where('cd.decision', 1);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            echo $this->db->last_query();
             return $query->result();
         } else {
             return array();
         }
     }
     function getDemandeConge($emp){
-        $this->db->where('idemploye', $emp);
+        $this->db->where('idcongedemande', $emp);
         $query = $this->db->get('conge_demande'); 
         return $query->row(); 
     }
-//    public function getLeaveRequestBy1(){
-//        $this->db->select('cd.idemploye, e.nom, e.prenom, cd.type, cd.datedebut, cd.nbjours', 'cd.datedemande');
-//        $this->db->from('conge_demande cd');
-//        $this->db->join('employe e', 'cd.idemploye = e.idemploye');
-//        $this->db->where('cd.decision', 1);
-//        $query = $this->db->get();
-//        if ($query->num_rows() > 0) {
-//            return $query->result();
-//        } else {
-//            return array();
-//        }
-//        echo $this->db->last_query();
-//    }
 }
 ?>

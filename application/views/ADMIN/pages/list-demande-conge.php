@@ -27,7 +27,7 @@
 
                       <ul id="menuList" class="hidden absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
                         <li class="flex">
-                          <a href="<?php echo site_url("CTA_Conge/attribut"); ?>" class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+                          <a href="<?php echo site_url("CTA_Reste_Conge/"); ?>" class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
                             <span>Congé Annuel</span>
                           </a>
                         </li>

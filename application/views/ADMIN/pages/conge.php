@@ -14,6 +14,15 @@
             <div
               class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
             >
+
+            <?php if(isset($error)){ ?>
+                    <div class="alert alert-danger alert-dismissible fade show" id="notif" role="alert" style="background-color: rgba(255, 0, 0, 0.5); color: white; border-radius: 5px; height: 40px; padding-top: 10px;">
+                        <strong style="padding-left: 20px; margin-top: 10px;">Error!</strong> <?php echo $error ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        </button>
+                    </div>
+                <?php } ?>
+                <br>
             <form action="<?php echo site_url('CTA_Conge/leave_request_submit') ?>" method="post">
 
                 <label class="block mt-4 text-sm">
