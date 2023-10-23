@@ -17,7 +17,7 @@ class MDA_Conge extends CI_Model
     }
 
     //  update fucntion max
-    function updateEmployeeEmbauche($employeeId,$reste) {
+    function updateMax($employeeId,$reste) {
         $date = date('Y-m-d');
         $sql = "UPDATE congeSET dateinsert=%s , resteconge = resteconge + %s WHERE idemploye = %s";
         $sql = sprintf($sql, $this->db->escape($date), $this->db->escape($reste), $this->db->escape($employeeId));
@@ -25,7 +25,7 @@ class MDA_Conge extends CI_Model
     }
 
     //  update fucntion minus
-    function updateEmployeeEmbauche($employeeId,$reste) {
+    function updateMin($employeeId,$reste) {
         $date = date('Y-m-d');
         $sql = "UPDATE congeSET dateinsert=%s , resteconge = resteconge - %s WHERE idemploye = %s";
         $sql = sprintf($sql, $this->db->escape($date), $this->db->escape($reste), $this->db->escape($employeeId));
