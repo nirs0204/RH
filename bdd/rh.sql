@@ -194,6 +194,7 @@ create table conge(
 );
 
 create table conge_demande(
+    idcongedemande serial primary key,
     idemploye int references employe(idemploye),
     type varchar(50),
     datedebut timestamp,

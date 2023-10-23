@@ -120,7 +120,7 @@
                         <td class="px-4 py-3 text-xs">
                         <a
                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                            href="<?php echo site_url('CTA_Conge/approve_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>"
+                            href="<?php echo site_url('CTA_Conge/approve_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>&&iddemande=<?php echo isset($demande->idcongedemande) ? $demande->idcongedemande : '';?>"
                         >
                           Approved
                         </a>
@@ -128,7 +128,7 @@
                         <td class="px-4 py-3 text-xs">
                         <a
                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
-                            href="<?php echo site_url('CTA_Conge/reject_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>"
+                            href="<?php echo site_url('CTA_Conge/reject_leave_request');?>?idemploye=<?php echo isset($demande->idemploye) ? $demande->idemploye : '';?>&&iddemande=<?php echo isset($demande->idcongedemande) ? $demande->idcongedemande : '';?>"
                         >
                           Rejected
                         </a>
