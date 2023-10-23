@@ -8,6 +8,7 @@
             $this->load->model('MDA_Essai');
             $this->load->model('MDA_FicheDepaie');
             $this->load->model('MDA_ContratTravail');
+            $this->load->helper('date');
             if($this->session->userdata('admin') === null) 
             {
                 redirect('CTA_Admin/login_view?error=' . urlencode('Vous n`êtes pas connectée!'));
@@ -32,8 +33,10 @@
 
         public function create_formulaire_fichedepaie()
         {
+            $finValue = '';
             $idemploye= $this->input->get('idemploye');
             $date= $this->input->get('date');
+            //$date->setTime(0, 0, 0);
             $irsa = 0;
             $salaireDebase = 0;
             $salaireNet = 0;
@@ -41,24 +44,28 @@
             $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
             $data['contratessai'] = $this->MDA_Essai->OneEssai($idemploye);
             
-            
+            //echo $data['contrattrav'][0]->id_contrat_travail; 
+
             if ($data['contratessai'] != null) 
             {
                 $finValue = $data['contratessai'][0]->fin;
-                if ($date > $finValue) 
+                //$finValue->setTime(0, 0, 0);
+                echo $finValue;
+
+                if ($date < $finValue) 
                 {
-                    $data['contratessai'] = null;
-                } else {
+                    $data['contratessai'] = $this->MDA_Essai->OneEssai($idemploye);
+
                     $salaireDebase = $data['contratessai'][0]->salaire;
+                   
+                } 
+                elseif ($date > $finValue) 
+                {
+                    $data['contrattrav'] = $this->MDA_ContratTravail->getOneWorkContract($idemploye);
+                    $salaireDebase = $data['contrattrav'][0]->salaire;
+                    
                 }
             } 
-            if ($data['contrattrav'] != null && $data['contratessai'] == null) 
-            {
-                if($date >= $data['contrattrav'][0]->debut && $date <= $data['contrattrav'][0]->fin) 
-                {
-                    $salaireDebase = $data['contrattrav'][0]->salaire;
-                }
-            }
             
             if($salaireDebase <= 350000)
             {
@@ -86,14 +93,20 @@
             }
             $data['salaireDebase'] = $salaireDebase;
             $data['salaireNet'] = $salaireNet;
-
-            if($data['contrattrav']==null)
+            echo $date;
+            if($data['contratessai']!=null && $data['contrattrav']==null && $date < $finValue)
             {
                 $this->MDA_FicheDepaie->createFicheDePaie($idemploye,null,$data['contratessai'][0]->idessaicontrat,$date,$irsa,null);
+                //echo $data['contratessai'][0]->idessaicontrat . ' 1';
             }
-            elseif ($data['contratessai']==null) {
+            if($data['contratessai']!=null && $data['contrattrav']!=null && $date < $finValue)
+            {
+                $this->MDA_FicheDepaie->createFicheDePaie($idemploye,null,$data['contratessai'][0]->idessaicontrat,$date,$irsa,null);
+                //echo $data['contratessai'][0]->idessaicontrat . ' 1';
+            }
+            if ($data['contrattrav']!=null && $data['contratessai']!=null && $date > $finValue) {
                 $this->MDA_FicheDepaie->createFicheDePaie($idemploye,$data['contrattrav'][0]->id_contrat_travail,null,$date,$irsa,null);
-
+                //echo $data['contrattrav'][0]->id_contrat_travail . '2';
             }
 
             $this->viewer('/create_fiche_paie', $data);
