@@ -103,6 +103,7 @@ class CTA_Conge extends CI_Controller
             $this->MDA_Conge->updateMin($idemploye,$demande->nbjours);
             $this->MDA_DemandeConge->updateDemande($idemploye, $iddemande,8);   
             echo  'nb jours  = '.$diff;
+            echo $conge
         }else{
             echo  'moins salaire = '.$diff;
         }
